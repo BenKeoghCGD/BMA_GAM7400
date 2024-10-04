@@ -26,6 +26,8 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
     {
         Destroy(gameObject);
     }
+
+    // Starts the effect couroutine
     public void OnInteract(PlayerController _player)
     {
         if(_player == null)

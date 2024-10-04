@@ -17,7 +17,7 @@ public class LitterDropper : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        litterTimer = UnityEngine.Random.Range(litterTimerMin, litterTimerMax + 1);
+        litterTimer = UnityEngine.Random.Range(litterTimerMin, litterTimerMax);
     }
 
     // Update is called once per frame
@@ -35,6 +35,6 @@ public class LitterDropper : MonoBehaviour
         GameObject instance = Instantiate(litterObjects[UnityEngine.Random.Range(0, litterObjects.Count)]);
         instance.transform.position = transform.position;
 
-        litterTimer = UnityEngine.Random.Range(litterTimerMin, litterTimerMax + 1);
+        litterTimer = UnityEngine.Random.Range(litterTimerMin, litterTimerMax);
     }
 }
