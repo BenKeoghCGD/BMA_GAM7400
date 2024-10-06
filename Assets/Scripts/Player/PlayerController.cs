@@ -12,22 +12,34 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField]
     private int baseMaxLitter;
-    private int maxLitter;
+    private int maxBlackLitter;
+    private int maxRedLitter;
+    private int maxBeigeLitter;
 
     [SerializeField]
     private LayerMask interactLayer;
 
-    private int heldLitter = 0;
-    public int HeldLitter
+    private int heldBlackLitter = 0;
+    private int heldRedLitter = 0;
+    private int heldBeigeLitter = 0;
+    public int HeldBlackLitter
     {
-        get { return heldLitter; }
+        get { return heldBlackLitter; }
     }
-
-    // Start is called before the first frame update
+    public int HeldRedLitter
+    {
+        get { return heldRedLitter; }
+    }
+    public int HeldBeigeLitter
+    {
+        get { return heldBeigeLitter; }
+    }
     void Start()
     {
         movementSpeed = baseSpeed;
-        maxLitter = baseMaxLitter;
+        maxBlackLitter = baseMaxLitter;
+        maxRedLitter = baseMaxLitter;
+        maxBeigeLitter = baseMaxLitter;
     }
 
     // Update is called once per frame
@@ -37,13 +49,30 @@ public class PlayerController : MonoBehaviour
         OnInteractCollision();
     }
 
-    public void AdjustLitter(int amount)
+    public void AdjustBlackLitter(int amount)
     {
-        heldLitter += amount;
+        heldBlackLitter += amount;
     }
-    public void SetLitter(int amount)
+    public void AdjustRedLitter(int amount)
     {
-        heldLitter = amount;
+        heldRedLitter += amount;
+    }
+    public void AdjustBeigeLitter(int amount)
+    {
+        heldBeigeLitter += amount;
+    }
+    public void SetBlackLitter(int amount)
+    {
+        heldBlackLitter = amount;
+
+    }
+    public void SetRedLitter(int amount)
+    {
+        heldRedLitter = amount;
+    }
+    public void SetBeigeLitter(int amount)
+    {
+        heldBeigeLitter = amount;
     }
     public void MultiplyBaseSpeed(float multiplier)
     {
@@ -78,7 +107,7 @@ public class PlayerController : MonoBehaviour
                 continue;
             }
 
-            if (hit.GetComponent<Litter>() != null && heldLitter >= maxLitter)
+            if (hit.GetComponent<BlackBinLitter>() != null && heldBlackLitter >= maxBlackLitter)
             {
                 continue;
             }

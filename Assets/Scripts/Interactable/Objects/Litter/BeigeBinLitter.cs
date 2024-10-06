@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Litter : MonoBehaviour, IInteractable
+public class BeigeBinLitter : MonoBehaviour, IInteractable
 {
     public void OnInteract(PlayerController player)
     {
-        player.AdjustLitter(1);
+        player.AdjustBeigeLitter(1);
 
         Destroy(gameObject);
     }
