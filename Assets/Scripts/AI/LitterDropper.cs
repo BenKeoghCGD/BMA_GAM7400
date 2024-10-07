@@ -6,7 +6,7 @@ public class LitterDropper : MonoBehaviour
 {
     [SerializeField]
     private List<GameObject> litterObjects;
-
+    
     [SerializeField]
     private float litterTimerMin;
     [SerializeField]
@@ -34,7 +34,8 @@ public class LitterDropper : MonoBehaviour
     {
         GameObject instance = Instantiate(litterObjects[UnityEngine.Random.Range(0, litterObjects.Count)]);
         instance.transform.position = transform.position;
-
+        GameManager.instance.LitterInstantiated.Add(instance);
         litterTimer = UnityEngine.Random.Range(litterTimerMin, litterTimerMax);
     }
+    
 }

@@ -38,4 +38,9 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
         player = _player;
         StartCoroutine(Effect(duration));
     }
+
+    protected virtual void OnBombExplode()
+    {
+        
+    }
 }
