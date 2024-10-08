@@ -8,7 +8,8 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
 {
     [SerializeField]
     protected float duration;
-
+    [SerializeField]
+    protected float magnetDuration;
     protected PlayerController player;
     protected bool effectStarted = false;
 
@@ -37,10 +38,20 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
 
         player = _player;
         StartCoroutine(Effect(duration));
+        MagnetEffect(magnetDuration);
     }
 
     protected virtual void OnBombExplode()
     {
+    }
+
+    public virtual void MagnetEffect(float time)
+    {
+    }
+
+    protected virtual void StartMagnetEffect()
+    {
         
     }
+
 }

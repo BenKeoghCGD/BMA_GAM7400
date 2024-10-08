@@ -5,7 +5,6 @@ using UnityEngine;
 public class BombPowerUp : PowerUpBase
 {
    [SerializeField] int collectedTrash = 0;
-
    public override IEnumerator Effect(float time)
    {
       if(player == null)
