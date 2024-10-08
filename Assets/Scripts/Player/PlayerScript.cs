@@ -6,7 +6,7 @@ using UnityEngine.InputSystem.XR;
 
 public class PlayerScript : MonoBehaviour
 {
-    //Lucian's version of the player script
+    //Lucian's version of the player script :3
 
     //Input System stuff
     private InputActionAsset playerInputActions;
