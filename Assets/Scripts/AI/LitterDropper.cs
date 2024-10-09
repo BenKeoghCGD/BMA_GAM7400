@@ -2,9 +2,12 @@
  * Branch: BenH (Higham, Ben)
  * Commit: 56f110d603535bc1d5ee8186f94c86515526ae0f
  * 
+ * Branch: Hossein (Soroor, Hossein)
+ * Commit: 057afddb335e248e8a0c986f6117e1e702cddf11
+ * 
  * Cleaned 9/10/24 (Keogh, Ben)
  * Branch: Main, Stable (Keogh, Ben)
- * Commit: 
+ * Commit: c5c64a33b28ef4617eae3f6b5dcc3374872a0938
  */
 
 using System.Collections.Generic;
@@ -45,6 +48,9 @@ public class LitterDropper : MonoBehaviour
         GameObject instance = Instantiate(litterObjects[Random.Range(0, litterObjects.Count)]);
         // Set the position of the litter to the position of the LitterDropper
         instance.transform.position = transform.position;
+
+        // Add the litter item to the pool of litter items in the GameManager
+        GameManager.instance.LitterInstantiated.Add(instance);
 
         ResetLitterTimer();
     }
