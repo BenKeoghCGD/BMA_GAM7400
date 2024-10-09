@@ -58,10 +58,17 @@ public class PlayerScript : MonoBehaviour
     {
         //enables the move and interact actions
         moveAction.Enable();
+        playerInputMap.FindAction("Interact").started += Interact;
         interactAction.Enable();
+        playerInputMap.Enable();
     }
 
-
+    private void OnDisable()
+    {
+       moveAction.Disable();
+        interactAction.Disable();
+        playerInputMap.Disable();
+    }
 
 
     void Move()
@@ -74,8 +81,9 @@ public class PlayerScript : MonoBehaviour
         characterController.Move(move);
     }
 
-    void Interact()
+    void Interact(InputAction.CallbackContext context)
     {
+        Debug.Log("HEY");
         //WIP for now just logs interact
         if (interactAction.triggered)
         {
