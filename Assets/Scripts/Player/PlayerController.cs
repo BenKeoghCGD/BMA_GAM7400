@@ -38,7 +38,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         Move();
-        OnInteractCollision();
+        //OnInteractCollision();
     }
 
     public void AdjustLitter(LitterType type)
@@ -95,20 +95,20 @@ public class PlayerController : MonoBehaviour
     }
 
     // Checks for collision with IInteractable object. If the object is litter, checks if the player can carry more
-    private void OnInteractCollision()
-    {
-        Collider[] hits = Physics.OverlapSphere(transform.position, 0.5f, interactLayer);
+    //private void OnInteractCollision()
+    //{
+    //    Collider[] hits = Physics.OverlapSphere(transform.position, 0.5f, interactLayer);
 
-        foreach (Collider hit in hits)
-        {
-            IInteractable target = hit.gameObject.GetComponent<IInteractable>();
+    //    foreach (Collider hit in hits)
+    //    {
+    //        IInteractable target = hit.gameObject.GetComponent<IInteractable>();
 
-            if(target == null)
-            {
-                continue;
-            }
+    //        if(target == null)
+    //        {
+    //            continue;
+    //        }
 
-            target.OnInteract(this);
-        }
-    }
+    //        target.OnInteract(this);
+    //    }
+    //}
 }

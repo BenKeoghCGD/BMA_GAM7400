@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8643161109626569848}
   - component: {fileID: 4459364825359615942}
   - component: {fileID: 8149056655149377796}
-  - component: {fileID: 1998085396680754194}
+  - component: {fileID: 2768903074291581941}
   m_Layer: 6
   m_Name: BombPowerup
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 06795c15f480c5840bedcbf1932b7f5c, type: 2}
+  - {fileID: 2100000, guid: 9500f71e232fbf64fbd4fc499628b6d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -100,13 +100,13 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1998085396680754194
+--- !u!114 &2768903074291581941
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 336830015571229248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a901d64c64788164aa1d520c5da81f38, type: 3}
+  m_Script: {fileID: 11500000, guid: 0425b3550c2f3419e868182231249a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   duration: 0
