@@ -9,5 +9,5 @@
 
 public interface IInteractable
 {
-    public void OnInteract(PlayerController player);
+    public void OnInteract(PlayerScript player);
 }

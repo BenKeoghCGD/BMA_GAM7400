@@ -1,5 +1,5 @@
 {
-    "name": "PlayerInput",
+    "name": "PlayerControl",
     "maps": [
         {
             "name": "PlayerControls",
@@ -10,24 +10,6 @@
                     "type": "PassThrough",
                     "id": "75550f7e-6e7a-4efa-b6b4-a4a11843191f",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "Interact",
-                    "type": "Button",
-                    "id": "44414025-cc88-4e14-915b-c4ecbfb8be3a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ToolSwitcher",
-                    "type": "Button",
-                    "id": "16912b8d-f1c5-487c-a9e5-f86ce403b1ce",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
@@ -99,39 +81,6 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                },
-                {
-                    "name": "",
-                    "id": "75dbcbe5-9170-4de2-a49c-c3de5877cd22",
-                    "path": "<Touchscreen>/Press",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ea8e8aab-1828-46f3-b870-4a95339ce2af",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "a06b3bf6-e565-4951-a047-d61b8e41cfc0",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "ToolSwitcher",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         }

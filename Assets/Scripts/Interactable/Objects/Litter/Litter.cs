@@ -13,7 +13,7 @@ public class Litter : MonoBehaviour, IInteractable
 {
     [SerializeField] private LitterType litterType;
 
-    public void OnInteract(PlayerController player)
+    public void OnInteract(PlayerScript player)
     {
         // Adjust player litter count
         player.AdjustLitter(litterType);

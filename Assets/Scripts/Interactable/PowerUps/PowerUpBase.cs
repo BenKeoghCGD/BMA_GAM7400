@@ -13,7 +13,7 @@ using UnityEngine;
 public abstract class PowerUpBase : MonoBehaviour, IInteractable
 {
     [SerializeField] protected float duration;
-    protected PlayerController _player;
+    protected PlayerScript _player;
     protected bool _effectStarted = false;
 
     public virtual IEnumerator Effect(float time)
@@ -33,7 +33,7 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
     }
 
     // Starts the effect couroutine
-    public void OnInteract(PlayerController player)
+    public void OnInteract(PlayerScript player)
     {
         // make sure player exists
         if(player == null) return;

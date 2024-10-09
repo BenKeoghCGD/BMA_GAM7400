@@ -18,20 +18,28 @@ public class PlayerScript : MonoBehaviour
     private InputActionAsset playerInputActions;
     private InputActionMap playerInputMap;
     private InputAction moveAction;
-    private InputAction interactAction;
     private CharacterController characterController;
 
     //Player movement variables
     public float moveSpeed = 5.0f;
+    public float baseSpeed;
 
 
     //Camera variables
     [SerializeField] Camera playerCamera;
 
+
+    //Litter Related variables
+    [SerializeField] private int heldBlackLitter = 0;
+    [SerializeField] private int heldRedLitter = 0;
+    [SerializeField] private int heldBeigeLitter = 0;
+
+    [SerializeField] private LayerMask interactLayer;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,6 +47,7 @@ public class PlayerScript : MonoBehaviour
     {
         //movement has to be updated every frame
         Move();
+        OnInteractCollision();
     }
 
     private void Awake()
@@ -50,18 +59,20 @@ public class PlayerScript : MonoBehaviour
         //gets the player controls action map and the actions
         playerInputMap = playerInputActions.FindActionMap("PlayerControls");
         moveAction = playerInputMap.FindAction("Move");
-        interactAction = playerInputMap.FindAction("Interact");
-        Debug.Log("PlayerScript Awake");
     }
 
     private void OnEnable()
     {
         //enables the move and interact actions
         moveAction.Enable();
-        interactAction.Enable();
+        playerInputMap.Enable();
     }
 
-
+    private void OnDisable()
+    {
+        moveAction.Disable();
+        playerInputMap.Disable();
+    }
 
 
     void Move()
@@ -74,13 +85,78 @@ public class PlayerScript : MonoBehaviour
         characterController.Move(move);
     }
 
-    void Interact()
+    //Following code has been copied from Ben Higham's PlayerController
+    public int HeldBlackLitter
     {
-        //WIP for now just logs interact
-        if (interactAction.triggered)
+        get { return heldBlackLitter; }
+    }
+    public int HeldRedLitter
+    {
+        get { return heldRedLitter; }
+    }
+    public int HeldBeigeLitter
+    {
+        get { return heldBeigeLitter; }
+    }
+
+
+    public void AdjustLitter(LitterType type)
+    {
+        switch (type)
         {
-            Debug.Log("Interact");
+            case LitterType.Beige:
+                heldBeigeLitter += Configuration.LitterValue;
+                break;
+            case LitterType.Black:
+                heldBlackLitter += Configuration.LitterValue;
+                break;
+            case LitterType.Red:
+                heldRedLitter += Configuration.LitterValue;
+                break;
         }
     }
 
+    public void SetLitter(LitterType type, int amount)
+    {
+        switch (type)
+        {
+            case LitterType.Beige:
+                heldBeigeLitter = amount;
+                break;
+            case LitterType.Black:
+                heldBlackLitter = amount;
+                break;
+            case LitterType.Red:
+                heldRedLitter = amount;
+                break;
+        }
+    }
+
+    public void ClearLitter(LitterType type) => SetLitter(type, 0);
+    public void MultiplyBaseSpeed(float multiplier)
+    {
+        moveSpeed = baseSpeed * multiplier;
+    }
+    public void ResetMovementSpeed()
+    {
+        moveSpeed = baseSpeed;
+    }
+
+
+    // Checks for collision with IInteractable object. If the object is litter, checks if the player can carry more
+    private void OnInteractCollision()
+    {
+        Collider[] hits = Physics.OverlapSphere(transform.position, 0.5f, interactLayer);
+
+        foreach (Collider hit in hits)
+        {
+            IInteractable target = hit.gameObject.GetComponent<IInteractable>();
+
+            if (target == null)
+            {
+                continue;
+            }
+            target.OnInteract(this);
+        }
+    }
 }
