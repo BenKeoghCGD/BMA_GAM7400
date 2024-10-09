@@ -151,9 +151,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 85907817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 425f5f86edadba045885a07d2e3d23ab, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c75fadd5e8244df2b2ceb96f6e28912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  litterType: 2
 --- !u!65 &85907819
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -574,7 +575,6 @@ GameObject:
   - component: {fileID: 722924107}
   - component: {fileID: 722924106}
   - component: {fileID: 722924105}
-  - component: {fileID: 722924109}
   m_Layer: 6
   m_Name: Plastic/Glass
   m_TagString: Untagged
@@ -670,18 +670,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &722924109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 722924104}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffdcbc1e52cec914cb0b056aa7f9474e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &787085490
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,9 +699,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 787085490}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59508bec6f87a1c4b9da3a6b90aff301, type: 3}
+  m_Script: {fileID: 11500000, guid: c466ca3194be24cbb94c9b4fdb643f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  litterType: 0
 --- !u!65 &787085492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -829,9 +818,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 818527788}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 364b90997071da442967df2d56e79e14, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c75fadd5e8244df2b2ceb96f6e28912, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  litterType: 0
 --- !u!65 &818527790
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -995,9 +985,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1521343672}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59508bec6f87a1c4b9da3a6b90aff301, type: 3}
+  m_Script: {fileID: 11500000, guid: c466ca3194be24cbb94c9b4fdb643f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  litterType: 0
 --- !u!65 &1521343674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1205,9 +1196,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1885761069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59508bec6f87a1c4b9da3a6b90aff301, type: 3}
+  m_Script: {fileID: 11500000, guid: c466ca3194be24cbb94c9b4fdb643f1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  litterType: 0
 --- !u!65 &1885761071
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1302,6 +1294,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 417715000765672547, guid: c1b24a7bd8be5b942a37427ae84aeb47, type: 3}
+      propertyPath: litterType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8454773968595353766, guid: c1b24a7bd8be5b942a37427ae84aeb47, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.64
@@ -1428,7 +1424,6 @@ GameObject:
   - component: {fileID: 2006420079}
   - component: {fileID: 2006420078}
   - component: {fileID: 2006420077}
-  - component: {fileID: 2006420081}
   m_Layer: 6
   m_Name: CardBoardBox
   m_TagString: Untagged
@@ -1522,18 +1517,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2006420081
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2006420076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91e54e50b2017a64fa1190dc8d1fa871, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

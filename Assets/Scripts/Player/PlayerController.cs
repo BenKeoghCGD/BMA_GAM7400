@@ -1,24 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting.Dependencies.Sqlite;
+/*
+ * Branch: BenH (Higham, Ben)
+ * Commit: 56f110d603535bc1d5ee8186f94c86515526ae0f
+ *
+ * Cleaned 9/10/24 (Keogh, Ben)
+ * Branch: Main, Stable (Keogh, Ben)
+ * Commit: 
+ */
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField]
-    private float baseSpeed;
+    [SerializeField] private float baseSpeed;
+    [SerializeField] private LayerMask interactLayer;
     private float movementSpeed;
-
-    [SerializeField]
-    private int baseMaxLitter;
-    private int maxBlackLitter;
-    private int maxRedLitter;
-    private int maxBeigeLitter;
-
-    [SerializeField]
-    private LayerMask interactLayer;
-
     private int heldBlackLitter = 0;
     private int heldRedLitter = 0;
     private int heldBeigeLitter = 0;
@@ -34,12 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         get { return heldBeigeLitter; }
     }
+
     void Start()
     {
         movementSpeed = baseSpeed;
-        maxBlackLitter = baseMaxLitter;
-        maxRedLitter = baseMaxLitter;
-        maxBeigeLitter = baseMaxLitter;
     }
 
     // Update is called once per frame
@@ -49,31 +41,40 @@ public class PlayerController : MonoBehaviour
         OnInteractCollision();
     }
 
-    public void AdjustBlackLitter(int amount)
+    public void AdjustLitter(LitterType type)
     {
-        heldBlackLitter += amount;
+        switch(type)
+        {
+            case LitterType.Beige:
+                heldBeigeLitter += Configuration.LitterValue;
+                break;
+            case LitterType.Black:
+                heldBlackLitter += Configuration.LitterValue;
+                break;
+            case LitterType.Red:
+                heldRedLitter += Configuration.LitterValue;
+                break;
+        }
     }
-    public void AdjustRedLitter(int amount)
-    {
-        heldRedLitter += amount;
-    }
-    public void AdjustBeigeLitter(int amount)
-    {
-        heldBeigeLitter += amount;
-    }
-    public void SetBlackLitter(int amount)
-    {
-        heldBlackLitter = amount;
 
-    }
-    public void SetRedLitter(int amount)
+    public void SetLitter(LitterType type, int amount)
     {
-        heldRedLitter = amount;
+        switch (type)
+        {
+            case LitterType.Beige:
+                heldBeigeLitter = amount;
+                break;
+            case LitterType.Black:
+                heldBlackLitter = amount;
+                break;
+            case LitterType.Red:
+                heldRedLitter = amount;
+                break;
+        }
     }
-    public void SetBeigeLitter(int amount)
-    {
-        heldBeigeLitter = amount;
-    }
+
+    public void ClearLitter(LitterType type) => SetLitter(type, 0);
+
     public void MultiplyBaseSpeed(float multiplier)
     {
         movementSpeed = baseSpeed * multiplier;
@@ -103,11 +104,6 @@ public class PlayerController : MonoBehaviour
             IInteractable target = hit.gameObject.GetComponent<IInteractable>();
 
             if(target == null)
-            {
-                continue;
-            }
-
-            if (hit.GetComponent<BlackBinLitter>() != null && heldBlackLitter >= maxBlackLitter)
             {
                 continue;
             }
