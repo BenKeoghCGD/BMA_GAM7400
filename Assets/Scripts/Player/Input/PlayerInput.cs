@@ -35,6 +35,15 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ToolSwitcher"",
+                    ""type"": ""Button"",
+                    ""id"": ""16912b8d-f1c5-487c-a9e5-f86ce403b1ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -48,6 +57,17 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
                     ""action"": ""New action"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a06b3bf6-e565-4951-a047-d61b8e41cfc0"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToolSwitcher"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -57,6 +77,7 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
         // New action map
         m_Newactionmap = asset.FindActionMap("New action map", throwIfNotFound: true);
         m_Newactionmap_Newaction = m_Newactionmap.FindAction("New action", throwIfNotFound: true);
+        m_Newactionmap_ToolSwitcher = m_Newactionmap.FindAction("ToolSwitcher", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -119,11 +140,13 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Newactionmap;
     private List<INewactionmapActions> m_NewactionmapActionsCallbackInterfaces = new List<INewactionmapActions>();
     private readonly InputAction m_Newactionmap_Newaction;
+    private readonly InputAction m_Newactionmap_ToolSwitcher;
     public struct NewactionmapActions
     {
         private @PlayerInput m_Wrapper;
         public NewactionmapActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Newaction => m_Wrapper.m_Newactionmap_Newaction;
+        public InputAction @ToolSwitcher => m_Wrapper.m_Newactionmap_ToolSwitcher;
         public InputActionMap Get() { return m_Wrapper.m_Newactionmap; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -136,6 +159,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Newaction.started += instance.OnNewaction;
             @Newaction.performed += instance.OnNewaction;
             @Newaction.canceled += instance.OnNewaction;
+            @ToolSwitcher.started += instance.OnToolSwitcher;
+            @ToolSwitcher.performed += instance.OnToolSwitcher;
+            @ToolSwitcher.canceled += instance.OnToolSwitcher;
         }
 
         private void UnregisterCallbacks(INewactionmapActions instance)
@@ -143,6 +169,9 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
             @Newaction.started -= instance.OnNewaction;
             @Newaction.performed -= instance.OnNewaction;
             @Newaction.canceled -= instance.OnNewaction;
+            @ToolSwitcher.started -= instance.OnToolSwitcher;
+            @ToolSwitcher.performed -= instance.OnToolSwitcher;
+            @ToolSwitcher.canceled -= instance.OnToolSwitcher;
         }
 
         public void RemoveCallbacks(INewactionmapActions instance)
@@ -163,5 +192,6 @@ public partial class @PlayerInput: IInputActionCollection2, IDisposable
     public interface INewactionmapActions
     {
         void OnNewaction(InputAction.CallbackContext context);
+        void OnToolSwitcher(InputAction.CallbackContext context);
     }
 }
