@@ -1,17 +1,20 @@
+/*
+ * Branch: BenH (Higham, Ben)
+ * Commit: 56f110d603535bc1d5ee8186f94c86515526ae0f
+ *
+ * Cleaned 9/10/24 (Keogh, Ben)
+ * Branch: Main, Stable (Keogh, Ben)
+ * Commit: c5c64a33b28ef4617eae3f6b5dcc3374872a0938
+ */
+
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public abstract class PowerUpBase : MonoBehaviour, IInteractable
 {
-    [SerializeField]
-    protected float duration;
-    [SerializeField]
-    protected float magnetDuration;
-    protected PlayerController player;
-    protected bool effectStarted = false;
+    [SerializeField] protected float duration;
+    protected PlayerScript _player;
+    protected bool _effectStarted = false;
 
     public virtual IEnumerator Effect(float time)
     {
@@ -23,35 +26,19 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
         gameObject.GetComponent<MeshRenderer>().enabled = false;
         gameObject.GetComponent<Collider>().enabled = false;
     }
+
     protected virtual void EndEffect()
     {
         Destroy(gameObject);
     }
 
     // Starts the effect couroutine
-    public void OnInteract(PlayerController _player)
+    public void OnInteract(PlayerScript player)
     {
-        if(_player == null)
-        {
-            return;
-        }
+        // make sure player exists
+        if(player == null) return;
 
-        player = _player;
+        _player = player;
         StartCoroutine(Effect(duration));
-        MagnetEffect(magnetDuration);
     }
-
-    protected virtual void OnBombExplode()
-    {
-    }
-
-    public virtual void MagnetEffect(float time)
-    {
-    }
-
-    protected virtual void StartMagnetEffect()
-    {
-        
-    }
-
 }
