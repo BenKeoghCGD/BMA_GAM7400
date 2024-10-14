@@ -13,7 +13,8 @@ using UnityEngine;
 // Example Powerup
 public class SpeedPowerUp : PowerUpBase
 {
-    [SerializeField] private float speedMultiplier;
+    [SerializeField] 
+    private float speedMultiplier;
 
     public override IEnumerator Effect(float time)
     {
