@@ -13,6 +13,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
    public static GameManager instance;
+   public int PlayerLife = 0;
    public List<GameObject> LitterInstantiated = new List<GameObject>();
    
    private void Awake()
