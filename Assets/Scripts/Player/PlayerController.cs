@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
     {
         movementSpeed = baseSpeed;
     }
+
+  
     private void Move()
     {
         float horizontal = Input.GetAxis("Horizontal");
