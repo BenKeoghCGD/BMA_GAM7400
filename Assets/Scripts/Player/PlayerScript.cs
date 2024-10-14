@@ -21,18 +21,23 @@ public class PlayerScript : MonoBehaviour
     private CharacterController characterController;
 
     //Player movement variables
+    [SerializeField]
+    private float baseSpeed;
     public float moveSpeed = 5.0f;
-    public float baseSpeed;
-
 
     //Camera variables
     [SerializeField] Camera playerCamera;
 
-
     //Litter Related variables
-    [SerializeField] private int heldBlackLitter = 0;
-    [SerializeField] private int heldRedLitter = 0;
-    [SerializeField] private int heldBeigeLitter = 0;
+    // Litter needs to be managed by size and weight rather than flat value, can probably use ScriptableObject for LitterData (ask Ben Stott if you move on to this) (BH)
+    // MaxSize variable
+    // MaxWeight variable
+    [SerializeField] 
+    private int heldBlackLitter = 0;
+    [SerializeField] 
+    private int heldRedLitter = 0;
+    [SerializeField] 
+    private int heldBeigeLitter = 0;
 
     [SerializeField] private LayerMask interactLayer;
 
@@ -132,7 +137,10 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    public void ClearLitter(LitterType type) => SetLitter(type, 0);
+    public void ClearLitter(LitterType type)
+    {
+        SetLitter(type, 0);
+    }
     public void MultiplyBaseSpeed(float multiplier)
     {
         moveSpeed = baseSpeed * multiplier;
@@ -156,6 +164,7 @@ public class PlayerScript : MonoBehaviour
             {
                 continue;
             }
+
             target.OnInteract(this);
         }
     }
