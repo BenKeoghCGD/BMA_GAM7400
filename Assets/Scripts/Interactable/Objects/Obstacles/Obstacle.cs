@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
 {
     // reference to playerlife script
     [SerializeField] private PlayerLife PlayerLife;
+    public bool isObstacle = true;
 
     
     // when player collides with the obstacles collider decreases the players health by 1, also ensures that the player health doesnt go under 0
@@ -13,7 +14,15 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerLife.health -= 1; 
+            if (isObstacle == true)
+            {
+                PlayerLife.health -= 1;
+            }
+            else
+            {
+                PlayerLife.health += 1;
+            }
+            
 
             PlayerLife.health = Mathf.Max(PlayerLife.health, 0);
         }
