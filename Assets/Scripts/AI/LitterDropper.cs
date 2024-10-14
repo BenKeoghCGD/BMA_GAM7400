@@ -15,9 +15,12 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> litterObjects;
-    [SerializeField] private float litterTimerMin;
-    [SerializeField] private float litterTimerMax;
+    [SerializeField] 
+    private List<GameObject> litterObjects;
+    [SerializeField] 
+    private float litterTimerMin;
+    [SerializeField] 
+    private float litterTimerMax;
 
     private float _litterTimer;
 
@@ -49,12 +52,15 @@ public class LitterDropper : MonoBehaviour
         // Set the position of the litter to the position of the LitterDropper
         instance.transform.position = transform.position;
 
-        // Add the litter item to the pool of litter items in the GameManager
-        GameManager.instance.LitterInstantiated.Add(instance);
+        // Adds the litter item to the LitterManager
+        GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
 
         ResetLitterTimer();
     }
 
     // Set the litterTimer variable to a random number between litterTimerMin and litterTimerMax
-    void ResetLitterTimer() => _litterTimer = Random.Range(litterTimerMin, litterTimerMax);
+    void ResetLitterTimer()
+    {
+        _litterTimer = Random.Range(litterTimerMin, litterTimerMax);
+    }
 }
