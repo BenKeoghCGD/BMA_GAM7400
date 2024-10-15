@@ -1767,14 +1767,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 886825430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc158f8b3d46de744b21ee317c5737bf, type: 3}
+  m_Script: {fileID: 11500000, guid: dcc457f4260a90845a2cda7a5bb789d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   lifeAmountText: {fileID: 164003309}
   LitterAmountText: {fileID: 951208082}
-  BeigeBinText: {fileID: 0}
-  BlackBinText: {fileID: 0}
-  ReadBinText: {fileID: 0}
 --- !u!1001 &929277680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4358,7 +4355,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89b78cc1c10baa49968ee62b244bd62, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

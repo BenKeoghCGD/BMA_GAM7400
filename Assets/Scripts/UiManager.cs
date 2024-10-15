@@ -10,9 +10,7 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public TMP_Text lifeAmountText;
     public TMP_Text LitterAmountText;
-    public TMP_Text BeigeBinText;
-    public TMP_Text BlackBinText;
-    public TMP_Text ReadBinText;
+
 
     private void Awake()
     {
