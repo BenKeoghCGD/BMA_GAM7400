@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 5019506086973660401}
   - component: {fileID: 1166230128711281308}
   - component: {fileID: 570749329559977765}
+  - component: {fileID: 3184032894930185121}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -124,7 +125,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baseSpeed: 5
-  baseMaxLitter: 1
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -197,4 +197,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  baseSpeed: 0
   playerCamera: {fileID: 0}
+  heldBlackLitter: 0
+  heldRedLitter: 0
+  heldBeigeLitter: 0
+  interactLayer:
+    serializedVersion: 2
+    m_Bits: 0
+--- !u!114 &3184032894930185121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866595110635335355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7349b754cdcaa5f408fa335843ce54b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  maxHealth: 0
+  hearts: []
+  FullHeart: {fileID: 0}

@@ -12,7 +12,9 @@ using UnityEngine;
 
 public abstract class PowerUpBase : MonoBehaviour, IInteractable
 {
-    [SerializeField] protected float duration;
+    [SerializeField] 
+    protected float duration;
+
     protected PlayerScript _player;
     protected bool _effectStarted = false;
 
@@ -36,7 +38,10 @@ public abstract class PowerUpBase : MonoBehaviour, IInteractable
     public void OnInteract(PlayerScript player)
     {
         // make sure player exists
-        if(player == null) return;
+        if (player == null)
+        {
+            return;
+        }
 
         _player = player;
         StartCoroutine(Effect(duration));
