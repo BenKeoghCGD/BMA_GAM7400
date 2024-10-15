@@ -34,8 +34,15 @@ public class ToolSwitcher : MonoBehaviour
         int currentTool = 0;
         foreach (Transform tool in transform)
         {
-            if (currentTool == selectedTool) tool.gameObject.SetActive(true);
-            else tool.gameObject.SetActive(false);
+            if (currentTool == selectedTool)
+            {
+                tool.gameObject.SetActive(true);
+            }
+            else
+            {
+                tool.gameObject.SetActive(false);
+            }
+
             currentTool++;
         }
     }
