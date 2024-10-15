@@ -14,6 +14,21 @@ public class DifficultyManager : MonoBehaviour
     private int increaseCount;
     private int currentStage;
 
+    public static System.Action IncreaseDifficultyInstantCallback = null; // Instantly increase difficulty (if) for any milestone in game
+
+    private void Awake()
+    {
+        Debug.Log("Regged CallbackHandler");
+        IncreaseDifficultyInstantCallback -= IncreaseDifficultyWrapperFunction;
+        IncreaseDifficultyInstantCallback += IncreaseDifficultyWrapperFunction;
+    }
+
+    private void Destroy()
+    {
+        Debug.Log("Unregged CallbackHandler");
+        IncreaseDifficultyInstantCallback -= IncreaseDifficultyWrapperFunction;
+    }
+
     public float CurrentDifficulty
     {
         get { return currentDifficulty; }
@@ -26,8 +41,16 @@ public class DifficultyManager : MonoBehaviour
         InvokeRepeating(nameof(IncreaseDifficulty), timeToIncrease, timeToIncrease);
     }
 
+    private void IncreaseDifficultyWrapperFunction()
+    {
+        CancelInvoke(nameof(IncreaseDifficulty)); // Stop the normal coroutine so as not to penalize the player unexpectedly twice in short intervals
+        IncreaseDifficulty(); // Increase it for once
+        InvokeRepeating(nameof(IncreaseDifficulty), timeToIncrease, timeToIncrease); // Reset for normal intervals again
+    }
+
     private void IncreaseDifficulty()
     {
+        Debug.Log("IncreaseDifficulty Called");
         // Increase the difficulty
         currentDifficulty += currentDifficulty * (difficultyIncreasePercentage / 100f);
         increaseCount++;
