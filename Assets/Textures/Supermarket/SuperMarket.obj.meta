@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 10bd236cd8567b14f8384183f3b52930
+guid: 3a2cd91c36e0dd7428b941f0ca23c2b4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: SupermarketMat
+    second: {fileID: 2100000, guid: 06fd00fcf7d696645901d1dbf74b1b3f, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
