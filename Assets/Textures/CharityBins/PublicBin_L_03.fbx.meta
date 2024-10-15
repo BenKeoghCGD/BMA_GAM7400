@@ -1,9 +1,14 @@
 fileFormatVersion: 2
-guid: 10bd236cd8567b14f8384183f3b52930
+guid: 62e695779e90ca343ad5a48294b6e1c4
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lambert1
+    second: {fileID: 2100000, guid: cbd1bee640607bf49bed4372de028a8e, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -37,7 +42,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 1
+    addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
     importPhysicalCameras: 1
