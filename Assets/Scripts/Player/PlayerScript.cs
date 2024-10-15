@@ -10,6 +10,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerScript : MonoBehaviour
 {
     //Lucian's version of the player script :3
@@ -19,6 +20,7 @@ public class PlayerScript : MonoBehaviour
     private InputActionMap playerInputMap;
     private InputAction moveAction;
     private CharacterController characterController;
+    [SerializeField] private FixedJoystick joystick;
 
     //Player movement variables
     public float moveSpeed = 5.0f;
@@ -83,6 +85,13 @@ public class PlayerScript : MonoBehaviour
         move = move * moveSpeed * Time.deltaTime;
         move = transform.TransformDirection(move);
         characterController.Move(move);
+
+        //Alternatively, we could use the joystick input for movement
+        move = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        move = move * moveSpeed * Time.deltaTime;
+        move = transform.TransformDirection(move);
+        characterController.Move(move);
+
     }
 
     //Following code has been copied from Ben Higham's PlayerController
