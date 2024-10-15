@@ -7,20 +7,31 @@
  * Commit: 
  */
 
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ToolSwitcher : MonoBehaviour
 {
+
+    
+
     int selectedTool = 0;
     public Button tool1;
     public Button tool2;
     public Button tool3;
     public Button tool4;
 
+    public PlayerScript playerscript;
+
     // Start is called before the first frame update
     void Start()
     {
+       if (playerscript == null)
+        {
+            playerscript = GetComponentInParent<PlayerScript>();
+        }
+
         SelectTool();
         tool1.onClick.AddListener(Task1);
         tool2.onClick.AddListener(Task2);
@@ -45,7 +56,28 @@ public class ToolSwitcher : MonoBehaviour
 
             currentTool++;
         }
+
+        //updatePlayerTool();
     }
+
+    /*void updatePlayerTool()
+    {
+        switch (selectedTool)
+        {
+            case 0:
+                playerscript.equippedTool = ToolType.Gloves;
+                break;
+            case 1:
+                playerscript.equippedTool = ToolType.Brush;
+                break;
+            case 2:
+                playerscript.equippedTool = ToolType.Cloth;
+                break;
+            case 3:
+                playerscript.equippedTool = ToolType.Mop;
+                break;
+        }
+    }*/
 
     void Task1()
     {
@@ -53,8 +85,12 @@ public class ToolSwitcher : MonoBehaviour
         int previousSelectedTool = selectedTool;
         
         selectedTool= 0;
-
-        if (previousSelectedTool != selectedTool) SelectTool();
+        
+        if (previousSelectedTool != selectedTool)
+        {
+            SelectTool();
+            playerscript.equippedTool = ToolType.Gloves;
+        }
     }
 
     void Task2()
@@ -63,8 +99,12 @@ public class ToolSwitcher : MonoBehaviour
         int previousSelectedTool = selectedTool;
         
         selectedTool = 1;
-
-        if (previousSelectedTool != selectedTool) SelectTool();
+        
+        if (previousSelectedTool != selectedTool)
+        {
+            SelectTool();
+            playerscript.equippedTool = ToolType.Brush;
+        }
     }
     void Task3()
     {
@@ -72,8 +112,12 @@ public class ToolSwitcher : MonoBehaviour
         int previousSelectedTool = selectedTool;
         
         selectedTool = 2;
-
-        if (previousSelectedTool != selectedTool) SelectTool();
+        
+        if (previousSelectedTool != selectedTool)
+        {
+            SelectTool();
+            playerscript.equippedTool = ToolType.Cloth;
+        }
     }
     void Task4()
     {
@@ -81,8 +125,12 @@ public class ToolSwitcher : MonoBehaviour
         int previousSelectedTool = selectedTool;
         
         selectedTool = 3;
-
-        if (previousSelectedTool != selectedTool) SelectTool();
+        
+        if (previousSelectedTool != selectedTool)
+        {
+            SelectTool();
+            playerscript.equippedTool = ToolType.Mop;
+        }
     }
 
 }

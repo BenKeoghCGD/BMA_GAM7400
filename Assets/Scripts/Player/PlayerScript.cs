@@ -25,6 +25,9 @@ public class PlayerScript : MonoBehaviour
     private float baseSpeed;
     public float moveSpeed = 5.0f;
 
+    //tool functionality enum
+    public ToolType equippedTool;
+
     //Camera variables
     [SerializeField] Camera playerCamera;
 
@@ -44,7 +47,7 @@ public class PlayerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     // Update is called once per frame
@@ -148,6 +151,11 @@ public class PlayerScript : MonoBehaviour
     public void ResetMovementSpeed()
     {
         moveSpeed = baseSpeed;
+    }
+
+    public bool hasRequiredTool(ToolType requiredTool)
+    {
+        return equippedTool == requiredTool;
     }
 
 

@@ -461,6 +461,7 @@ MonoBehaviour:
   tool2: {fileID: 1782740237}
   tool3: {fileID: 1970004218}
   tool4: {fileID: 1359763916}
+  playerscript: {fileID: 0}
 --- !u!1 &350412187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,11 +1330,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 2
---- !u!1 &780391530 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8538486132429862552, guid: f7392fc5be180f5459b48ca3eb52a5d0, type: 3}
-  m_PrefabInstance: {fileID: 185959013}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &787085490
 GameObject:
   m_ObjectHideFlags: 0
@@ -1367,6 +1363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 1
+  requiredTool: 3
 --- !u!65 &787085492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1663,11 +1660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd416ec2839419492347fb1c21d787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LitterInstantiated:
-  - {fileID: 1521343672}
-  - {fileID: 787085490}
-  - {fileID: 1885761069}
-  - {fileID: 780391530}
+  playerLife: 0
 --- !u!1001 &929277680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2242,6 +2235,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 0
+  requiredTool: 1
 --- !u!65 &1521343674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3146,6 +3140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerLife: {fileID: 1985821289}
+  isObstacle: 1
 --- !u!65 &1866691688
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3357,6 +3352,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 2
+  requiredTool: 2
 --- !u!65 &1885761071
 BoxCollider:
   m_ObjectHideFlags: 0

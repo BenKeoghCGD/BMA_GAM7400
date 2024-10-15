@@ -15,9 +15,19 @@ public class Litter : MonoBehaviour, IInteractable
 {
     [SerializeField] 
     private LitterType litterType;
+    [SerializeField] private ToolType requiredTool;
 
+    void Start()
+    {
+        GameManager.GetLitterManager().AddLitter(this);
+    }
     public void OnInteract(PlayerScript player)
     {
+        if (!player.hasRequiredTool(requiredTool))
+        {
+            Debug.Log("incorrect tool");
+            return;
+        }
         // Adjust player litter count
         player.AdjustLitter(litterType);
 
