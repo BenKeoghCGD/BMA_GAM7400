@@ -34,11 +34,11 @@ public class PlayerController : MonoBehaviour
         movementSpeed = baseSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Move();
         //OnInteractCollision();
+
     }
 
     public void AdjustLitter(LitterType type)
@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour
     }
     private void Move()
     {
+        Debug.Log("Move1");
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
