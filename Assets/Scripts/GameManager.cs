@@ -15,12 +15,14 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    //Why is the player life handled in the GameManager? (BH) 
-    public int playerLife = 0;
-
+    
     // Separated Litter management into separate class (BH)
     private LitterManager _litterManager;
-   
+    
+    //instance of playerScript (HS)
+    private PlayerScript _playerScript;
+    
+    
     void Awake()
     {
         if (instance != null && instance != this)
@@ -33,6 +35,9 @@ public class GameManager : MonoBehaviour
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
             _litterManager = new LitterManager();
+            _playerScript = new PlayerScript();
+            
+            
         }
     }
 
@@ -40,6 +45,14 @@ public class GameManager : MonoBehaviour
     {
         return instance._litterManager;
     }
+
+    public static PlayerScript GetPlayerScript()
+    {
+        return instance._playerScript;
+    }
+
+
+
 }
 
 /*public class GameManager : MonoBehaviour

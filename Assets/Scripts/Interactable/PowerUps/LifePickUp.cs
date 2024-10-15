@@ -21,8 +21,7 @@ public class LifePickUp : PowerUpBase
     //Changed from AddLife to make use of inherited functions, the outcome is the same. (BH)
     protected override void EndEffect()
     {
-        GameManager.instance.playerLife += 1;
-        UIManager.instance.lifeAmountText.text = GameManager.instance.playerLife.ToString();
+        GameManager.GetPlayerScript().CalculatePlayerLife();
         base.EndEffect();
     }
 }
