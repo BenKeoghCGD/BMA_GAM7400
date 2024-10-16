@@ -7,21 +7,50 @@
  * Commit: b19f37c3e27817dba491819664ea3e95d924333e
  */
 
+// Updated 14/10/24 (Higham, Ben), changes commented
+
 using System.Collections;
 using UnityEngine;
 
 public class BombPowerUp : PowerUpBase
 {
-   [SerializeField] int collectedTrash = 0;
+    [SerializeField] 
+    int collectedTrash = 0;
 
-   public override IEnumerator Effect(float time)
-   {
-      if(_player == null) yield return null;
-      
-      OnBombExplode();
-   }
+    public override IEnumerator Effect(float time)
+    {
+        if (_player == null)
+        {
+            yield return null;
+        }
 
-   void OnBombExplode()
+        EndEffect();
+    }
+
+    //Changed from OnBombExplode to make use of inherited functions, the outcome is the same. (BH)
+    //Current implementation does nothing with the collectedTrash integer. 
+    protected override void EndEffect()
+    {
+        if (GameManager.GetLitterManager() == null)
+        {
+            Debug.LogError("LitterManager does not exist.");
+        }
+        else
+        {
+            collectedTrash = GameManager.GetLitterManager().Count();
+            GameManager.GetLitterManager().ClearLitter();
+
+            //We pass the amount of collected litter to the function so it can calculate and update the player’s current litter count.(HS)
+            GameManager.GetPlayerScript().CalculateCollectedLitter(true, collectedTrash);
+            
+            Debug.Log("Trash Collected by bomb:" + collectedTrash);
+        }
+
+        base.EndEffect();
+    }
+}
+
+/* void OnBombExplode()
    {
       if (GameManager.instance.LitterInstantiated != null)
       {
@@ -37,5 +66,4 @@ public class BombPowerUp : PowerUpBase
          }
          GameManager.instance.LitterInstantiated.Clear();
       }
-   }
-}
+   } */
