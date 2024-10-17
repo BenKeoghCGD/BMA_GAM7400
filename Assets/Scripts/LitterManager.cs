@@ -18,7 +18,7 @@ public class LitterManager
     {
         if(_dataList == null || _dataList.Count == 0)
         {
-            Debug.LogError("Null or empty LitterDataList");
+            Debug.LogError("Null or empty LitterDataList. Check that the LitterDataUpdater prefab contains the LitterDataList object. If it does, toggle the checkbox");
             return null;
         }
 

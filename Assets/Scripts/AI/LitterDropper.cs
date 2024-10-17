@@ -16,8 +16,6 @@ using UnityEngine;
 public class LitterDropper : MonoBehaviour
 {
     [SerializeField] 
-    private List<GameObject> litterObjects;
-    [SerializeField] 
     private float litterTimerMin;
     [SerializeField] 
     private float litterTimerMax;
