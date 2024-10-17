@@ -6,11 +6,24 @@ using UnityEngine;
 public class LitterManager
 {
     private HashSet<Litter> _worldLitter;
-    public LitterManager()
+    private readonly List<LitterData> _dataList;
+
+    public LitterManager(LitterDataList dataList)
     {
         _worldLitter = new HashSet<Litter>();
+        _dataList = dataList.litterData;
     }
 
+    public LitterData GetRandomLitterData()
+    {
+        if(_dataList == null || _dataList.Count == 0)
+        {
+            Debug.LogError("Null or empty LitterDataList");
+            return null;
+        }
+
+        return _dataList[Random.Range(0, _dataList.Count)];
+    }
     public HashSet<Litter> GetWorldLitter()
     {
         return _worldLitter;

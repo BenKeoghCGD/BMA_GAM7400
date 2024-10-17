@@ -16,6 +16,66 @@ public class Litter : MonoBehaviour, IInteractable
     [SerializeField] 
     private LitterType litterType;
 
+    private GameObject litterObj;
+    private int litterSize;
+
+    public void Init(LitterData data, GameObject obj)
+    {
+        if (data == null)
+        {
+            Debug.LogError("Tried to create litter with null data.");
+            return;
+        }
+
+        if (obj == null)
+        {
+            Debug.LogError("Object not assigned to litter");
+            return;
+        }
+
+        litterObj = obj;
+
+        if (data.litterName == null)
+        {
+            Debug.LogError("Litter missing name");
+        }
+        else
+        {
+            litterObj.name = data.litterName;
+        }
+
+        if (data.litterModel == null)
+        {
+            Debug.LogError("Litter missing model");
+        }
+        else
+        {
+            litterObj.AddComponent<MeshFilter>().mesh = data.litterModel;
+        }
+
+        if (data.litterMaterial == null)
+        {
+            Debug.LogError("Litter missing material");
+        }
+        else
+        {
+            litterObj.AddComponent<MeshRenderer>().material = data.litterMaterial;
+        }
+
+        if (data.litterSize == 0)
+        {
+            Debug.LogError("Litter has size 0");
+        }
+        else
+        {
+            litterSize = data.litterSize;
+        }
+
+        litterType = data.litterType;
+
+        litterObj.AddComponent<BoxCollider>().isTrigger = true;
+    }
+
     public void OnInteract(PlayerScript player)
     {
         // Adjust player litter count

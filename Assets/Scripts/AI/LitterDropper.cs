@@ -47,10 +47,14 @@ public class LitterDropper : MonoBehaviour
     // Function to spawn litter
     void DropLitter()
     {
-        // Generate a new gameObject (instance) using one of the items provided in the litterObjects list
-        GameObject instance = Instantiate(litterObjects[Random.Range(0, litterObjects.Count)]);
-        // Set the position of the litter to the position of the LitterDropper
+        //Creates a new Litter object
+        GameObject litterObject = new GameObject();
+
+        Litter instance = litterObject.AddComponent<Litter>();
+        instance.gameObject.layer = LayerMask.NameToLayer("Interactable");
         instance.transform.position = transform.position;
+
+        instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
 
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
