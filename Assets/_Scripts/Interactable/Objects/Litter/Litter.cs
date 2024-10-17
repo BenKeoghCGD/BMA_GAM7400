@@ -14,7 +14,7 @@ using UnityEngine;
 public class Litter : MonoBehaviour, IInteractable
 {
     [SerializeField] 
-    private LitterType litterType;
+    public LitterType litterType;
 
     public void OnInteract(PlayerScript player)
     {
