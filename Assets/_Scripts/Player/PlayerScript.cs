@@ -10,6 +10,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerScript : MonoBehaviour
 {
     //Lucian's version of the player script :3
@@ -19,11 +20,18 @@ public class PlayerScript : MonoBehaviour
     private InputActionMap playerInputMap;
     private InputAction moveAction;
     private CharacterController characterController;
+    [SerializeField] private FixedJoystick joystick;
 
     //Player movement variables
     [SerializeField]
     private float baseSpeed;
     public float moveSpeed = 5.0f;
+
+    //player life variables (HS)
+    public int playerLife = 0;
+
+    //the amount of litter that player has in inventory (HS)
+    public int litterCollectedAmount;
 
     //Camera variables
     [SerializeField] Camera playerCamera;
@@ -89,6 +97,13 @@ public class PlayerScript : MonoBehaviour
         move = move * moveSpeed * Time.deltaTime;
         move = transform.TransformDirection(move);
         characterController.Move(move);
+
+        //Alternatively, we could use the joystick input for movement
+        move = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        move = move * moveSpeed * Time.deltaTime;
+        move = transform.TransformDirection(move);
+        characterController.Move(move);
+
     }
 
     //Following code has been copied from Ben Higham's PlayerController
@@ -96,15 +111,30 @@ public class PlayerScript : MonoBehaviour
     {
         get { return heldBlackLitter; }
     }
+    
+    //In this part, we were only able to read the values,
+    //but it’s necessary to reset them to zero after colliding with the trash bins and using certain power-ups.
+    //So, I added these setters to handle that.(HS)
+    public void HeldBlackLitter_Setter(int value)
+    {
+          heldBlackLitter = value;
+    }
     public int HeldRedLitter
     {
         get { return heldRedLitter; }
+    }
+    public void HeldRedLitter_Setter(int value)
+    {
+        heldRedLitter = value;
     }
     public int HeldBeigeLitter
     {
         get { return heldBeigeLitter; }
     }
-
+    public void HeldBeigeLitter_Setter(int value)
+    {
+        heldBeigeLitter = value;
+    }
 
     public void AdjustLitter(LitterType type)
     {
@@ -151,6 +181,31 @@ public class PlayerScript : MonoBehaviour
         moveSpeed = baseSpeed;
     }
 
+    
+    public void CalculatePlayerLife()
+    {
+        playerLife += 1;
+        
+        //This part has been implemented temporarily to display the player’s current lives on the screen.(HS)
+        UIManager.instance.lifeAmountText.text = playerLife.ToString();
+    }
+
+    //This function is responsible for calculating the amount of collected litter under different conditions.(HS)
+    //It takes two inputs: a boolean indicating whether the item encountered is a power-up,
+    //and a second input that specifies the amount we want to award to the player upon interaction.(HS)
+    public void CalculateCollectedLitter(bool isPowerUp , int amount)
+    {
+        if (!isPowerUp)
+        {
+            litterCollectedAmount += amount;
+        }
+        else
+        {
+            litterCollectedAmount += amount;
+        }
+        //This part has been implemented temporarily to display the player’s current litter collected on the screen.(HS)
+        UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
+    }
 
     // Checks for collision with IInteractable object. If the object is litter, checks if the player can carry more
     private void OnInteractCollision()

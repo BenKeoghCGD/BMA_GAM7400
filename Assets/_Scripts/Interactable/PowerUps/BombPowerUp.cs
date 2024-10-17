@@ -40,6 +40,9 @@ public class BombPowerUp : PowerUpBase
             collectedTrash = GameManager.GetLitterManager().Count();
             GameManager.GetLitterManager().ClearLitter();
 
+            //We pass the amount of collected litter to the function so it can calculate and update the player’s current litter count.(HS)
+            GameManager.GetPlayerScript().CalculateCollectedLitter(true, collectedTrash);
+            
             Debug.Log("Trash Collected by bomb:" + collectedTrash);
         }
 

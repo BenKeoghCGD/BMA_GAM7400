@@ -9,6 +9,8 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager instance;
     public TMP_Text lifeAmountText;
+    public TMP_Text LitterAmountText;
+
 
     private void Awake()
     {
@@ -21,4 +23,6 @@ public class UIManager : MonoBehaviour
             instance = this;
         }
     }
+    
+    
 }
