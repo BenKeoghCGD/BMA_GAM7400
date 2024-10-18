@@ -16,9 +16,6 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
-
-    
-
     [SerializeField] 
     private float litterTimerMin;
     [SerializeField] 
@@ -58,13 +55,11 @@ public class LitterDropper : MonoBehaviour
         instance.gameObject.layer = LayerMask.NameToLayer("Interactable");
         instance.transform.position = transform.position;
 
-<<<<<<< HEAD:Assets/Scripts/AI/LitterDropper.cs
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
 
-=======
-        Litter litter = instance.GetComponent<Litter>();
-        litter.SetRequiredTool((ToolType)Random.Range(1, 5));
->>>>>>> main:Assets/_Scripts/AI/LitterDropper.cs
+       // Litter litter = instance.GetComponent<Litter>(); Commented out of Ben S conflict
+        instance.SetRequiredTool((ToolType)Random.Range(1, 5));
+
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
 
