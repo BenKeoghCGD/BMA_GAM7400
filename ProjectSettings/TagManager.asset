@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Bins
+  - Garbage
   layers:
   - Default
   - TransparentFX
