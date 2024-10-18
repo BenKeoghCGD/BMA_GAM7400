@@ -45,16 +45,8 @@ public class ToolSwitcher : MonoBehaviour
 
             currentTool++;
         }
-<<<<<<< Updated upstream
     }
 
-=======
-
-        
-    }
-
-    
->>>>>>> Stashed changes
     void Task1()
     {
         // manages the tool switching by cycling through the selected tools and starts again after the last index, if it changes it calls the 'select tool' to update
@@ -80,17 +72,8 @@ public class ToolSwitcher : MonoBehaviour
         int previousSelectedTool = selectedTool;
         
         selectedTool = 2;
-<<<<<<< Updated upstream
 
         if (previousSelectedTool != selectedTool) SelectTool();
-=======
-        
-        if (previousSelectedTool != selectedTool)
-        {
-            SelectTool();
-            playerscript.equippedTool = ToolType.LitterPicker;
-        }
->>>>>>> Stashed changes
     }
     void Task4()
     {

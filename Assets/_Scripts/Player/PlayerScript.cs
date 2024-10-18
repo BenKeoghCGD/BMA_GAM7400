@@ -30,9 +30,6 @@ public class PlayerScript : MonoBehaviour
     //player life variables (HS)
     public int playerLife = 0;
 
-    // tool functionality enum (BS)
-    public ToolType equippedTool;
-
     //the amount of litter that player has in inventory (HS)
     public int litterCollectedAmount;
 
@@ -226,10 +223,5 @@ public class PlayerScript : MonoBehaviour
 
             target.OnInteract(this);
         }
-    }
-
-    public bool hasRequiredTool(ToolType requiredTool)
-    {
-        return equippedTool == requiredTool;
     }
 }
