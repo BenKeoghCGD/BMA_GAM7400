@@ -53,12 +53,12 @@ public class LitterDropper : MonoBehaviour
 
         Litter instance = litterObject.AddComponent<Litter>();
         instance.gameObject.layer = LayerMask.NameToLayer("Interactable");
-        instance.transform.position = transform.position;
+        instance.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
 
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
 
        // Litter litter = instance.GetComponent<Litter>(); Commented out of Ben S conflict
-        instance.SetRequiredTool((ToolType)Random.Range(1, 5));
+        instance.SetRequiredTool((ToolType)Random.Range(0, 3));
 
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());

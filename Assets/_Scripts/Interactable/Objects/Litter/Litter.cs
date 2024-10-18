@@ -15,22 +15,20 @@ public class Litter : MonoBehaviour, IInteractable
 {
     [SerializeField] 
     public LitterType litterType;
-    [SerializeField] private ToolType requiredTool;
 
+    [SerializeField] 
+    protected ToolType requiredTool;
     public ToolType RequiredTool => requiredTool;
 
-    void Start()
-    {
-        GameManager.GetLitterManager().AddLitter(this);
-    }
+    protected GameObject litterObj;
+
+    protected int litterSize;
+    public int LitterSize => litterSize;
 
     public void SetRequiredTool(ToolType tool)
     {
         requiredTool = tool;
     }
-
-    private GameObject litterObj;
-    private int litterSize;
 
     public void Init(LitterData data, GameObject obj)
     {
@@ -89,7 +87,7 @@ public class Litter : MonoBehaviour, IInteractable
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
     }
 
-    public void OnInteract(PlayerScript player)
+    public virtual void OnInteract(PlayerScript player)
     {
         if (!player.hasRequiredTool(requiredTool))
         {
