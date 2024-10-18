@@ -5,5 +5,5 @@
 
 public enum ToolType
 {
-    Gloves, Brush, Cloth, Mop
+    Gloves, Brush, LitterPicker, Mop
 }

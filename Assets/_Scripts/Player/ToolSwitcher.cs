@@ -57,27 +57,10 @@ public class ToolSwitcher : MonoBehaviour
             currentTool++;
         }
 
-        //updatePlayerTool();
+       
     }
 
-    /*void updatePlayerTool()
-    {
-        switch (selectedTool)
-        {
-            case 0:
-                playerscript.equippedTool = ToolType.Gloves;
-                break;
-            case 1:
-                playerscript.equippedTool = ToolType.Brush;
-                break;
-            case 2:
-                playerscript.equippedTool = ToolType.Cloth;
-                break;
-            case 3:
-                playerscript.equippedTool = ToolType.Mop;
-                break;
-        }
-    }*/
+   
 
     void Task1()
     {
@@ -116,7 +99,7 @@ public class ToolSwitcher : MonoBehaviour
         if (previousSelectedTool != selectedTool)
         {
             SelectTool();
-            playerscript.equippedTool = ToolType.Cloth;
+            playerscript.equippedTool = ToolType.LitterPicker;
         }
     }
     void Task4()
