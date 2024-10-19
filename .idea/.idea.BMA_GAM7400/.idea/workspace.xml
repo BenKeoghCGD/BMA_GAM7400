@@ -6,10 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="81de06a9-6883-4e42-b826-6496136426ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PowerUpSpowner.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/PowerUpSpowner.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Interactable/PowerUps/BombPowerUp.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Interactable/PowerUps/BombPowerUp.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -87,6 +85,7 @@
       <updated>1729190192169</updated>
       <workItem from="1729190194106" duration="7636000" />
       <workItem from="1729255505444" duration="9625000" />
+      <workItem from="1729345397385" duration="10429000" />
     </task>
     <servers />
   </component>
