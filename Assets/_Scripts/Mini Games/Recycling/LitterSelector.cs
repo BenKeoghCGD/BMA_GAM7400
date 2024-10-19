@@ -1,4 +1,7 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static Cinemachine.DocumentationSortingAttribute;
 
 public class LitterSelector : MonoBehaviour
 {
@@ -8,10 +11,38 @@ public class LitterSelector : MonoBehaviour
     private GameObject highlightedBin;
 
     public float detectionRadius = 2f;
+    public float gameDuration = 20f;
+    public TextMeshProUGUI timerText;
+    public TextMeshProUGUI multiplierText;
+    public TextMeshProUGUI livesText;
+    public int playerLives = 3;
+    private float timer;
+    private float multiplier = 1.0f;
+    private bool gameIsOver = false;
+
     public Color gizmoColor = Color.yellow;
+    void Start()
+    {
+        timer = gameDuration;
+        UpdateLivesUI();
+        UpdateMultiplierUI();
+
+    }
 
     void Update()
     {
+
+        if (gameIsOver) return;
+
+        timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            timer = 0;
+            gameIsOver = true;
+        }
+
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -21,7 +52,7 @@ public class LitterSelector : MonoBehaviour
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    TrySelectGarbage(touchPosition);
+                    TrySelectGarbage();
                     break;
 
                 case TouchPhase.Moved:
@@ -50,7 +81,7 @@ public class LitterSelector : MonoBehaviour
         return Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Mathf.Abs(transform.position.z - Camera.main.transform.position.z)));
     }
 
-    void TrySelectGarbage(Vector3 touchPosition)
+    void TrySelectGarbage()
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.GetTouch(0).position);
@@ -105,22 +136,50 @@ public class LitterSelector : MonoBehaviour
 
     void CheckIfCorrectBin()
     {
-        if (nearestBin != null && selectedLitter != null && nearestBin.litterType == selectedLitter.litterType)
+        if (nearestBin != null && selectedLitter != null)
         {
-            Debug.Log("Correct bin!");
-            // Add scoring or animations here
+            if (nearestBin.litterType == selectedLitter.litterType)
+            {
+                Debug.Log("Correct bin!");
+                selectedLitter.gameObject.SetActive(false);
+                multiplier += 0.1f;
+                UpdateMultiplierUI();
+            }
+            else
+            {
+                Debug.Log("Wrong bin! Try again.");
+                multiplier = 1.0f;
+                UpdateMultiplierUI();
+                LoseLife();
+            }
         }
-        else
+
+    }
+
+    void LoseLife()
+    {
+        playerLives--;
+        UpdateLivesUI();
+        if (playerLives <= 0)
         {
-            Debug.Log("Wrong bin! Try again.");
+            gameIsOver = true;
         }
+    }
+
+    void UpdateMultiplierUI()
+    {
+        multiplierText.text = "Multiplier: " + multiplier.ToString("F1");
+    }
+
+    void UpdateLivesUI()
+    {
+        livesText.text = "Lives: " + playerLives.ToString();
     }
 
     void DeselectGarbage()
     {
         HighlightObject(selectedGarbage, false);
         HighlightObject(highlightedBin, false);
-
         selectedGarbage = null;
         selectedLitter = null;
         nearestBin = null;
@@ -135,6 +194,7 @@ public class LitterSelector : MonoBehaviour
         }
     }
 
+    //======Debug=============
     void OnDrawGizmos()
     {
         if (selectedGarbage != null)
