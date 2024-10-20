@@ -33,6 +33,9 @@ public class PlayerScript : MonoBehaviour
     //the amount of litter that player has in inventory (HS)
     public int litterCollectedAmount;
 
+    //tool functionality enum (BS)
+    public ToolType equippedTool;
+
     //Camera variables
     [SerializeField] Camera playerCamera;
 
@@ -223,5 +226,10 @@ public class PlayerScript : MonoBehaviour
 
             target.OnInteract(this);
         }
+    }
+
+    public bool hasRequiredTool(ToolType requiredTool)
+    {
+        return equippedTool == requiredTool;
     }
 }

@@ -461,6 +461,7 @@ MonoBehaviour:
   tool2: {fileID: 1782740237}
   tool3: {fileID: 1970004218}
   tool4: {fileID: 1359763916}
+  playerscript: {fileID: 0}
 --- !u!1 &350412187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1362,6 +1363,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 1
+  requiredTool: 3
 --- !u!65 &787085492
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2290,6 +2292,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 0
+  requiredTool: 1
 --- !u!65 &1521343674
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3406,6 +3409,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 2
+  requiredTool: 2
 --- !u!65 &1885761071
 BoxCollider:
   m_ObjectHideFlags: 0

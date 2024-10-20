@@ -13,8 +13,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LitterDropper : MonoBehaviour
 {
+
+    
+
     [SerializeField] 
     private List<GameObject> litterObjects;
     [SerializeField] 
@@ -44,6 +48,8 @@ public class LitterDropper : MonoBehaviour
         }
     }
 
+   
+
     // Function to spawn litter
     void DropLitter()
     {
@@ -52,6 +58,8 @@ public class LitterDropper : MonoBehaviour
         // Set the position of the litter to the position of the LitterDropper
         instance.transform.position = transform.position;
 
+        Litter litter = instance.GetComponent<Litter>();
+        litter.SetRequiredTool((ToolType)Random.Range(1, 5));
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
 

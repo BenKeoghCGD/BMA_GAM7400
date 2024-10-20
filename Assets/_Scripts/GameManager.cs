@@ -35,10 +35,10 @@ public class GameManager : MonoBehaviour
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
             _litterManager = new LitterManager();
-            _playerScript = new PlayerScript();
-            
-            
+            _playerScript = FindObjectOfType<PlayerScript>();
+
         }
+
     }
 
     public static LitterManager GetLitterManager()
