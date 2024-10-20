@@ -15,10 +15,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-
-    [SerializeField]
-    private LitterDataList _dataList;
-
+    
     // Separated Litter management into separate class (BH)
     private LitterManager _litterManager;
     
@@ -37,9 +34,11 @@ public class GameManager : MonoBehaviour
             instance = this;
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
-            _litterManager = new LitterManager(_dataList);
-            _playerScript = new PlayerScript();
+            _litterManager = new LitterManager();
+            _playerScript = FindObjectOfType<PlayerScript>();
+
         }
+
     }
 
     public static LitterManager GetLitterManager()

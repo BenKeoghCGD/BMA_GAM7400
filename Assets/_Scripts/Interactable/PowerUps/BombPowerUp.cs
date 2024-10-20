@@ -12,7 +12,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class BombPowerUp : PowerUpBase
+public class BombPowerUp : PowerUpBase 
 {
     [SerializeField] 
     int collectedTrash = 0;
