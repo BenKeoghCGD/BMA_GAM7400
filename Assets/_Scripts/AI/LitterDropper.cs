@@ -25,13 +25,17 @@ public class LitterDropper : MonoBehaviour
     private float litterTimerMin;
     [SerializeField] 
     private float litterTimerMax;
+    
 
     private float _litterTimer;
+
+    
 
     // Start is called before the first frame update
     void Start()
     {
         ResetLitterTimer();
+        
     }
 
     // Update is called once per frame
@@ -49,6 +53,25 @@ public class LitterDropper : MonoBehaviour
     }
 
    
+   private ToolType getMatchingTool(LitterType litterType)
+    {
+        switch (litterType)
+        {
+            case LitterType.Spillage:
+                return ToolType.Mop;
+            case LitterType.CansBottles:
+                return ToolType.LitterPicker;
+            case LitterType.GeneralWaste:
+                return ToolType.Brush;
+            case LitterType.Cardboard:
+                return ToolType.Gloves;
+            case LitterType.FoodGarden:
+                return ToolType.Gloves;
+            
+            default:
+                return ToolType.LitterPicker;
+        }
+    }
 
     // Function to spawn litter
     void DropLitter()
@@ -59,13 +82,25 @@ public class LitterDropper : MonoBehaviour
         instance.transform.position = transform.position;
 
         Litter litter = instance.GetComponent<Litter>();
-        litter.SetRequiredTool((ToolType)Random.Range(1, 5));
+
+        LitterType randomLitterType = GetRandomLitterType();
+        litter.SetLitterType(randomLitterType);
+
+        ToolType matchingToolType = getMatchingTool(randomLitterType);
+        litter.SetRequiredTool(matchingToolType);
+        
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
 
         ResetLitterTimer();
     }
 
+    private LitterType GetRandomLitterType()
+    {
+        // Get litter types from the LitterType enum
+        LitterType[] litterTypes = (LitterType[])System.Enum.GetValues(typeof(LitterType));
+        return litterTypes[Random.Range(3, litterTypes.Length)];
+    }
     // Set the litterTimer variable to a random number between litterTimerMin and litterTimerMax
     void ResetLitterTimer()
     {

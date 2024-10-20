@@ -9,5 +9,5 @@
 
 public enum LitterType
 {
-    Beige, Black, Red, GeneralWaste, FoodGarden, Cardboard, CansBottles
+   Beige, Black, Red, GeneralWaste, FoodGarden, Cardboard, CansBottles, Spillage
 }

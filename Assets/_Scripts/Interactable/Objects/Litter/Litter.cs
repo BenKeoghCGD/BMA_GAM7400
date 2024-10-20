@@ -22,13 +22,19 @@ public class Litter : MonoBehaviour, IInteractable
     void Start()
     {
         GameManager.GetLitterManager().AddLitter(this);
+        
     }
 
+   
     public void SetRequiredTool(ToolType tool)
     {
         requiredTool = tool;
     }
 
+    public void SetLitterType(LitterType Type)
+    {
+        litterType = Type;
+    }    
     public void OnInteract(PlayerScript player)
     {
         if (!player.hasRequiredTool(requiredTool))
