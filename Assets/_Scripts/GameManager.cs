@@ -21,7 +21,10 @@ public class GameManager : MonoBehaviour
     
     //instance of playerScript (HS)
     private PlayerScript _playerScript;
+    private ScoreManager _scoreManager;
     
+    public int PlayerScore = 0;
+    public int StoredScore = 0;
     
     void Awake()
     {
@@ -36,6 +39,7 @@ public class GameManager : MonoBehaviour
             //Creation will be handled outside of awake once menu scenes are added (BH)
             _litterManager = new LitterManager();
             _playerScript = FindObjectOfType<PlayerScript>();
+            _scoreManager = FindObjectOfType<ScoreManager>();
 
         }
 
@@ -49,6 +53,10 @@ public class GameManager : MonoBehaviour
     public static PlayerScript GetPlayerScript()
     {
         return instance._playerScript;
+    }
+    public static ScoreManager GetScoreManager()
+    {
+        return instance._scoreManager;
     }
 
 

@@ -25,6 +25,7 @@ public class Litter : MonoBehaviour, IInteractable
     protected int litterSize;
     public int LitterSize => litterSize;
 
+   
     public void SetRequiredTool(ToolType tool)
     {
         requiredTool = tool;

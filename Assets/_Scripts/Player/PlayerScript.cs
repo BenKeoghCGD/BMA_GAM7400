@@ -168,6 +168,8 @@ public class PlayerScript : MonoBehaviour
             case LitterType.Red:
                 heldRedLitter = amount;
                 break;
+
+
         }
     }
 
@@ -224,6 +226,8 @@ public class PlayerScript : MonoBehaviour
                 continue;
             }
 
+            GameManager.GetScoreManager().LitterValuCalculator(hit);
+            
             target.OnInteract(this);
         }
     }
