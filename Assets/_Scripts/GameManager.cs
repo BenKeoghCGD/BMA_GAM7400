@@ -9,6 +9,7 @@
 
 // Updated 14/10/24 (Higham, Ben), changes commented
 
+using PrimeTween;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +39,9 @@ public class GameManager : MonoBehaviour
             _playerScript = FindObjectOfType<PlayerScript>();
 
         }
+
+        Application.targetFrameRate = 60;
+        PrimeTweenConfig.warnEndValueEqualsCurrent = false;
 
     }
 

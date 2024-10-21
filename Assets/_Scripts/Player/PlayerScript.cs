@@ -9,6 +9,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PrimeTween;
 
 
 public class PlayerScript : MonoBehaviour
@@ -20,7 +21,8 @@ public class PlayerScript : MonoBehaviour
     private InputActionMap playerInputMap;
     private InputAction moveAction;
     private CharacterController characterController;
-    [SerializeField] private FixedJoystick joystick;
+    //[SerializeField] private FixedJoystick joystick;
+    [SerializeField] private FloatingJoystick joystick;
 
     //Player movement variables
     [SerializeField]
@@ -43,22 +45,17 @@ public class PlayerScript : MonoBehaviour
     // Litter needs to be managed by size and weight rather than flat value, can probably use ScriptableObject for LitterData (ask Ben Stott if you move on to this) (BH)
     // MaxSize variable
     // MaxWeight variable
-    [SerializeField] 
+    [SerializeField]
     private int heldBlackLitter = 0;
-    [SerializeField] 
+    [SerializeField]
     private int heldRedLitter = 0;
-    [SerializeField] 
+    [SerializeField]
     private int heldBeigeLitter = 0;
 
     [SerializeField] private LayerMask interactLayer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+    bool CanMove = true;
 
-    }
-
-    // Update is called once per frame
     void Update()
     {
         //movement has to be updated every frame
@@ -68,7 +65,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Awake()
     {
-        playerCamera = GetComponent<Camera>();
+        //playerCamera = GetComponent<Camera>();
         characterController = GetComponent<CharacterController>();
         //initializes the input system
         playerInputActions = this.GetComponent<PlayerInput>().actions;
@@ -93,7 +90,7 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
-        Debug.Log("Move2");
+        if (!CanMove) return;
         //gets the input from the move action and moves the player
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
@@ -108,19 +105,23 @@ public class PlayerScript : MonoBehaviour
         characterController.Move(move);
 
     }
+    public void SetMovementStatus(bool status)
+    {
+        CanMove = status;
+    }
 
     //Following code has been copied from Ben Higham's PlayerController
     public int HeldBlackLitter
     {
         get { return heldBlackLitter; }
     }
-    
+
     //In this part, we were only able to read the values,
     //but it’s necessary to reset them to zero after colliding with the trash bins and using certain power-ups.
     //So, I added these setters to handle that.(HS)
     public void HeldBlackLitter_Setter(int value)
     {
-          heldBlackLitter = value;
+        heldBlackLitter = value;
     }
     public int HeldRedLitter
     {
@@ -184,11 +185,11 @@ public class PlayerScript : MonoBehaviour
         moveSpeed = baseSpeed;
     }
 
-    
+
     public void CalculatePlayerLife()
     {
         playerLife += 1;
-        
+
         //This part has been implemented temporarily to display the player’s current lives on the screen.(HS)
         UIManager.instance.lifeAmountText.text = playerLife.ToString();
     }
@@ -196,7 +197,7 @@ public class PlayerScript : MonoBehaviour
     //This function is responsible for calculating the amount of collected litter under different conditions.(HS)
     //It takes two inputs: a boolean indicating whether the item encountered is a power-up,
     //and a second input that specifies the amount we want to award to the player upon interaction.(HS)
-    public void CalculateCollectedLitter(bool isPowerUp , int amount)
+    public void CalculateCollectedLitter(bool isPowerUp, int amount)
     {
         if (!isPowerUp)
         {

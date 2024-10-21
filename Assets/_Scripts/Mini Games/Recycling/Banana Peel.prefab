@@ -11,10 +11,9 @@ GameObject:
   - component: {fileID: 1326646100196874059}
   - component: {fileID: 6694926433190649315}
   - component: {fileID: 8938965168199162800}
-  - component: {fileID: 2532637851447878071}
   - component: {fileID: 609386692893767442}
   - component: {fileID: 9081154240596030468}
-  - component: {fileID: 6447040394637889173}
+  - component: {fileID: -8035770019506869936}
   m_Layer: 0
   m_Name: Banana Peel
   m_TagString: Garbage
@@ -87,28 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2532637851447878071
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1902167771385362415}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3861478300804232965, guid: 2f74cf057fa521c478a2c675ab41f760, type: 3}
 --- !u!114 &609386692893767442
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,30 +325,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 4
---- !u!54 &6447040394637889173
-Rigidbody:
+  requiredTool: 0
+--- !u!65 &-8035770019506869936
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1902167771385362415}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.3461017, y: 0.1783625, z: 0.29387373}
+  m_Center: {x: 0.018109925, y: 0.08917597, z: 0.0050696135}

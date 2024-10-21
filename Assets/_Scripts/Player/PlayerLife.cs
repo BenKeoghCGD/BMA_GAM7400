@@ -5,24 +5,39 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    public int health = 3;
+    int health = 3;
     public int maxHealth = 3;
+
+    public int Health { get => health; set => health = value; }
 
     public Image[] hearts;
     public Sprite FullHeart;
-  
-    // Update is called once per frame
-    void Update()
+
+    public void DecreasePlayerHealth()
     {
-        // health doesn't go over maximum
+        health--;
+        UpdatePlayerHealthUI();
+    }
+
+    public void IncreasePlayerHealth()
+    {
+        health++;
+        UpdatePlayerHealthUI();
+    }
+    public void ResetHealth()
+    {
+        health = maxHealth;
+        UpdatePlayerHealthUI();
+    }
+
+    void UpdatePlayerHealthUI()
+    {
         if (health > maxHealth)
         {
             health = maxHealth;
         }
-        // loops through an array of sprites
         for (int i = 0; i < hearts.Length; i++)
         {
-            // sets each heart to be either full or empty based on the current player health and sets the visibility based on current lives
             if (i < health)
             {
                 hearts[i].sprite = FullHeart;

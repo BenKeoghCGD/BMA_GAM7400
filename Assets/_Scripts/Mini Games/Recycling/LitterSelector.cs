@@ -1,3 +1,7 @@
+using PrimeTween;
+using PrimeTweenDemo;
+using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,25 +18,35 @@ public class LitterSelector : MonoBehaviour
     public float gameDuration = 20f;
     public TextMeshProUGUI timerText;
     public TextMeshProUGUI multiplierText;
-    public TextMeshProUGUI livesText;
-    public int playerLives = 3;
     private float timer;
     private float multiplier = 1.0f;
-    private bool gameIsOver = false;
+    private bool GameIsOver = false;
 
-    public Color gizmoColor = Color.yellow;
-    void Start()
-    {
-        timer = gameDuration;
-        UpdateLivesUI();
-        UpdateMultiplierUI();
+    [SerializeField] GameObject[] litter;
+    [SerializeField] Vector3 litterSpawnPos;
+    [SerializeField] Vector3 litterScreenPos;
 
-    }
+    Vector3 litterOriginalPos;
+    GameObject currentLitter;
+
+    [SerializeField] PlayerLife playerLife;
+    [SerializeField] Camera cam;
+    PlayerScript playerScript;
+
+
+
+
+    bool CanDragLitter;
+    bool StartTimer;
+
+
 
     void Update()
     {
 
-        if (gameIsOver) return;
+        if (GameIsOver) return;
+
+        if (!StartTimer) return;
 
         timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
         timer -= Time.deltaTime;
@@ -40,9 +54,39 @@ public class LitterSelector : MonoBehaviour
         if (timer <= 0)
         {
             timer = 0;
-            gameIsOver = true;
+            OnMiniGameEnd();
         }
 
+
+        if (!CanDragLitter) return;
+
+        DragLitterWithTouch();
+    }
+    private void ChangeCameraPosition()
+    {
+        Tween.LocalPosition(cam.transform, new Vector3(-5.48999977f, 3.20000005f, 48.4099998f), 0.5f);
+        Tween.LocalEulerAngles(cam.transform, cam.transform.localEulerAngles, new Vector3(39.8089981f, 0, 0), 0.5f).OnComplete(target: this, target => target.SpawnNewLitter());
+    }
+    private void SpawnNewLitter()
+    {
+        CanDragLitter = false;
+        int randomLitterIndex = UnityEngine.Random.Range(0, litter.Length);
+        currentLitter = Instantiate(litter[randomLitterIndex], new Vector3(-5.38000011f, 1.58299994f, 47.8199997f), Quaternion.identity);
+        Tween.Position(currentLitter.transform, new Vector3(-5.38000011f, 1.58299994f, 49.7200012f), 0.5f).OnComplete(target: this, target =>
+        {
+            litterOriginalPos = currentLitter.transform.position;
+            CanDragLitter = true;
+        });
+    }
+    private void MoveLitterToOriginalPos()
+    {
+        CanDragLitter = false;
+        Tween.Position(currentLitter.transform, litterOriginalPos, 0.5f).OnComplete(target: this, target => CanDragLitter = true);
+
+    }
+
+    private void DragLitterWithTouch()
+    {
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -74,11 +118,50 @@ public class LitterSelector : MonoBehaviour
             }
         }
     }
+    public void OnMiniGameStart(PlayerScript player)
+    {
+        playerScript = player;
+
+        playerScript.SetMovementStatus(false);
+        playerScript.GetComponent<MeshRenderer>().enabled = false;
+        cam.GetComponent<CameraController>().FollowPlayer = false;
+
+        UIManager uIManager = UIManager.instance;
+        uIManager.joystickCanvas.SetActive(true);
+        uIManager.recyclingCanvas.SetActive(false);
+        uIManager.triggerUICanvas.SetActive(false);
+
+        timer = gameDuration;
+        UpdateMultiplierUI();
+        ChangeCameraPosition();
+        StartTimer = true;
+
+    }
+    public void OnMiniGameEnd()
+    {
+        if (playerScript != null)
+        {
+            GameIsOver = true;
+            playerScript.SetMovementStatus(true);
+            playerScript.GetComponent<MeshRenderer>().enabled = true;
+            cam.GetComponent<CameraController>().ResetCamera();
+
+            UIManager uIManager = UIManager.instance;
+            uIManager.joystickCanvas.SetActive(true);
+            uIManager.recyclingCanvas.SetActive(false);
+            uIManager.triggerUICanvas.SetActive(true);
+            Destroy(currentLitter);
+            currentLitter = null;
+            playerLife.ResetHealth();
+            GameIsOver = false;
+            //triggerUICanvas.SetActive(false);
+        }
+    }
 
     Vector3 GetTouchWorldPosition()
     {
         Vector3 screenPos = Input.GetTouch(0).position;
-        return Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Mathf.Abs(transform.position.z - Camera.main.transform.position.z)));
+        return Camera.main.ScreenToWorldPoint(new Vector3(screenPos.x, screenPos.y, Mathf.Abs(transform.position.z - cam.transform.position.z)));
     }
 
     void TrySelectGarbage()
@@ -141,6 +224,7 @@ public class LitterSelector : MonoBehaviour
             if (nearestBin.litterType == selectedLitter.litterType)
             {
                 Debug.Log("Correct bin!");
+                SpawnNewLitter();
                 selectedLitter.gameObject.SetActive(false);
                 multiplier += 0.1f;
                 UpdateMultiplierUI();
@@ -148,32 +232,31 @@ public class LitterSelector : MonoBehaviour
             else
             {
                 Debug.Log("Wrong bin! Try again.");
+                
                 multiplier = 1.0f;
                 UpdateMultiplierUI();
-                LoseLife();
+                OnWrongBinSelection();
             }
         }
 
     }
 
-    void LoseLife()
+    void OnWrongBinSelection()
     {
-        playerLives--;
-        UpdateLivesUI();
-        if (playerLives <= 0)
+        playerLife.DecreasePlayerHealth();
+        if (playerLife.Health <= 0)
         {
-            gameIsOver = true;
+            OnMiniGameEnd();
+        }
+        else
+        {
+            MoveLitterToOriginalPos();
         }
     }
 
     void UpdateMultiplierUI()
     {
         multiplierText.text = "Multiplier: " + multiplier.ToString("F1");
-    }
-
-    void UpdateLivesUI()
-    {
-        livesText.text = "Lives: " + playerLives.ToString();
     }
 
     void DeselectGarbage()
@@ -199,7 +282,7 @@ public class LitterSelector : MonoBehaviour
     {
         if (selectedGarbage != null)
         {
-            Gizmos.color = gizmoColor;
+            Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(selectedGarbage.transform.position, detectionRadius);
         }
     }
