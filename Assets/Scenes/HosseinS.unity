@@ -703,6 +703,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &360997285 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
+  m_PrefabInstance: {fileID: 4600189314185606826}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &365666617
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1691,6 +1696,7 @@ GameObject:
   - component: {fileID: 886825431}
   - component: {fileID: 886825433}
   - component: {fileID: 886825434}
+  - component: {fileID: 886825435}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1754,7 +1760,8 @@ Transform:
   m_LocalPosition: {x: 0.22626877, y: -1.4211807, z: 0.8810053}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 360997285}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &886825433
@@ -1769,6 +1776,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd416ec2839419492347fb1c21d787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PlayerScore: 0
+  StoredScore: 0
 --- !u!114 &886825434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1783,6 +1792,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeAmountText: {fileID: 164003309}
   LitterAmountText: {fileID: 951208082}
+--- !u!114 &886825435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886825430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1694de45d9d7291459b4bde3dcfcc365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _BeingScore: 1
+  _BlackScore: 1
+  _CardboardScore: 1
+  _RedScore: 1
+  _FoodScore: 1
+  _GeneralScore: 1
+  _CansScore: 5
+  ReadyForStore: 0
 --- !u!1001 &929277680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4423,63 +4452,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6bc0c784af565d342b9a94c16bda8ea2, type: 3}
---- !u!1001 &4775391236031970750
+--- !u!1001 &4600189314185606826
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 886825432}
     m_Modifications:
-    - target: {fileID: 834490301821397276, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
-      propertyPath: m_Name
-      value: 'PowerUp Spowner '
-      objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 264.43347
+      value: 264.2072
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 226.93134
+      value: 228.35251
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -28.241312
+      value: -29.122318
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8570779623293864645, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+    - target: {fileID: 2846672957407148612, guid: 83e3996162342174784c86054972094a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6189900551806698316, guid: 83e3996162342174784c86054972094a, type: 3}
+      propertyPath: m_Name
+      value: 'PowerUp Spowner '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 4d1a30a2a461c53449d2ed96c5bfa583, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 83e3996162342174784c86054972094a, type: 3}
 --- !u!1 &5102695824378023390
 GameObject:
   m_ObjectHideFlags: 0
@@ -4587,4 +4616,3 @@ SceneRoots:
   - {fileID: 3240989850747142689}
   - {fileID: 826078657084968885}
   - {fileID: 1801031556}
-  - {fileID: 4775391236031970750}
