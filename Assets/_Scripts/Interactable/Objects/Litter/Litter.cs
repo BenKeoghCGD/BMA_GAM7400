@@ -15,9 +15,10 @@ public class Litter : MonoBehaviour, IInteractable
 {
     [SerializeField] 
     public LitterType litterType;
-    [SerializeField] private ToolType requiredTool;
+    [SerializeField] public ToolType requiredTool;
 
     public ToolType RequiredTool => requiredTool;
+    public bool hasrequiredTool;
 
     void Start()
     {
@@ -48,8 +49,11 @@ public class Litter : MonoBehaviour, IInteractable
         //The player receives one point for each litter collected.(HS)
         GameManager.GetPlayerScript().CalculateCollectedLitter(false,1);
         
+        hasrequiredTool = true;
+
         // Destroy itself, now removed from LitterManager
         GameManager.GetLitterManager().RemoveLitter(this);
         Destroy(gameObject);
+
     }
 }
