@@ -18,7 +18,10 @@ public class GameManager : MonoBehaviour
     
     // Separated Litter management into separate class (BH)
     private LitterManager _litterManager;
-    
+    //Will be handled better in the future (BH)
+    [SerializeField]
+    private LitterDataList data;
+
     //instance of playerScript (HS)
     private PlayerScript _playerScript;
     private ScoreManager _scoreManager;
@@ -37,7 +40,7 @@ public class GameManager : MonoBehaviour
             instance = this;
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
-            _litterManager = new LitterManager();
+            _litterManager = new LitterManager(data);
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
 

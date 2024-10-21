@@ -16,38 +16,6 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
-    [SerializeField] 
-    private float litterTimerMin;
-    [SerializeField] 
-    private float litterTimerMax;
-    
-
-    private float _litterTimer;
-
-    
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        ResetLitterTimer();
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Decrease the timer by the time it has been between the last frame and this frame
-        _litterTimer -= Time.deltaTime;
-
-        // If the litter timer has elapsed
-        if (_litterTimer <= 0)
-        {
-            // Drop a new piece of litter
-            DropLitter();
-        }
-    }
-
-   
    private ToolType getMatchingTool(LitterType litterType)
     {
         switch (litterType)
@@ -69,7 +37,7 @@ public class LitterDropper : MonoBehaviour
     }
 
     // Function to spawn litter
-    void DropLitter()
+    public void DropLitter()
     {
         //Creates a new Litter object
         GameObject litterObject = new GameObject();
@@ -82,8 +50,6 @@ public class LitterDropper : MonoBehaviour
 
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
-
-        ResetLitterTimer();
     }
 
     private LitterType GetRandomLitterType()
@@ -93,8 +59,4 @@ public class LitterDropper : MonoBehaviour
         return litterTypes[Random.Range(3, litterTypes.Length)];
     }
     // Set the litterTimer variable to a random number between litterTimerMin and litterTimerMax
-    void ResetLitterTimer()
-    {
-        _litterTimer = Random.Range(litterTimerMin, litterTimerMax);
-    }
 }

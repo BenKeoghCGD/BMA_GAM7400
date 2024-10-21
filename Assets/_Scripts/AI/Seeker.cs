@@ -5,40 +5,35 @@ using UnityEngine.AI;
 
 public class Seeker : MonoBehaviour
 {
-    [SerializeField]
-    public NavMeshAgent agent;
+    private NavMeshAgent _agent;
 
-    [SerializeField]
-    private int pathSearchRadius;
+    public bool HasPath => _agent.hasPath;
 
-    bool test;
-    // Start is called before the first frame update
-    void Start()
+    public void Init()
     {
-        test = false;
-        agent = GetComponent<NavMeshAgent>();
+        _agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetPath(Vector3 destination)
     {
-        if (agent.hasPath != true)
+        _agent.destination = destination;
+    }
+
+    public void SetRandomPath(int searchRadius)
+    {
+        if(searchRadius <= 0)
         {
-            agent.destination = GetRandomPoint();
-
-            test = true;
+            Debug.LogError(gameObject.name + " has invalid path search radius");
+            return;
         }
-    }
 
-    Vector3 GetRandomPoint()
-    {
-        Vector3 direction = Random.onUnitSphere * pathSearchRadius;
+        Vector3 direction = Random.onUnitSphere * searchRadius;
 
         direction += transform.position;
 
         NavMeshHit hit;
-        NavMesh.SamplePosition(direction, out hit, pathSearchRadius, 1);
+        NavMesh.SamplePosition(direction, out hit, searchRadius, 1);
 
-        return hit.position;
+        _agent.destination = hit.position;
     }
 }

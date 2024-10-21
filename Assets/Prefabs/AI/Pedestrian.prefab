@@ -11,11 +11,10 @@ GameObject:
   - component: {fileID: 6692906897337578693}
   - component: {fileID: 2338845488667051671}
   - component: {fileID: 6624363770615432996}
-  - component: {fileID: 8464310389424035137}
+  - component: {fileID: 2617045472516608926}
   - component: {fileID: 8972517643352449686}
-  - component: {fileID: 5895885504698660320}
   m_Layer: 0
-  m_Name: CustomerTest
+  m_Name: Pedestrian
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &8464310389424035137
+--- !u!114 &2617045472516608926
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,11 +94,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 3866595110635335355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b41a7b84f64f7d148bc4be65216a9ebc, type: 3}
+  m_Script: {fileID: 11500000, guid: 52cb96d58c9147e48b92b9f744a3ae5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seekTarget: {fileID: 0}
-  agent: {fileID: 0}
+  pathSearchRadius: 20
+  lingerTimeMin: 0
+  lingerTimeMax: 0
+  isInStreetCorner: 0
 --- !u!195 &8972517643352449686
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -122,19 +123,3 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &5895885504698660320
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3866595110635335355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f995d55a36152a4cb898f3ddd9923d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  litterObjects:
-  - {fileID: 8538486132429862552, guid: f7392fc5be180f5459b48ca3eb52a5d0, type: 3}
-  litterTimerMin: 1
-  litterTimerMax: 10
