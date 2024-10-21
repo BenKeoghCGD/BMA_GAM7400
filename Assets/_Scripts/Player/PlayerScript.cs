@@ -168,6 +168,8 @@ public class PlayerScript : MonoBehaviour
             case LitterType.Red:
                 heldRedLitter = amount;
                 break;
+
+
         }
     }
 
