@@ -10,9 +10,15 @@ public class PlayerLife : MonoBehaviour
 
     public Image[] hearts;
     public Sprite FullHeart;
+
+    [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private GameObject LeaderboardCanvas;
+
+    [SerializeField] private LeaderBoardManager leaderboardManager;
+    
   
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         // health doesn't go over maximum
         if (health > maxHealth)
@@ -40,5 +46,21 @@ public class PlayerLife : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+
+        if (health <= 0)
+        {
+            Debug.Log("health reached zero");
+            setLeaderBoard();
+        }
+    }
+
+    public void setLeaderBoard()
+    {
+        
+        LeaderboardCanvas.SetActive(true);
+        mainCanvas.SetActive(false);
+        leaderboardManager.SetFinalScore();
+        
+        
     }
 }

@@ -14,6 +14,8 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (PlayerLife == null) return;
+       
             if (isObstacle == true)
             {
                 PlayerLife.health -= 1;
@@ -27,4 +29,6 @@ public class Obstacle : MonoBehaviour
             PlayerLife.health = Mathf.Max(PlayerLife.health, 0);
         }
     }
+
+   
 }

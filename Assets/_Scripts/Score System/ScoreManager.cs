@@ -78,6 +78,7 @@ public class ScoreManager : MonoBehaviour
            
 
             totalScore += scoreToAdd;
+            Debug.Log("total score updated" + totalScore);
             UpdateScoreText();
         }
     }
