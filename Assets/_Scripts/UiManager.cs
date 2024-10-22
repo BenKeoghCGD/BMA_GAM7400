@@ -11,6 +11,12 @@ public class UIManager : MonoBehaviour
     public TMP_Text lifeAmountText;
     public TMP_Text LitterAmountText;
 
+    public GameObject recyclingCanvas;
+    public GameObject joystickCanvas;
+    public GameObject mainGameCanvas;
+
+    public GameObject triggerUICanvas;
+
 
     private void Awake()
     {
@@ -23,6 +29,6 @@ public class UIManager : MonoBehaviour
             instance = this;
         }
     }
-    
-    
+
+
 }
