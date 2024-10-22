@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6692906897337578693}
   - component: {fileID: 2338845488667051671}
   - component: {fileID: 6624363770615432996}
-  - component: {fileID: 2617045472516608926}
+  - component: {fileID: 18204328092649803}
   - component: {fileID: 8972517643352449686}
   m_Layer: 0
-  m_Name: Pedestrian
+  m_Name: Customer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fa11f4bc69ca27a45ad24cf28a7c7c1b, type: 2}
+  - {fileID: 2100000, guid: 9500f71e232fbf64fbd4fc499628b6d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -85,7 +85,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2617045472516608926
+--- !u!114 &18204328092649803
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,16 +94,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3866595110635335355}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52cb96d58c9147e48b92b9f744a3ae5a, type: 3}
+  m_Script: {fileID: 11500000, guid: efc1262cb21e214419e5798b299820cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathSearchRadius: 50
-  lingerTimeMin: 5
-  lingerTimeMax: 10
-  delayBetweenLinger: 10
-  streetCornerSensorDelay: 1
-  streetCornerSensorTag: Street Corner
-  isInStreetCorner: 0
+  pathSearchRadius: 20
+  storeEntranceTag: Store Entrance
+  _isAtTargetLocation: 0
 --- !u!195 &8972517643352449686
 NavMeshAgent:
   m_ObjectHideFlags: 0

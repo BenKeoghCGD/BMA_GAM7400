@@ -8,6 +8,7 @@ public class Seeker : MonoBehaviour
     private NavMeshAgent _agent;
 
     public bool HasPath => _agent.hasPath;
+    public float DistanceRemaining => _agent.remainingDistance;
 
     public void Init()
     {
