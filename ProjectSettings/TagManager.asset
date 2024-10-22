@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Bins
   - Garbage
+  - Street Corner
   layers:
   - Default
   - TransparentFX
@@ -15,7 +16,7 @@ TagManager:
   - UI
   - Interactable
   - Ground
-  - 
+  - AI_Interactable
   - 
   - 
   - 

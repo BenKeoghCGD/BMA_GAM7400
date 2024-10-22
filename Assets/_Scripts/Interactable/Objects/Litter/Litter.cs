@@ -15,16 +15,17 @@ public class Litter : MonoBehaviour, IInteractable
 {
     [SerializeField] 
     public LitterType litterType;
-    [SerializeField] public ToolType requiredTool;
+
+    [SerializeField] 
+    public ToolType requiredTool;
 
     public ToolType RequiredTool => requiredTool;
  
 
-    void Start()
-    {
-        GameManager.GetLitterManager().AddLitter(this);
-        
-    }
+    protected GameObject litterObj;
+
+    protected int litterSize;
+    public int LitterSize => litterSize;
 
    
     public void SetRequiredTool(ToolType tool)
@@ -32,11 +33,64 @@ public class Litter : MonoBehaviour, IInteractable
         requiredTool = tool;
     }
 
-    public void SetLitterType(LitterType Type)
+    public void Init(LitterData data, GameObject obj)
     {
-        litterType = Type;
-    }    
-    public void OnInteract(PlayerScript player)
+        if (data == null)
+        {
+            Debug.LogError("Tried to create litter with null data.");
+            return;
+        }
+
+        if (obj == null)
+        {
+            Debug.LogError("Object not assigned to litter");
+            return;
+        }
+
+        litterObj = obj;
+
+        if (data.litterName == null)
+        {
+            Debug.LogError("Litter missing name");
+        }
+        else
+        {
+            litterObj.name = data.litterName;
+        }
+
+        if (data.litterModel == null)
+        {
+            Debug.LogError("Litter missing model");
+        }
+        else
+        {
+            litterObj.AddComponent<MeshFilter>().mesh = data.litterModel;
+        }
+
+        if (data.litterMaterial == null)
+        {
+            Debug.LogError("Litter missing material");
+        }
+        else
+        {
+            litterObj.AddComponent<MeshRenderer>().material = data.litterMaterial;
+        }
+
+        if (data.litterSize == 0)
+        {
+            Debug.LogError("Litter has size 0");
+        }
+        else
+        {
+            litterSize = data.litterSize;
+        }
+
+        litterType = data.litterType;
+
+        litterObj.AddComponent<BoxCollider>().isTrigger = true;
+    }
+
+    public virtual void OnInteract(PlayerScript player)
     {
         if (!player.hasRequiredTool(requiredTool))
         {
