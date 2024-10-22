@@ -15,11 +15,16 @@ public class Location_Sensor : MonoBehaviour
     private LayerMask _layerMask;
     private string _tag;
 
+    private Vector3 _target;
+    private bool lookForTag;
+
     public Action<bool> toggleCallback;
 
     // Start is called before the first frame update
     public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, string tag, Action<bool> toggleFunc)
     {
+        lookForTag = true;
+
         _agent = agent;
         _sensorRadius = sensorRadius;
         _sensorDelay = sensorDelay;
@@ -29,7 +34,18 @@ public class Location_Sensor : MonoBehaviour
 
         toggleCallback = toggleFunc;
     }
+    public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, Vector3 target, Action<bool> toggleFunc)
+    {
+        lookForTag = false;
 
+        _agent = agent;
+        _sensorRadius = sensorRadius;
+        _sensorDelay = sensorDelay;
+
+        _target = target;
+
+        toggleCallback = toggleFunc;
+    }
     // Update is called once per frame
     void Update()
     {
@@ -37,12 +53,20 @@ public class Location_Sensor : MonoBehaviour
 
         if(_sensorTimer >= _sensorDelay)
         {
-            Scan();
+            if(lookForTag == true)
+            {
+                ScanForTag();
+            }
+            else
+            {
+                ScanForLocation();
+            }
+
             _sensorTimer = 0;
         }
     }
 
-    void Scan()
+    void ScanForTag()
     {
         Collider[] hitColliders = Physics.OverlapSphere(transform.position, _sensorRadius);
 
@@ -67,5 +91,18 @@ public class Location_Sensor : MonoBehaviour
         {
             toggleCallback(false);
         }
+    }
+
+    void ScanForLocation()
+    {
+        Vector3 distance = transform.position - _target; 
+
+        if(distance.magnitude <= _sensorRadius)
+        {
+            toggleCallback(true);
+            return;
+        }
+
+        toggleCallback(false);
     }
 }

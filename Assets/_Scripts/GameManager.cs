@@ -18,9 +18,14 @@ public class GameManager : MonoBehaviour
     
     // Separated Litter management into separate class (BH)
     private LitterManager _litterManager;
-    //Will be handled better in the future (BH)
+    private AI_SpawnManager _AISpawnManager;
+    //Below will be handled better in the future (BH)
     [SerializeField]
     private LitterDataList data;
+    [SerializeField]
+    private GameObject customerPrefab;
+    [SerializeField]
+    private GameObject pedestrianPrefab;
 
     //instance of playerScript (HS)
     private PlayerScript _playerScript;
@@ -41,18 +46,29 @@ public class GameManager : MonoBehaviour
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
             _litterManager = new LitterManager(data);
+            _AISpawnManager = new AI_SpawnManager(customerPrefab, pedestrianPrefab);
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
-
         }
-
     }
 
+    private void Update()
+    {
+        if(_AISpawnManager == null)
+        {
+            Debug.LogError("Missing AI_SpawnManager Reference in GameManager");
+        }
+
+        instance._AISpawnManager.Update(Time.deltaTime);
+    }
     public static LitterManager GetLitterManager()
     {
         return instance._litterManager;
     }
-
+    public static AI_SpawnManager GetAISpawnManager()
+    {
+        return instance._AISpawnManager;
+    }
     public static PlayerScript GetPlayerScript()
     {
         return instance._playerScript;

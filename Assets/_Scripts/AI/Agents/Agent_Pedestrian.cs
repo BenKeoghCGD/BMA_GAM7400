@@ -21,8 +21,6 @@ public class Agent_Pedestrian : Agent_Base
     [SerializeField]
     private string streetCornerSensorTag;
 
-    private LitterDropper _litterDropper;
-
     private float _lingerTimer = 0;
     private float _lingerDelayTimer = 0;
 
@@ -32,17 +30,8 @@ public class Agent_Pedestrian : Agent_Base
     {
         base.Start();
 
-        if(gameObject.GetComponent<LitterDropper>() != null)
-        {
-            _litterDropper = gameObject.GetComponent<LitterDropper>();
-        }
-        else
-        {
-            _litterDropper = gameObject.AddComponent<LitterDropper>();
-        }
-
         streetCornerSensor = gameObject.AddComponent<Location_Sensor>();
-        streetCornerSensor.Init(this, 30, 1, streetCornerSensorTag, SetStreetCornerBool);
+        streetCornerSensor.Init(this, 10, 1, streetCornerSensorTag, SetStreetCornerBool);
 
         _lingerDelayTimer = delayBetweenLinger;
     }
@@ -81,7 +70,7 @@ public class Agent_Pedestrian : Agent_Base
 
     private void EndLinger()
     {
-        _litterDropper.DropLitter();
+        litterDropper.DropLitter();
         seeker.SetRandomPath(pathSearchRadius);
 
         _lingerDelayTimer = delayBetweenLinger;
