@@ -122,7 +122,7 @@ public class LitterSelector : MonoBehaviour
     {
         playerScript = player;
 
-        playerScript.SetMovementStatus(false);
+        playerScript.setMovementStatus(false);
         playerScript.GetComponent<MeshRenderer>().enabled = false;
         cam.GetComponent<CameraController>().FollowPlayer = false;
 
@@ -142,7 +142,7 @@ public class LitterSelector : MonoBehaviour
         if (playerScript != null)
         {
             GameIsOver = true;
-            playerScript.SetMovementStatus(true);
+            playerScript.setMovementStatus(true);
             playerScript.GetComponent<MeshRenderer>().enabled = true;
             cam.GetComponent<CameraController>().ResetCamera();
 

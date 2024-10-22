@@ -46652,7 +46652,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0.41246304, y: -0, z: -0, w: 0.9109744}
-  m_LocalPosition: {x: -11.85, y: 11.72, z: 6.06}
+  m_LocalPosition: {x: -5.65, y: 10.75, z: 24.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46670,11 +46670,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7884e9d2a0dbdab43a1bbec9ffd15cd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 1828383274}
-  movespeed: 12
-  offset: {x: 0, y: 0, z: 0}
-  followdistance: 10
-  rotation: {x: 0, y: 0, z: 0, w: 0}
+  target: {fileID: 1828383274}
+  smoothTime: 0
+  FollowPlayer: 1
 --- !u!1 &964010249
 GameObject:
   m_ObjectHideFlags: 0
@@ -59648,9 +59646,13 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 570749329559977765, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
-      propertyPath: joystick
+      propertyPath: Joystick
       value: 
       objectReference: {fileID: 856448601}
+    - target: {fileID: 570749329559977765, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
+      propertyPath: joystick
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 570749329559977765, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
       propertyPath: playerCamera
       value: 
@@ -59706,6 +59708,14 @@ PrefabInstance:
     - target: {fileID: 3866595110635335355, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 5019506086973660401, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 963194227}
+    - target: {fileID: 5019506086973660401, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
+      propertyPath: m_UIInputModule
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6692906897337578693, guid: fc3cbcbe85f1aed449e6bf19e32bf171, type: 3}
       propertyPath: m_LocalPosition.x
@@ -70748,6 +70758,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd416ec2839419492347fb1c21d787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 0}
   PlayerScore: 0
   StoredScore: 0
 --- !u!114 &1457019209
@@ -70764,6 +70775,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeAmountText: {fileID: 1353782784}
   LitterAmountText: {fileID: 604531007}
+  recyclingCanvas: {fileID: 0}
+  joystickCanvas: {fileID: 0}
+  mainGameCanvas: {fileID: 0}
+  triggerUICanvas: {fileID: 0}
 --- !u!1001 &1458380760
 PrefabInstance:
   m_ObjectHideFlags: 0

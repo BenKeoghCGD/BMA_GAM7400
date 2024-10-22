@@ -9,6 +9,7 @@
 
 using UnityEngine;
 using UnityEngine.InputSystem;
+using PrimeTween;
 
 
 public class PlayerScript : MonoBehaviour
@@ -20,7 +21,8 @@ public class PlayerScript : MonoBehaviour
     private InputActionMap playerInputMap;
     private InputAction moveAction;
     private CharacterController characterController;
-    [SerializeField] private FixedJoystick joystick;
+    [SerializeField] private FixedJoystick Joystick;
+  //  [SerializeField] private FloatingJoystick joystick;
 
     //Player movement variables
     [SerializeField]
@@ -52,11 +54,7 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private LayerMask interactLayer;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
+    bool CanMove = true;
 
     // Update is called once per frame
     void Update()
@@ -93,7 +91,7 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
-        if (!canMove) return;
+        //if (!CanMove) return;
         //Debug.Log("Move2");
         //gets the input from the move action and moves the player
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
@@ -103,11 +101,16 @@ public class PlayerScript : MonoBehaviour
         characterController.Move(move);
 
         //Alternatively, we could use the joystick input for movement
-        move = new Vector3(joystick.Horizontal, 0, joystick.Vertical);
+        move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
         move = move * moveSpeed * Time.deltaTime;
         move = transform.TransformDirection(move);
         characterController.Move(move);
 
+    }
+
+    public void setMovementStatus(bool status)
+    {
+        CanMove = status;
     }
 
     //Following code has been copied from Ben Higham's PlayerController
