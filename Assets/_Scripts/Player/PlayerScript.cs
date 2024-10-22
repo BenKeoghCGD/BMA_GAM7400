@@ -93,6 +93,7 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
+        if (!canMove) return;
         //Debug.Log("Move2");
         //gets the input from the move action and moves the player
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
