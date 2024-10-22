@@ -8,7 +8,7 @@ public class Obstacle : MonoBehaviour
     [SerializeField] private PlayerLife PlayerLife;
     public bool isObstacle = true;
 
-
+    
     // when player collides with the obstacles collider decreases the players health by 1, also ensures that the player health doesnt go under 0
     private void OnTriggerEnter(Collider other)
     {
@@ -18,15 +18,15 @@ public class Obstacle : MonoBehaviour
        
             if (isObstacle == true)
             {
-                PlayerLife.DecreasePlayerHealth();
+                PlayerLife.health -= 1;
             }
             else
             {
-                PlayerLife.IncreasePlayerHealth();
+                PlayerLife.health += 1;
             }
+            
 
-
-            PlayerLife.Health = Mathf.Max(PlayerLife.Health, 0);
+            PlayerLife.health = Mathf.Max(PlayerLife.health, 0);
         }
     }
 

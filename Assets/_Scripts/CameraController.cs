@@ -4,38 +4,15 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Transform Player;
+    public float movespeed;
+    public Vector3 offset;
+    public float followdistance;
+    public Quaternion rotation;
 
-    private Vector3 _offsetPos;
-    [SerializeField] private Transform target;
-    [SerializeField] private float smoothTime;
-    private Vector3 _currentVelocity = Vector3.zero;
-
-    public bool FollowPlayer = true;
-
-    Vector3 originalPos;
-    Vector3 originalRot;
-    private void Awake()
+    private void Update()
     {
-        _offsetPos = transform.position - target.position;
-        originalRot = transform.localEulerAngles;
-
+        Vector3 pos = Vector3.Lerp(transform.position, Player.position + offset + -transform.forward * followdistance, movespeed * Time.deltaTime);
+        transform.position = pos;
     }
-    private void LateUpdate()
-    {
-        if (FollowPlayer)
-        {
-            Vector3 targetPosition = target.position + _offsetPos;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _currentVelocity, smoothTime);
-        }
-    }
-
-    public void ResetCamera()
-    {
-        FollowPlayer=true;
-        transform.localEulerAngles=originalRot;
-        //transform.position = originalPos;
-    }
-
-
-
 }

@@ -5,39 +5,30 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour
 {
-    int health = 3;
+    public int health = 3;
     public int maxHealth = 3;
-
-    public int Health { get => health; set => health = value; }
 
     public Image[] hearts;
     public Sprite FullHeart;
 
-    public void DecreasePlayerHealth()
-    {
-        health--;
-        UpdatePlayerHealthUI();
-    }
+    [SerializeField] private GameObject mainCanvas;
+    [SerializeField] private GameObject LeaderboardCanvas;
 
-    public void IncreasePlayerHealth()
+    [SerializeField] private LeaderBoardManager leaderboardManager;
+    
+  
+    // Update is called once per frame
+    private void Update()
     {
-        health++;
-        UpdatePlayerHealthUI();
-    }
-    public void ResetHealth()
-    {
-        health = maxHealth;
-        UpdatePlayerHealthUI();
-    }
-
-    void UpdatePlayerHealthUI()
-    {
+        // health doesn't go over maximum
         if (health > maxHealth)
         {
             health = maxHealth;
         }
+        // loops through an array of sprites
         for (int i = 0; i < hearts.Length; i++)
         {
+            // sets each heart to be either full or empty based on the current player health and sets the visibility based on current lives
             if (i < health)
             {
                 hearts[i].sprite = FullHeart;
@@ -55,5 +46,21 @@ public class PlayerLife : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
+
+        if (health <= 0)
+        {
+            Debug.Log("health reached zero");
+            setLeaderBoard();
+        }
+    }
+
+    public void setLeaderBoard()
+    {
+        
+        LeaderboardCanvas.SetActive(true);
+        mainCanvas.SetActive(false);
+        leaderboardManager.SetFinalScore();
+        
+        
     }
 }
