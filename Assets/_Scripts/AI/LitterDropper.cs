@@ -41,6 +41,11 @@ public class LitterDropper : MonoBehaviour
     // Function to spawn litter
     public void DropLitter()
     {
+        if (litter == null)
+        {
+            Debug.LogWarning("litter is not assigned in litter dropper");
+            return;
+        }
         //Creates a new Litter object
         GameObject litterObject = new GameObject();
 
@@ -51,13 +56,13 @@ public class LitterDropper : MonoBehaviour
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
         
         LitterType randomLitterType = GetRandomLitterType();
-       // litter.SetLitterType(randomLitterType);
+        litter.SetLitterType(randomLitterType);
 
         ToolType matchingToolType = getMatchingTool(randomLitterType);
-       // litter.SetRequiredTool(matchingToolType);
+        litter.SetRequiredTool(matchingToolType);
 
         // Adds the litter item to the LitterManager
-        GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
+       // GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
     }
 
     private LitterType GetRandomLitterType()
