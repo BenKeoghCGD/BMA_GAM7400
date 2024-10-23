@@ -16,7 +16,7 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
-   // [SerializeField] Litter litter;
+    [SerializeField] Litter litter;
 
    private ToolType getMatchingTool(LitterType litterType)
     {
@@ -50,11 +50,11 @@ public class LitterDropper : MonoBehaviour
 
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
         
-       /* LitterType randomLitterType = GetRandomLitterType();
-        litter.SetLitterType(randomLitterType);
+        LitterType randomLitterType = GetRandomLitterType();
+       // litter.SetLitterType(randomLitterType);
 
         ToolType matchingToolType = getMatchingTool(randomLitterType);
-        litter.SetRequiredTool(matchingToolType);*/
+       // litter.SetRequiredTool(matchingToolType);
 
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
