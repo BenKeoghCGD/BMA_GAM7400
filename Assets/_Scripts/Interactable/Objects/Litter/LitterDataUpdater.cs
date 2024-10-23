@@ -36,6 +36,8 @@ public class LitterDataUpdater : MonoBehaviour
         }
 
         data.litterData = dataArray.ToList();
+        EditorUtility.SetDirty(data);
+        Undo.RecordObject(data, "Updated LitterDataList");
     }
 
 #endif
