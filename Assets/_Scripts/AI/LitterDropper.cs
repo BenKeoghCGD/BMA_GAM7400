@@ -16,28 +16,6 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
-    [SerializeField] Litter litter;
-
-   private ToolType getMatchingTool(LitterType litterType)
-    {
-        switch (litterType)
-        {
-            case LitterType.Spillage:
-                return ToolType.Mop;
-            case LitterType.CansBottles:
-                return ToolType.LitterPicker;
-            case LitterType.GeneralWaste:
-                return ToolType.Brush;
-            case LitterType.Cardboard:
-                return ToolType.Gloves;
-            case LitterType.FoodGarden:
-                return ToolType.Gloves;
-            
-            default:
-                return ToolType.LitterPicker;
-        }
-    }
-
     // Function to spawn litter
     public void DropLitter()
     {
@@ -49,22 +27,8 @@ public class LitterDropper : MonoBehaviour
         instance.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
 
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
-        
-        LitterType randomLitterType = GetRandomLitterType();
-       // litter.SetLitterType(randomLitterType);
-
-        ToolType matchingToolType = getMatchingTool(randomLitterType);
-       // litter.SetRequiredTool(matchingToolType);
 
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
     }
-
-    private LitterType GetRandomLitterType()
-    {
-        // Get litter types from the LitterType enum
-        LitterType[] litterTypes = (LitterType[])System.Enum.GetValues(typeof(LitterType));
-        return litterTypes[Random.Range(3, litterTypes.Length)];
-    }
-    // Set the litterTimer variable to a random number between litterTimerMin and litterTimerMax
 }
