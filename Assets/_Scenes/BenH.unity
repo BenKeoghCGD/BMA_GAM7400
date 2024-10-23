@@ -592,52 +592,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298852825}
   m_CullTransparentMesh: 1
---- !u!1 &308025122
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 308025124}
-  - component: {fileID: 308025123}
-  m_Layer: 0
-  m_Name: LitterDropperTest (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &308025123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308025122}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f995d55a36152a4cb898f3ddd9923d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  litterTimerMin: 5
-  litterTimerMax: 10
---- !u!4 &308025124
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 308025122}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.7, y: 0.49, z: -2.09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &323358068
 GameObject:
   m_ObjectHideFlags: 0
@@ -970,6 +924,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 570749329559977765, guid: e68692f78c762c94ca30b96ed28bc265, type: 3}
+      propertyPath: Joystick
+      value: 
+      objectReference: {fileID: 640727647}
+    - target: {fileID: 570749329559977765, guid: e68692f78c762c94ca30b96ed28bc265, type: 3}
       propertyPath: joystick
       value: 
       objectReference: {fileID: 640727647}
@@ -1199,52 +1157,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 489238300}
   m_CullTransparentMesh: 1
---- !u!1 &523072868
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 523072870}
-  - component: {fileID: 523072869}
-  m_Layer: 0
-  m_Name: LitterDropperTest (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &523072869
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523072868}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f995d55a36152a4cb898f3ddd9923d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  litterTimerMin: 5
-  litterTimerMax: 10
---- !u!4 &523072870
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 523072868}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.7, y: 0.49, z: 3.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &566901623
 GameObject:
   m_ObjectHideFlags: 0
@@ -1594,52 +1506,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6692906897337578693, guid: e68692f78c762c94ca30b96ed28bc265, type: 3}
   m_PrefabInstance: {fileID: 485574348}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &859474585
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 859474587}
-  - component: {fileID: 859474586}
-  m_Layer: 0
-  m_Name: LitterDropperTest
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &859474586
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859474585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f995d55a36152a4cb898f3ddd9923d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  litterTimerMin: 5
-  litterTimerMax: 10
---- !u!4 &859474587
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 859474585}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: 0.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &861652236
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,6 +1586,7 @@ GameObject:
   - component: {fileID: 886825431}
   - component: {fileID: 886825433}
   - component: {fileID: 886825434}
+  - component: {fileID: 886825435}
   m_Layer: 0
   m_Name: Systems
   m_TagString: Untagged
@@ -1798,7 +1665,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fbd416ec2839419492347fb1c21d787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dataList: {fileID: 11400000, guid: cb8aa17a49a02734b9a5013109b03972, type: 2}
+  data: {fileID: 11400000, guid: cb8aa17a49a02734b9a5013109b03972, type: 2}
+  customerPrefab: {fileID: 0}
+  pedestrianPrefab: {fileID: 0}
+  PlayerScore: 0
+  StoredScore: 0
 --- !u!114 &886825434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1813,6 +1684,30 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lifeAmountText: {fileID: 164003309}
   LitterAmountText: {fileID: 951208082}
+  recyclingCanvas: {fileID: 0}
+  joystickCanvas: {fileID: 0}
+  mainGameCanvas: {fileID: 0}
+  triggerUICanvas: {fileID: 0}
+--- !u!114 &886825435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886825430}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1694de45d9d7291459b4bde3dcfcc365, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CardboardScore: 1
+  _FoodScore: 1
+  _GeneralScore: 1
+  _CansScore: 1
+  _SpillageScore: 1
+  ReadyForStore: 0
+  scoreText: {fileID: 0}
+  player: {fileID: 0}
 --- !u!1001 &929277680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2302,52 +2197,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1359763914}
   m_CullTransparentMesh: 1
---- !u!1 &1420214720
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1420214722}
-  - component: {fileID: 1420214721}
-  m_Layer: 0
-  m_Name: LitterDropperTest (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1420214721
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420214720}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f995d55a36152a4cb898f3ddd9923d0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  litterTimerMin: 5
-  litterTimerMax: 10
---- !u!4 &1420214722
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1420214720}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.9, y: 0.49, z: 3.54}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1437257320
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4146,6 +3995,63 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &5382795099302643291
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 6.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1918629870065802658, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9050179373868105420, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
+      propertyPath: m_Name
+      value: TestLitterDropper
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 879fba8fee6f35b49b220f9f53b4f180, type: 3}
 --- !u!33 &6188189990719680986
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -4175,10 +4081,7 @@ SceneRoots:
   - {fileID: 355892601}
   - {fileID: 485574348}
   - {fileID: 1991977952}
-  - {fileID: 859474587}
-  - {fileID: 1420214722}
-  - {fileID: 523072870}
-  - {fileID: 308025124}
+  - {fileID: 5382795099302643291}
   - {fileID: 722924108}
   - {fileID: 2006420080}
   - {fileID: 886825432}
