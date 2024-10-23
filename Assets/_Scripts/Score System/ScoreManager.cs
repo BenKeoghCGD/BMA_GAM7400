@@ -4,6 +4,7 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
+
     [SerializeField] int _CardboardScore = 0;
     [SerializeField] int _FoodScore = 0;
     [SerializeField] int _GeneralScore = 0;
@@ -38,6 +39,7 @@ public class ScoreManager : MonoBehaviour
         
         if (target.GetComponent<Litter>())
         {
+            
             var currenctLitter = target.GetComponent<Litter>();
             int scoreToAdd = 0;
 

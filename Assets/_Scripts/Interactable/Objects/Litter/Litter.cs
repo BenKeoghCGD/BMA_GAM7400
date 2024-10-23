@@ -18,7 +18,9 @@ public class Litter : MonoBehaviour, IInteractable
 
     [SerializeField] 
     public ToolType requiredTool;
+
     public ToolType RequiredTool => requiredTool;
+ 
 
     protected GameObject litterObj;
 
@@ -47,38 +49,6 @@ public class Litter : MonoBehaviour, IInteractable
 
         litterObj = obj;
 
-        SetData(data);
-
-        litterObj.AddComponent<BoxCollider>().isTrigger = true;
-    }
-
-    public void SetLitterType(LitterType type)
-    {
-        litterType = type;
-    }
-
-    public virtual void OnInteract(PlayerScript player)
-    {
-        if (!player.hasRequiredTool(requiredTool))
-        {
-            Debug.Log("Incorrect Tool");
-            return;
-        }
-        // Adjust player litter count
-        player.AdjustLitter(litterType);
-
-        //The player receives one point for each litter collected.(HS)
-        GameManager.GetPlayerScript().CalculateCollectedLitter(false, 1);
-
-        // Destroy itself, now removed from LitterManager
-        GameManager.GetLitterManager().RemoveLitter(this);
-        Destroy(gameObject);
-
-    }
-
-    private void SetData(LitterData data)
-    {
-        // Below checks can be removed at the end of development, just used to log if a new litter type is missing a reference. (BH)
         if (data.litterName == null)
         {
             Debug.LogError("Litter missing name");
@@ -117,27 +87,32 @@ public class Litter : MonoBehaviour, IInteractable
 
         litterType = data.litterType;
 
-        switch (litterType)
-        {
-            case LitterType.Spillage:
-                requiredTool = ToolType.Mop;
-                break;
-            case LitterType.CansBottles:
-                requiredTool = ToolType.LitterPicker;
-                break;
-            case LitterType.GeneralWaste:
-                requiredTool = ToolType.Brush;
-                break;
-            case LitterType.Cardboard:
-                requiredTool = ToolType.Gloves;
-                break;
-            case LitterType.FoodGarden:
-                requiredTool = ToolType.Gloves;
-                break;
+        litterObj.AddComponent<BoxCollider>().isTrigger = true;
+    }
 
-            default:
-                requiredTool = ToolType.LitterPicker;
-                break;
+    public void SetLitterType(LitterType type)
+    {
+        litterType = type;
+    }
+
+    public virtual void OnInteract(PlayerScript player)
+    {
+        if (!player.hasRequiredTool(requiredTool))
+        {
+            Debug.Log("Incorrect Tool");
+            return;
         }
+        // Adjust player litter count
+        player.AdjustLitter(litterType);
+
+        //The player receives one point for each litter collected.(HS)
+        GameManager.GetPlayerScript().CalculateCollectedLitter(false,1);
+        
+        
+
+        // Destroy itself, now removed from LitterManager
+        GameManager.GetLitterManager().RemoveLitter(this);
+        Destroy(gameObject);
+
     }
 }
