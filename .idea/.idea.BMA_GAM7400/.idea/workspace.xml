@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="81de06a9-6883-4e42-b826-6496136426ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PowerUpSpawner/PowerUp Spowner .prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/PowerUpSpawner/PowerUp Spowner .prefab.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PowerUpspawner/PowerUp Spowner .prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/PowerUpspawner/PowerUp Spowner .prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/ScoreManager.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/ScoreManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LitterDataUpdater.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/LitterDataUpdater.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Bins/Bin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Bins/Bin.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Litter/Litter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Litter/Litter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,17 +29,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;HosseinS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Standalone Player.Start Unity">
     <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
       <option name="EXE_PATH" value="C:\Program Files\Unity\Hub\Editor\2022.3.47f1\Editor\Unity.exe" />
@@ -90,6 +89,8 @@
       <workItem from="1729190194106" duration="7636000" />
       <workItem from="1729255505444" duration="9625000" />
       <workItem from="1729345397385" duration="10429000" />
+      <workItem from="1729681663371" duration="1818000" />
+      <workItem from="1729688854682" duration="6278000" />
     </task>
     <servers />
   </component>

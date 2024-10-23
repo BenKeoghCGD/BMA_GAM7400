@@ -108,8 +108,6 @@ public class Litter : MonoBehaviour, IInteractable
         //The player receives one point for each litter collected.(HS)
         GameManager.GetPlayerScript().CalculateCollectedLitter(false,1);
         
-        
-
         // Destroy itself, now removed from LitterManager
         GameManager.GetLitterManager().RemoveLitter(this);
         Destroy(gameObject);
