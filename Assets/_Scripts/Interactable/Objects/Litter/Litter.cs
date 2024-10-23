@@ -90,6 +90,11 @@ public class Litter : MonoBehaviour, IInteractable
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
     }
 
+    public void SetLitterType(LitterType type)
+    {
+        litterType = type;
+    }
+
     public virtual void OnInteract(PlayerScript player)
     {
         if (!player.hasRequiredTool(requiredTool))
