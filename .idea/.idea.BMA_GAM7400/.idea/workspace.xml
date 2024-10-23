@@ -6,11 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="81de06a9-6883-4e42-b826-6496136426ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/LitterDataUpdater.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/LitterDataUpdater.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/HosseinS.unity.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Bins/Bin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Bins/Bin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Litter/Litter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Litter/Litter.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +86,7 @@
       <workItem from="1729255505444" duration="9625000" />
       <workItem from="1729345397385" duration="10429000" />
       <workItem from="1729681663371" duration="1818000" />
-      <workItem from="1729688854682" duration="6278000" />
+      <workItem from="1729688854682" duration="7364000" />
     </task>
     <servers />
   </component>

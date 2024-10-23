@@ -30,18 +30,24 @@ public class Bin : MonoBehaviour, IInteractable
             
             case LitterType.Beige:
                 
-                if (!_BinIsFull)
+                if (!_BinIsFull) //This checks if the bin is full, and if so, the rest of the code will not execute.(HS)
                 {
-                    if (player.HeldBeigeLitter > _BinCapasity)
+                    if (player.HeldBeigeLitter >= _BinCapasity) //Here, it checks if the player is carrying as much or
+                                                                //more trash than the bin’s capacity.
+                                                                //It will deposit the allowed amount into the bin,
+                                                                //and the remaining trash will stay with the player.(HS)
+                    
                     {
                         _BinIsFull = true;
                         player.HeldBeigeLitter_Setter(player.HeldBeigeLitter - _BinCapasity);
                         _storedBeigeLitter += _BinCapasity;
                     }
-                    else
+                    else //Here, if the player's inventory amount is less than the bin's capacity,
+                         //the same amount will be deposited into the bin, and the player's inventory will be set to zero.(HS)
                     {
                         _storedBeigeLitter += player.HeldBeigeLitter;
                         Debug.Log("Stored Litter: " + _storedBeigeLitter);
+                        player.ClearLitter(litterType);
                     }
                 }
                 else
@@ -52,7 +58,7 @@ public class Bin : MonoBehaviour, IInteractable
             case LitterType.Red:
                 if (!_BinIsFull)
                 {
-                    if (player.HeldRedLitter > _BinCapasity)
+                    if (player.HeldRedLitter >= _BinCapasity)
                     {
                         _BinIsFull = true;
                         player.HeldRedLitter_Setter(player.HeldRedLitter - _BinCapasity);
@@ -62,6 +68,8 @@ public class Bin : MonoBehaviour, IInteractable
                     {
                         _storedRedLitter += player.HeldRedLitter;
                         Debug.Log("Stored Litter: " + _storedRedLitter);
+                        player.ClearLitter(litterType);
+
                     }
                 }
                 else
@@ -72,7 +80,7 @@ public class Bin : MonoBehaviour, IInteractable
             case LitterType.Black:
                 if (!_BinIsFull)
                 {
-                    if (player.HeldBlackLitter > _BinCapasity)
+                    if (player.HeldBlackLitter >= _BinCapasity)
                     {
                         _BinIsFull = true;
                         player.HeldBlackLitter_Setter(player.HeldBlackLitter - _BinCapasity);
@@ -82,6 +90,8 @@ public class Bin : MonoBehaviour, IInteractable
                     {
                         _storedBlackLitter += player.HeldBlackLitter;
                         Debug.Log("Stored Litter: " + _storedBlackLitter);
+                        player.ClearLitter(litterType);
+
                     }
                 }
                 else
@@ -91,10 +101,7 @@ public class Bin : MonoBehaviour, IInteractable
                 break;
         }
         
-        // I commented out this part of the code because we placed limitations on the trash bins,
-        // and if the player carries more trash than the bin’s capacity, we need to assign the remaining trash back to the player.(HS)
-        
-        //player.ClearLitter(litterType);
+
     }
 
 
