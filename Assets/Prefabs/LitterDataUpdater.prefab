@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 11400000, guid: cb8aa17a49a02734b9a5013109b03972, type: 2}
-  TriggerOnValidate: 1
+  TriggerOnValidate: 0

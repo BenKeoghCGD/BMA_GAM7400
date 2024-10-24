@@ -16,4 +16,4 @@ MonoBehaviour:
   litterModel: {fileID: 3861478300804232965, guid: 2f74cf057fa521c478a2c675ab41f760, type: 3}
   litterMaterial: {fileID: 2100000, guid: 70bb8d12c43fab940b9ffa2d4abe1634, type: 2}
   litterSize: 3
-  litterType: 1
+  litterType: 4
