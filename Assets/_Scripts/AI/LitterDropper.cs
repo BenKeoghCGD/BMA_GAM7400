@@ -16,14 +16,10 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
+    
     // Function to spawn litter
     public void DropLitter()
     {
-        if (litter == null)
-        {
-            Debug.LogWarning("litter is not assigned in litter dropper");
-            return;
-        }
         //Creates a new Litter object
         GameObject litterObject = new GameObject();
 
@@ -32,17 +28,8 @@ public class LitterDropper : MonoBehaviour
         instance.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
 
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
-<<<<<<< HEAD
-        
-        LitterType randomLitterType = GetRandomLitterType();
-        litter.SetLitterType(randomLitterType);
-
-        ToolType matchingToolType = getMatchingTool(randomLitterType);
-        litter.SetRequiredTool(matchingToolType);
-=======
->>>>>>> BenH
 
         // Adds the litter item to the LitterManager
-       // GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
+        GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
     }
 }

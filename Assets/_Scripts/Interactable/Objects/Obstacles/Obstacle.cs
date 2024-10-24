@@ -4,31 +4,34 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-    // reference to playerlife script
-    [SerializeField] private PlayerLife PlayerLife;
     public bool isObstacle = true;
 
-
-    // when player collides with the obstacles collider decreases the players health by 1, also ensures that the player health doesnt go under 0
+    // This will be called when the obstacle collides with something
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            if (PlayerLife == null) return;
-       
-            if (isObstacle == true)
+            // Get the PlayerLife component from the colliding object (an instance)
+            PlayerLife playerlife = other.GetComponent<PlayerLife>();
+
+            if (playerlife != null)  // Ensure playerlife is found
             {
-                PlayerLife.DecreasePlayerHealth();
+                if (isObstacle)
+                {
+                    playerlife.DecreasePlayerHealth();  // Decrease health
+                }
+                else
+                {
+                    playerlife.IncreasePlayerHealth();  // Increase health
+                }
+
+                // Ensure health doesn't go below 0
+                playerlife.Health = Mathf.Max(playerlife.Health, 0);
             }
             else
             {
-                PlayerLife.IncreasePlayerHealth();
+                Debug.LogError("PlayerLife component is missing on the Player.");
             }
-
-
-            PlayerLife.Health = Mathf.Max(PlayerLife.Health, 0);
         }
     }
-
-   
 }
