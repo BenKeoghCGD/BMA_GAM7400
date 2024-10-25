@@ -56,6 +56,11 @@ public class PlayerScript : MonoBehaviour
 
     bool CanMove = true;
 
+    [SerializeField] private Animator PlayerAnimator; //Animation controler of player
+
+    private float _smoothTime = 0.05f; //for smooth rotation
+    private float _currentVelocity;
+    
     // Update is called once per frame
     void Update()
     {
@@ -99,12 +104,17 @@ public class PlayerScript : MonoBehaviour
         move = move * moveSpeed * Time.deltaTime;
         move = transform.TransformDirection(move);
         characterController.Move(move);
-
         //Alternatively, we could use the joystick input for movement
         move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
         move = move * moveSpeed * Time.deltaTime;
-        move = transform.TransformDirection(move);
+        
+        //commented by HS
+        //move = transform.TransformDirection(move);
+        
         characterController.Move(move);
+
+        //This function responsible for managing player animation (HS)
+        PlayerAnimationController();
 
     }
 
@@ -233,6 +243,30 @@ public class PlayerScript : MonoBehaviour
             GameManager.GetScoreManager().LitterValuCalculator(hit);
             
             target.OnInteract(this);
+        }
+    }
+
+    public void PlayerAnimationController()
+    {
+        float _horizontal = Joystick.Horizontal;
+        float _vertical = Joystick.Vertical;
+        
+     
+        
+        var targetAngle = Mathf.Atan2(_horizontal, _vertical) * Mathf.Rad2Deg; // Calculation of the future position along the x and y axes.(HS)
+        var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime); // rotate smoothly (HS)
+        
+        if (_horizontal == 0 && _vertical == 0) //player standing stedy (HS)
+        {
+            PlayerAnimator.SetBool("isStedy",true); //start idel animation (HS)
+            print("isStedy");
+        }
+
+        if (_horizontal != 0 || _vertical != 0) //player is moving
+        {
+            transform.rotation = Quaternion.Euler(0f, angle, 0f); //rotate player to direction
+            PlayerAnimator.SetBool("isStedy",false); //start run animation
+            print(_horizontal + "horizontal");
         }
     }
 
