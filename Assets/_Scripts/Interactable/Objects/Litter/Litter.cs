@@ -16,10 +16,7 @@ public class Litter : MonoBehaviour, IInteractable
     [SerializeField] 
     public LitterType litterType;
 
-    [SerializeField] 
-    public ToolType requiredTool;
-
-    public ToolType RequiredTool => requiredTool;
+   
  
 
     protected GameObject litterObj;
@@ -27,11 +24,7 @@ public class Litter : MonoBehaviour, IInteractable
     protected int litterSize;
     public int LitterSize => litterSize;
 
-   
-    public void SetRequiredTool(ToolType tool)
-    {
-        requiredTool = tool;
-    }
+    private Animator pickUp;
 
     public void Init(LitterData data, GameObject obj)
     {
@@ -97,17 +90,15 @@ public class Litter : MonoBehaviour, IInteractable
 
     public virtual void OnInteract(PlayerScript player)
     {
-        if (!player.hasRequiredTool(requiredTool))
-        {
-            Debug.Log("Incorrect Tool");
-            return;
-        }
+        
         // Adjust player litter count
         player.AdjustLitter(litterType);
 
         //The player receives one point for each litter collected.(HS)
         GameManager.GetPlayerScript().CalculateCollectedLitter(false,1);
-        
+
+      //  pickUp.SetTrigger("isPickingUp");
+
         // Destroy itself, now removed from LitterManager
         GameManager.GetLitterManager().RemoveLitter(this);
         Destroy(gameObject);

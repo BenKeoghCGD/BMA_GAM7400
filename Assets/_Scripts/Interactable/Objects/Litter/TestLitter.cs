@@ -24,9 +24,6 @@ public class TestLitter : Litter
             Init(testData, gameObject);
         }
 
-        if(randomiseTool == true)
-        {
-            SetRequiredTool((ToolType)UnityEngine.Random.Range(0, 3));
-        }
+   
     }
 }

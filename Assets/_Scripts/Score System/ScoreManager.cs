@@ -41,8 +41,7 @@ public class ScoreManager : MonoBehaviour
             var currenctLitter = target.GetComponent<Litter>();
             int scoreToAdd = 0;
 
-            // checks if player has the 'requiredTool' from the PlayerScript
-            if (!player.hasRequiredTool(currenctLitter.requiredTool))  return;
+           
 
             switch (currenctLitter.litterType)
             {
