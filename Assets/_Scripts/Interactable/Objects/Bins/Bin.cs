@@ -13,11 +13,13 @@ using UnityEngine;
 public class Bin : MonoBehaviour, IInteractable
 {
     public LitterType litterType;
-
+    [SerializeField] private int _BinCapasity = 10;
+    
     [SerializeField] private int _storedBlackLitter = 0;
     [SerializeField] private int _storedBeigeLitter = 0;
     [SerializeField] private int _storedRedLitter = 0;
 
+    [SerializeField] private bool _BinIsFull = false;
 
     public void OnInteract(PlayerScript player)
     {
@@ -25,23 +27,81 @@ public class Bin : MonoBehaviour, IInteractable
         // increase stored amount by player holdage
         switch (litterType)
         {
+            
             case LitterType.Beige:
-                _storedBeigeLitter += player.HeldBeigeLitter;
-                Debug.Log("Stored Litter: " + _storedBeigeLitter);
+                
+                if (!_BinIsFull) //This checks if the bin is full, and if so, the rest of the code will not execute.(HS)
+                {
+                    if (player.HeldBeigeLitter >= _BinCapasity) //Here, it checks if the player is carrying as much or
+                                                                //more trash than the bin’s capacity.
+                                                                //It will deposit the allowed amount into the bin,
+                                                                //and the remaining trash will stay with the player.(HS)
+                    
+                    {
+                        _BinIsFull = true;
+                        player.HeldBeigeLitter_Setter(player.HeldBeigeLitter - _BinCapasity);
+                        _storedBeigeLitter += _BinCapasity;
+                    }
+                    else //Here, if the player's inventory amount is less than the bin's capacity,
+                         //the same amount will be deposited into the bin, and the player's inventory will be set to zero.(HS)
+                    {
+                        _storedBeigeLitter += player.HeldBeigeLitter;
+                        Debug.Log("Stored Litter: " + _storedBeigeLitter);
+                        player.ClearLitter(litterType);
+                    }
+                }
+                else
+                {
+                    Debug.Log("this bin is full");
+                }
                 break;
             case LitterType.Red:
-                _storedRedLitter += player.HeldRedLitter;
-                Debug.Log("Stored Litter: " + _storedRedLitter);
+                if (!_BinIsFull)
+                {
+                    if (player.HeldRedLitter >= _BinCapasity)
+                    {
+                        _BinIsFull = true;
+                        player.HeldRedLitter_Setter(player.HeldRedLitter - _BinCapasity);
+                        _storedRedLitter += _BinCapasity;
+                    }
+                    else
+                    {
+                        _storedRedLitter += player.HeldRedLitter;
+                        Debug.Log("Stored Litter: " + _storedRedLitter);
+                        player.ClearLitter(litterType);
+
+                    }
+                }
+                else
+                {
+                    Debug.Log("this bin is full");
+                }
                 break;
             case LitterType.Black:
-                _storedBlackLitter += player.HeldBlackLitter;
-                Debug.Log("Stored Litter: " + _storedBlackLitter);
-                break;
-            default:
-                _storedBeigeLitter += player.HeldBeigeLitter;
+                if (!_BinIsFull)
+                {
+                    if (player.HeldBlackLitter >= _BinCapasity)
+                    {
+                        _BinIsFull = true;
+                        player.HeldBlackLitter_Setter(player.HeldBlackLitter - _BinCapasity);
+                        _storedBlackLitter += _BinCapasity;
+                    }
+                    else
+                    {
+                        _storedBlackLitter += player.HeldBlackLitter;
+                        Debug.Log("Stored Litter: " + _storedBlackLitter);
+                        player.ClearLitter(litterType);
+
+                    }
+                }
+                else
+                {
+                    Debug.Log("this bin is full");
+                }
                 break;
         }
-        player.ClearLitter(litterType);
+        
+
     }
 
 
