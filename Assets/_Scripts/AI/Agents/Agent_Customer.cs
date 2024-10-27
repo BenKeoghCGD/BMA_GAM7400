@@ -10,6 +10,9 @@ public class Agent_Customer : Agent_Base
     private string storeEntranceTag;
 
     private Location_Sensor _customerSensor;
+    private Animator animator;
+    [SerializeField] GameObject charactermeshPrefab;
+    
 
     private float _shoppingTimer;
     private float _dropLitterTimer;
@@ -18,12 +21,33 @@ public class Agent_Customer : Agent_Base
     private bool _hasDroppedLitter;
     private bool _isInShop;
 
+    private GameObject characterMeshInstance;
+
     private new void Start()
     {
         base.Start();
 
+        if (charactermeshPrefab != null)
+        {
+            characterMeshInstance = Instantiate(charactermeshPrefab, transform);
+            characterMeshInstance.transform.localPosition = Vector3.zero;
+
+            animator = characterMeshInstance.GetComponent<Animator>();
+
+            if (animator == null)
+            {
+                Debug.LogError("animator not found on character mesh instance");
+            }
+        }
+
+        
+
+       
+
         _customerSensor = gameObject.AddComponent<Location_Sensor>();
         _customerSensor.Init(this, 1, 1, storeEntranceTag, SetTargetBool);
+
+        
 
         seeker.SetPath(FindStoreEntrance().transform.position);
       
@@ -35,9 +59,11 @@ public class Agent_Customer : Agent_Base
         if(_isInShop == false)
         {
             ToShopLogic();
+            animator.SetBool("isWalking", seeker.HasPath);
             return;
         }
 
+        animator.SetBool("isWalking", false);
         if(_shoppingTimer > 0)
         {
             _shoppingTimer -= Time.deltaTime;
@@ -86,8 +112,8 @@ public class Agent_Customer : Agent_Base
         _isInShop = true;
         _isAtTargetLocation = false;
 
-        gameObject.
-        GetComponent<MeshRenderer>().enabled = false;
+        
+        characterMeshInstance.GetComponent<MeshRenderer>().enabled = false;
         GetComponent<NavMeshAgent>().enabled = false;
 
         transform.position = FindStoreExit().transform.position;
@@ -96,7 +122,7 @@ public class Agent_Customer : Agent_Base
     {
         _customerSensor.Init(this, 1, 1, spawnPoint.transform.position, SetTargetBool);
 
-        GetComponent<MeshRenderer>().enabled = true;
+        characterMeshInstance.GetComponent <MeshRenderer>().enabled = true;
         GetComponent<NavMeshAgent>().enabled = true;
 
         _hasDroppedLitter = false;
@@ -147,4 +173,6 @@ public class Agent_Customer : Agent_Base
             Destroy(gameObject);
         }
     }
+
+    
 }
