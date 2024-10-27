@@ -12,7 +12,7 @@ public class PlayerLife : MonoBehaviour
 
     public Image[] hearts;
     public Sprite FullHeart;
-
+    public Sprite EmptyHeart;
     public void DecreasePlayerHealth()
     {
         health--;
@@ -44,7 +44,7 @@ public class PlayerLife : MonoBehaviour
             }
             else
             {
-                hearts[i].sprite = null;
+                hearts[i].sprite = EmptyHeart;
             }
             if (i < maxHealth)
             {
