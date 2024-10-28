@@ -47,9 +47,9 @@ public class Location_Sensor : MonoBehaviour
         toggleCallback = toggleFunc;
     }
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        _sensorTimer += Time.deltaTime;
+        _sensorTimer += Time.fixedDeltaTime;
 
         if(_sensorTimer >= _sensorDelay)
         {

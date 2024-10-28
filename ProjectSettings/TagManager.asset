@@ -9,6 +9,7 @@ TagManager:
   - Street Corner
   - Store Entrance
   - Store Exit
+  - Parking Space
   layers:
   - Default
   - TransparentFX

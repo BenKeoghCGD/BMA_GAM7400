@@ -11,16 +11,20 @@ public class Agent_Customer : Agent_Base
 
     private Location_Sensor _customerSensor;
 
+    private Agent_Car _car;
+
     private float _shoppingTimer;
     private float _dropLitterTimer;
 
-    public bool _isAtTargetLocation;
+    private bool _isAtTargetLocation;
     private bool _hasDroppedLitter;
     private bool _isInShop;
 
-    private new void Start()
+    public void Init(Agent_Car car)
     {
         base.Start();
+
+        _car = car;
 
         _customerSensor = gameObject.AddComponent<Location_Sensor>();
         _customerSensor.Init(this, 1, 1, storeEntranceTag, SetTargetBool);
@@ -30,7 +34,7 @@ public class Agent_Customer : Agent_Base
         litterDropper.DropLitter();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(_isInShop == false)
         {
@@ -143,7 +147,7 @@ public class Agent_Customer : Agent_Base
 
         if (_isAtTargetLocation == true)
         {
-            spawnPoint.isUsed = false;
+            _car.LeaveCarPark();
             Destroy(gameObject);
         }
     }

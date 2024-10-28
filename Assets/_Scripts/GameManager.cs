@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
     private GameObject customerPrefab;
     [SerializeField]
     private GameObject pedestrianPrefab;
+    [SerializeField]
+    private GameObject carPrefab;
 
     //instance of playerScript (HS)
     private PlayerScript _playerScript;
@@ -46,7 +48,7 @@ public class GameManager : MonoBehaviour
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
             _litterManager = new LitterManager(data);
-            _AISpawnManager = new AI_SpawnManager(customerPrefab, pedestrianPrefab);
+            _AISpawnManager = new AI_SpawnManager(customerPrefab, pedestrianPrefab, carPrefab);
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
         }
