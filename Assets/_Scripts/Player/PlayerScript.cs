@@ -266,7 +266,7 @@ public class PlayerScript : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f); //rotate player to direction
             PlayerAnimator.SetBool("isStedy",false); //start run animation
-            print(_horizontal + "horizontal");
+           // print(_horizontal + "horizontal");
         }
     }
 

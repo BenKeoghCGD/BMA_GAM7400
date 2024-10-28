@@ -9,6 +9,7 @@ TagManager:
   - Street Corner
   - Store Entrance
   - Store Exit
+  - NPC
   layers:
   - Default
   - TransparentFX
