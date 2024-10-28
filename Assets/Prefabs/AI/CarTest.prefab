@@ -242,7 +242,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathSearchRadius: 10
-  path: {fileID: 0}
   _waypointSensor: {fileID: 7009247126127256650}
   _parkingSensor: {fileID: 5718941701727491873}
   customerSpawnpoint: {fileID: 2170382779486504388}

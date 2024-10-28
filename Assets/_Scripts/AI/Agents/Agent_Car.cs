@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Agent_Car : Agent_Base
@@ -16,6 +17,7 @@ public class Agent_Car : Agent_Base
 
     private AI_WaypointPath _path;
     private AI_Waypoint _currentWaypoint;
+    private AI_Waypoint _queuedWaypoint;
     private ParkingSpace _parkingSpace;
 
     private bool _isAtWaypoint;
@@ -30,11 +32,11 @@ public class Agent_Car : Agent_Base
         spawnPoint.isActive = false;
         spawnPoint.isUsed = false;
 
-        _path = new AI_WaypointPath(GameObject.Find("Carpark Path").gameObject.GetComponent<PathPlan>().GetPath()); 
+        _path = new AI_WaypointPath(GameObject.Find("Anti-Clockwise Road Path").gameObject.GetComponent<PathPlan>().GetPath()); 
 
-        _currentWaypoint = _path.GetNextWaypoint();
+        _currentWaypoint = GetNextWaypoint();
    
-        _waypointSensor.Init(this, 5, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _waypointSensor.Init(this, 3, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
         _parkingSensor.Init(this, 1f, 0.1f, transform.forward, "Parking Space", IsParking);
 
         seeker.SetSpeed(5f);
@@ -96,11 +98,10 @@ public class Agent_Car : Agent_Base
     {
         _isAtWaypoint = false;
 
-        AI_Waypoint next = _path.GetNextWaypoint();
+        AI_Waypoint next = GetNextWaypoint();
 
         if(next == null)
         {
-            Debug.Log("Path finished");
             Destroy(gameObject);
             return;
         }
@@ -109,6 +110,43 @@ public class Agent_Car : Agent_Base
         _waypointSensor.Init(this, 3, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
 
         seeker.SetPath(_currentWaypoint.transform.position);
+    }
+
+    private AI_Waypoint GetNextWaypoint()
+    {
+        AI_Waypoint next;
+
+        if (_queuedWaypoint != null)
+        {
+            next = _queuedWaypoint;
+            _queuedWaypoint = null;
+
+            return next;
+        }
+
+        next = _path.GetNextWaypoint();
+
+        if (next == null)
+        {
+            Debug.Log("Path finished");
+            return null;
+        }
+
+        if (next.IsSwitch == true)
+        {
+            Debug.Log("Switch");
+
+            List<AI_Waypoint> newPath = next.gameObject.GetComponent<AI_SwitchWaypoint>().GetNextPlan();
+
+            if (newPath != null)
+            {
+                Debug.Log("Newplan");
+                _path.SetNewPath(newPath);
+                _queuedWaypoint = _path.GetNextWaypoint();
+            }
+        }
+
+        return next;
     }
     private void InitParkingSpace()
     {

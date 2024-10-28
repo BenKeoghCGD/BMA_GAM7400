@@ -37,7 +37,7 @@ public class AI_SpawnManager
 
         if(_spawnTimer > 5)
         {
-            SpawnAgent((SpawnPointType)UnityEngine.Random.Range(0, 2));
+            SpawnAgent((SpawnPointType)UnityEngine.Random.Range(0, 2)/**/);
             _spawnTimer = 0;
         }
     }
@@ -49,8 +49,28 @@ public class AI_SpawnManager
         {
             case SpawnPointType.CUSTOMER:
                 availableSpawnPoints = _customerSpawnPoints.Where(s => s.isActive == true).Where(s => s.isUsed == false).ToList();
+
+                if (availableSpawnPoints == null || availableSpawnPoints.Count == 0)
+                {
+                    if (_carCount >= _maxCars)
+                    {
+                        break;
+                    }
+
+                    type = SpawnPointType.CAR;
+                    availableSpawnPoints = _carSpawnPoints;
+                }
+
                 break;
 
+            case SpawnPointType.CAR:
+                if (_carCount >= _maxCars)
+                {
+                    break;
+                }
+
+                availableSpawnPoints = _carSpawnPoints;
+                break;
             case SpawnPointType.PEDESTRIAN:
                 if (_pedestrianCount >= _maxPedestrians)
                 {
@@ -59,15 +79,6 @@ public class AI_SpawnManager
 
                 availableSpawnPoints = _pedestrianSpawnPoints;
                 break;
-            case SpawnPointType.CAR:
-                if(_carCount >= _maxCars)
-                {
-                    break;
-                }
-
-                availableSpawnPoints = _carSpawnPoints;
-                break;
-
         }
 
         if(availableSpawnPoints == null || availableSpawnPoints.Count == 0)
@@ -85,12 +96,13 @@ public class AI_SpawnManager
                 Agent_Car car = location.gameObject.GetComponentInParent<Agent_Car>();
                 location.SpawnCustomer(_customer, car);
                 break;
-            case SpawnPointType.PEDESTRIAN:
-                location.SpawnAgent(_pedestrian);
-                break;
             case SpawnPointType.CAR:
                 location.SpawnAgent(_car);
                 break;
+            case SpawnPointType.PEDESTRIAN:
+                location.SpawnAgent(_pedestrian);
+                break;
+
         }
     }
 
@@ -101,13 +113,12 @@ public class AI_SpawnManager
             case SpawnPointType.CUSTOMER:
                 _customerSpawnPoints.Add(spawnPoint);
                 break;
-            case SpawnPointType.PEDESTRIAN:
-                _pedestrianSpawnPoints.Add(spawnPoint);
-                break;
             case SpawnPointType.CAR:
                 _carSpawnPoints.Add(spawnPoint);
                 break;
+            case SpawnPointType.PEDESTRIAN:
+                _pedestrianSpawnPoints.Add(spawnPoint);
+                break;
         }
-
     }
 }

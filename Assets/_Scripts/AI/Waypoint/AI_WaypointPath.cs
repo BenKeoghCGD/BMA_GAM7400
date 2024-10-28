@@ -22,6 +22,12 @@ public class AI_WaypointPath
         _path.Last().SetIsFinalWaypoint(true);
     }
 
+    public void SetNewPath(List<AI_Waypoint> path)
+    {
+        _currentWaypointIndex = 0;
+        _path = path;
+    }
+
     public AI_Waypoint GetNextWaypoint()
     {
         if(_currentWaypointIndex >= _path.Count)

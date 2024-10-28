@@ -25,7 +25,7 @@ public class AI_SpawnPoint : MonoBehaviour
 
         isUsed = true;
 
-        GameObject agent = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject agent = Instantiate(prefab, transform.position, transform.rotation);
         agent.GetComponent<Agent_Customer>().Init(car);
         agent.GetComponent<Agent_Customer>().SetSpawnPoint(this);
     }
@@ -33,7 +33,7 @@ public class AI_SpawnPoint : MonoBehaviour
     {
         isUsed = true;
 
-        GameObject agent = Instantiate(prefab, transform.position, Quaternion.identity);
+        GameObject agent = Instantiate(prefab, transform.position, transform.rotation);
         agent.GetComponent<Agent_Base>().SetSpawnPoint(this);
     }
 }

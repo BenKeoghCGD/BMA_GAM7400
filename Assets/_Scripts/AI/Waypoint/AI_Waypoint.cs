@@ -4,34 +4,21 @@ using UnityEngine;
 
 public class AI_Waypoint : MonoBehaviour
 {
-    //[SerializeField]
-    //private AI_Waypoint _nextWaypoint;
+    protected PathPlan _ownerPlan;
 
-    private bool _isFinalWaypoint = false;
-    public bool IsFinalWaypoint => _isFinalWaypoint;
-    // Start is called before the first frame update
-    void Start()
+    protected bool isSwitch = false;
+    public bool IsSwitch => isSwitch;
+
+    protected bool isFinalWaypoint = false;
+    public bool IsFinalWaypoint => isFinalWaypoint;
+
+    public void SetOwnerPlan(PathPlan plan)
     {
-        //if(_nextWaypoint == null && _isFinalWaypoint == true)
-        //{
-        //    Debug.LogError("Waypoint '" + gameObject.name + "' is missing next waypoint");
-        //    return;
-        //}
+        _ownerPlan = plan;
     }
-
-    //public AI_Waypoint GetNextWaypoint()
-    //{
-    //    if (_nextWaypoint == null && _isFinalWaypoint == true)
-    //    {
-    //        Debug.LogError("Waypoint '" + gameObject.name + "' is missing next waypoint");
-    //        return null;
-    //    }
-
-    //    return _nextWaypoint;
-    //}
 
     public void SetIsFinalWaypoint(bool val)
     {
-        _isFinalWaypoint = val;
+        isFinalWaypoint = val;
     }
 }
