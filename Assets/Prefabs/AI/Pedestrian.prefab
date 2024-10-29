@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4583996217600613717}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2338845488667051671
@@ -50,7 +51,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3866595110635335355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -134,3 +135,77 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 104
   m_ObstacleAvoidanceType: 3
+--- !u!1001 &4041726921706109630
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6692906897337578693}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.059
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3336739043450842775, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 237edf1acc30c7340b017bea41976760, type: 2}
+    - target: {fileID: 919132149155446097, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_Name
+      value: NPC 2_MixamoRig
+      objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 31b443a915103cd4883619f7de4cc624, type: 3}
+    - target: {fileID: 5866666021909216657, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 0a0970214d9e71d468cbc1254af46135, type: 2}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+--- !u!4 &4583996217600613717 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 95494c594b95ec745b4965397ae52b8c, type: 3}
+  m_PrefabInstance: {fileID: 4041726921706109630}
+  m_PrefabAsset: {fileID: 0}
