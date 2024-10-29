@@ -40,6 +40,7 @@ public class RecyclingManager : MonoBehaviour
     private PlayerScript playerScript;
     private bool CanDragLitter;
     private bool StartTimer;
+    public GameObject character;
 
 
 
@@ -126,6 +127,7 @@ public class RecyclingManager : MonoBehaviour
         playerScript.setMovementStatus(false);
         mainCam.gameObject.SetActive(false);
         recyclingCam.gameObject.SetActive(true);
+        character.SetActive(false);
 
         UIManager uIManager = UIManager.instance;
 
@@ -151,7 +153,7 @@ public class RecyclingManager : MonoBehaviour
             StartTimer = false;
             UIManager uIManager = UIManager.instance;
             playerScript.setMovementStatus(true);
-
+            character.SetActive(true);
 
             Tween.Alpha(uIManager.recyclingFadeInPanel, 1, 0, 0.5f, Ease.Linear);
             recyclingCam.gameObject.SetActive(false);
@@ -165,7 +167,7 @@ public class RecyclingManager : MonoBehaviour
             GameIsOver = false;
             float temp = (float)playerScript.litterCollectedAmount;
             temp *= multiplier;
-            playerScript.IncreaseBinnedAmount(temp);
+            playerScript.IncreaseCollectedAmount(temp);
             playerScript.ResetCollectedLitter();
             //triggerUICanvas.SetActive(false);
         }
@@ -264,7 +266,7 @@ public class RecyclingManager : MonoBehaviour
                 nearestBin.AnimateRecycling(selectedLitter.transform);
                 SpawnNewLitter();
                 multiplier += 0.1f;
-                playerScript.IncreaseBinnedAmount(1f);
+                playerScript.IncreaseCollectedAmount(1f);
                 UpdateMultiplierUI();
             }
             else
