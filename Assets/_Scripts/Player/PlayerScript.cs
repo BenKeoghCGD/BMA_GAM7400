@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour
     private InputActionMap playerInputMap;
     private InputAction moveAction;
     private CharacterController characterController;
-    [SerializeField] private FixedJoystick Joystick;
+    [SerializeField] private FloatingJoystick Joystick;
   //  [SerializeField] private FloatingJoystick joystick;
 
     //Player movement variables
