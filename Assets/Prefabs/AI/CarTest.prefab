@@ -548,7 +548,7 @@ MonoBehaviour:
   _trafficTags:
   - Traffic Light
   - Car
-  _trafficSensorStrength: 2
+  _trafficSensorStrength: 2.5
   _waypointSensor: {fileID: 5718941701727491873}
   _waypointSensorStrength: 1
   _parkingSensor: {fileID: 8783969966287236026}
