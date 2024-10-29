@@ -19,7 +19,6 @@ public class Agent_Customer : Agent_Base
     private bool _isAtTargetLocation;
     private bool _hasDroppedLitter;
     private bool _isInShop;
-
     public void Init(Agent_Car car)
     {
         base.Start();
@@ -27,7 +26,7 @@ public class Agent_Customer : Agent_Base
         _car = car;
 
         _customerSensor = gameObject.AddComponent<Location_Sensor>();
-        _customerSensor.Init(this, 1, 1, storeEntranceTag, SetTargetBool);
+        _customerSensor.Init(this, 1, 1, storeEntranceTag, 0,  SetTargetBool);
 
         seeker.SetPath(FindStoreEntrance().transform.position);
       
@@ -148,7 +147,7 @@ public class Agent_Customer : Agent_Base
         if (_isAtTargetLocation == true)
         {
             _car.LeaveCarPark();
-            Destroy(gameObject);
+            Destroy(SpawnPointType.CUSTOMER);
         }
     }
 }

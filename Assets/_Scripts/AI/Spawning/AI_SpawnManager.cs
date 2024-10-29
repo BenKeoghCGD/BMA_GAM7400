@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AI_SpawnManager
 {
@@ -14,10 +15,10 @@ public class AI_SpawnManager
     private List<AI_SpawnPoint> _carSpawnPoints;
 
     private int _pedestrianCount;
-    private int _maxPedestrians = 20;
+    private int _maxPedestrians = 30;
 
     private int _carCount;
-    private int _maxCars = 1;
+    private int _maxCars = 15;
 
     private float _spawnTimer;
     public AI_SpawnManager(GameObject customer, GameObject pedestrian, GameObject car)
@@ -35,9 +36,9 @@ public class AI_SpawnManager
     {
         _spawnTimer += deltaTime;
 
-        if(_spawnTimer > 5)
+        if(_spawnTimer > 3)
         {
-            SpawnAgent((SpawnPointType)UnityEngine.Random.Range(0, 2)/**/);
+            SpawnAgent((SpawnPointType)UnityEngine.Random.Range(0, 3));
             _spawnTimer = 0;
         }
     }
@@ -95,12 +96,16 @@ public class AI_SpawnManager
 
                 Agent_Car car = location.gameObject.GetComponentInParent<Agent_Car>();
                 location.SpawnCustomer(_customer, car);
+
+                _carCount += 1;
                 break;
             case SpawnPointType.CAR:
                 location.SpawnAgent(_car);
                 break;
             case SpawnPointType.PEDESTRIAN:
                 location.SpawnAgent(_pedestrian);
+
+                _pedestrianCount += 1;
                 break;
 
         }
@@ -118,6 +123,21 @@ public class AI_SpawnManager
                 break;
             case SpawnPointType.PEDESTRIAN:
                 _pedestrianSpawnPoints.Add(spawnPoint);
+                break;
+        }
+    }
+
+    public void Decrement(SpawnPointType type)
+    {
+        switch (type)
+        {
+            case SpawnPointType.CUSTOMER:
+                break;
+            case SpawnPointType.CAR:
+                _carCount -= 1;
+                break;
+            case SpawnPointType.PEDESTRIAN:
+                _pedestrianCount -= 1;
                 break;
         }
     }

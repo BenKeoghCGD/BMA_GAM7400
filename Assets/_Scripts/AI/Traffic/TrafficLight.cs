@@ -8,8 +8,8 @@ public class TrafficLight : MonoBehaviour
     public bool _isGreen;
     public bool IsGreen => _isGreen;
 
-    public void ToggleLight()
+    public void ToggleLight(bool isGreen)
     {
-        _isGreen = !_isGreen;
+        _isGreen = isGreen;
     }
 }

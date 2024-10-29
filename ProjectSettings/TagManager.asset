@@ -12,6 +12,8 @@ TagManager:
   - Parking Space
   - Traffic Light
   - Car
+  - Pedestrian Waypoint
+  - Crossing Point
   layers:
   - Default
   - TransparentFX
