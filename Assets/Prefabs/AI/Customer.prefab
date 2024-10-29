@@ -105,7 +105,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   storeEntranceTag: Store Entrance
-  _isAtTargetLocation: 0
 --- !u!195 &8972517643352449686
 NavMeshAgent:
   m_ObjectHideFlags: 0
