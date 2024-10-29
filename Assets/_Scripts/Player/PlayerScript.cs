@@ -107,9 +107,11 @@ public class PlayerScript : MonoBehaviour
         characterController.Move(move);
         //Alternatively, we could use the joystick input for movement
 
+        move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
+
         if (Joystick.Horizontal != 0 && Joystick.Vertical != 0)
         {
-            move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
+            
         }
         
         move = move * moveSpeed * Time.deltaTime;
