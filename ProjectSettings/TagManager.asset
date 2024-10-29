@@ -10,6 +10,10 @@ TagManager:
   - Store Entrance
   - Store Exit
   - Parking Space
+  - Traffic Light
+  - Car
+  - Pedestrian Waypoint
+  - Crossing Point
   layers:
   - Default
   - TransparentFX

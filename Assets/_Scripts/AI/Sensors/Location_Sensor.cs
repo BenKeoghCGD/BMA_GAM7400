@@ -2,10 +2,18 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Location_Sensor : MonoBehaviour
 {
+    enum SensorType
+    {
+        TAG,
+        TARGET,
+        TAGINFRONT
+    }
+
     private Agent_Base _agent;
     private int _sensorRadius;
 
@@ -18,18 +26,23 @@ public class Location_Sensor : MonoBehaviour
     private Vector3 _target;
     private bool lookForTag;
 
+    private SensorType _sensorType;
+    public List<GameObject> _hitData;
+
+    private bool _isPaused;
     public Action<bool> toggleCallback;
 
     // Start is called before the first frame update
-    public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, string tag, Action<bool> toggleFunc)
+    public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, string tag, int typeIndex, Action<bool> toggleFunc)
     {
         lookForTag = true;
+        _sensorType = (SensorType)typeIndex;
 
         _agent = agent;
         _sensorRadius = sensorRadius;
         _sensorDelay = sensorDelay;
 
-        _layerMask = LayerMask.NameToLayer("AI_Interactable");
+        _layerMask = agent.layerMask;
         _tag = tag;
 
         toggleCallback = toggleFunc;
@@ -37,6 +50,7 @@ public class Location_Sensor : MonoBehaviour
     public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, Vector3 target, Action<bool> toggleFunc)
     {
         lookForTag = false;
+        _sensorType = SensorType.TARGET;
 
         _agent = agent;
         _sensorRadius = sensorRadius;
@@ -49,17 +63,26 @@ public class Location_Sensor : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(_isPaused == true)
+        {
+            return;
+        }
+
         _sensorTimer += Time.fixedDeltaTime;
 
         if(_sensorTimer >= _sensorDelay)
         {
-            if(lookForTag == true)
+            switch(_sensorType)
             {
-                ScanForTag();
-            }
-            else
-            {
-                ScanForLocation();
+                case SensorType.TARGET:
+                    ScanForLocation();
+                    break;
+                case SensorType.TAG:
+                    ScanForTag();
+                    break;
+                case SensorType.TAGINFRONT:
+                    ScanForTagInFront();
+                    break;
             }
 
             _sensorTimer = 0;
@@ -68,9 +91,10 @@ public class Location_Sensor : MonoBehaviour
 
     void ScanForTag()
     {
-        Collider[] hitColliders = Physics.OverlapSphere(transform.position, _sensorRadius);
+        Collider[] hitData = Physics.OverlapSphere(transform.position, _sensorRadius, _layerMask);
+        _hitData = new List<GameObject>();
 
-        if(hitColliders.Length == 0)
+        if(hitData.Length == 0)
         {
             toggleCallback(false);
             return;
@@ -78,13 +102,16 @@ public class Location_Sensor : MonoBehaviour
 
         bool isConfirmedTrue = false;
 
-        foreach(Collider collider in hitColliders)
+        foreach(Collider collider in hitData)
         {
-            if(collider.gameObject.tag == _tag)
+            if(collider.gameObject.tag != _tag)
             {
-                isConfirmedTrue = true;
-                toggleCallback(true);
+                continue;
             }
+
+            isConfirmedTrue = true;
+            _hitData.Add(collider.gameObject);
+            toggleCallback(true);
         }
 
         if(isConfirmedTrue == false)
@@ -95,14 +122,65 @@ public class Location_Sensor : MonoBehaviour
 
     void ScanForLocation()
     {
-        Vector3 distance = transform.position - _target; 
+        Vector3 distance = transform.position - _target;
 
-        if(distance.magnitude <= _sensorRadius)
+        if (distance.magnitude <= _sensorRadius)
         {
             toggleCallback(true);
             return;
         }
 
         toggleCallback(false);
+    }
+    void ScanForTagInFront()
+    {
+        Collider[] hitData = Physics.OverlapSphere(transform.position, _sensorRadius, _layerMask);
+
+        Debug.DrawRay(gameObject.transform.position, transform.forward * 10, Color.blue);
+
+        if (hitData.Length == 0)
+        {
+            toggleCallback(false);
+            return;
+        }
+
+        bool isConfirmedTrue = false;
+        _hitData = new List<GameObject>();
+
+        foreach (Collider collider in hitData)
+        {
+            if (collider.gameObject.tag != _tag)
+            {
+                continue;
+            }
+
+            Vector3 forward = transform.TransformDirection(Vector3.forward);
+            Vector3 toCollider = collider.transform.position - transform.position;
+
+            if( toCollider.magnitude < 10f)
+            {
+                continue;
+            }
+
+            toCollider = toCollider.normalized;
+
+            if (Vector3.Dot(forward, toCollider) < 0)
+            {
+                continue;
+            }
+
+            _hitData.Add(collider.gameObject);
+            isConfirmedTrue = true;
+            toggleCallback(true);
+        }
+
+        if (isConfirmedTrue == false)
+        {
+            toggleCallback(false);
+        }
+    }
+    public void SetPauseSensor(bool val)
+    {
+        _isPaused = val;
     }
 }
