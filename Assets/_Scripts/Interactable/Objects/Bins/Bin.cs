@@ -7,6 +7,7 @@
  * Commit: c5c64a33b28ef4617eae3f6b5dcc3374872a0938
  */
 
+using PrimeTween;
 using System;
 using UnityEngine;
 
@@ -18,10 +19,23 @@ public class Bin : MonoBehaviour, IInteractable
     [SerializeField] private int _storedBeigeLitter = 0;
     [SerializeField] private int _storedRedLitter = 0;
 
+    public bool HasALid;
+    public Transform lid;
+    public Transform litterPos;
+    public TweenSettings<Vector3> lidRotaionSettings;
+
+    public void AnimateRecycling(Transform litter)
+    {
+        if (HasALid)
+        {
+            Tween.LocalRotation(lid, lidRotaionSettings);
+        }
+        Tween.Position(litter, litterPos.position, 0.2f).OnComplete(target: this, target => litter.gameObject.SetActive(false));
+    }
 
     public void OnInteract(PlayerScript player)
     {
-        
+
         // increase stored amount by player holdage
         switch (litterType)
         {
@@ -46,7 +60,7 @@ public class Bin : MonoBehaviour, IInteractable
 
 
     public int GetStoredBlackLitter
-    { 
+    {
         get { return _storedBlackLitter; }
     }
 

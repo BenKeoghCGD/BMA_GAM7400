@@ -22,7 +22,7 @@ public class PlayerScript : MonoBehaviour
     private InputAction moveAction;
     private CharacterController characterController;
     [SerializeField] private FixedJoystick Joystick;
-  //  [SerializeField] private FloatingJoystick joystick;
+    //  [SerializeField] private FloatingJoystick joystick;
 
     //Player movement variables
     [SerializeField]
@@ -35,6 +35,9 @@ public class PlayerScript : MonoBehaviour
     //the amount of litter that player has in inventory (HS)
     public int litterCollectedAmount;
 
+    //the amount of litter binned in the recycling mini game
+    public float binnedAmount;
+
     //tool functionality enum (BS)
     public ToolType equippedTool;
 
@@ -45,11 +48,11 @@ public class PlayerScript : MonoBehaviour
     // Litter needs to be managed by size and weight rather than flat value, can probably use ScriptableObject for LitterData (ask Ben Stott if you move on to this) (BH)
     // MaxSize variable
     // MaxWeight variable
-    [SerializeField] 
+    [SerializeField]
     private int heldBlackLitter = 0;
-    [SerializeField] 
+    [SerializeField]
     private int heldRedLitter = 0;
-    [SerializeField] 
+    [SerializeField]
     private int heldBeigeLitter = 0;
 
     [SerializeField] private LayerMask interactLayer;
@@ -91,17 +94,19 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
-        //if (!CanMove) return;
+        if (!CanMove) return;
         //Debug.Log("Move2");
         //gets the input from the move action and moves the player
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
+
         Vector3 move = new Vector3(moveInput.x, 0, moveInput.y);
         move = move * moveSpeed * Time.deltaTime;
         move = transform.TransformDirection(move);
         characterController.Move(move);
 
         //Alternatively, we could use the joystick input for movement
-        move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
+        if (Joystick.Horizontal != 0 && Joystick.Vertical != 0)
+            move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
         move = move * moveSpeed * Time.deltaTime;
         move = transform.TransformDirection(move);
         characterController.Move(move);
@@ -118,13 +123,13 @@ public class PlayerScript : MonoBehaviour
     {
         get { return heldBlackLitter; }
     }
-    
+
     //In this part, we were only able to read the values,
     //but it’s necessary to reset them to zero after colliding with the trash bins and using certain power-ups.
     //So, I added these setters to handle that.(HS)
     public void HeldBlackLitter_Setter(int value)
     {
-          heldBlackLitter = value;
+        heldBlackLitter = value;
     }
     public int HeldRedLitter
     {
@@ -190,11 +195,11 @@ public class PlayerScript : MonoBehaviour
         moveSpeed = baseSpeed;
     }
 
-    
+
     public void CalculatePlayerLife()
     {
         playerLife += 1;
-        
+
         //This part has been implemented temporarily to display the player’s current lives on the screen.(HS)
         UIManager.instance.lifeAmountText.text = playerLife.ToString();
     }
@@ -202,7 +207,7 @@ public class PlayerScript : MonoBehaviour
     //This function is responsible for calculating the amount of collected litter under different conditions.(HS)
     //It takes two inputs: a boolean indicating whether the item encountered is a power-up,
     //and a second input that specifies the amount we want to award to the player upon interaction.(HS)
-    public void CalculateCollectedLitter(bool isPowerUp , int amount)
+    public void CalculateCollectedLitter(bool isPowerUp, int amount)
     {
         if (!isPowerUp)
         {
@@ -215,6 +220,18 @@ public class PlayerScript : MonoBehaviour
         //This part has been implemented temporarily to display the player’s current litter collected on the screen.(HS)
         UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
     }
+
+    public void ResetCollectedLitter()
+    {
+        litterCollectedAmount = 0;
+        UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
+    }
+    public void IncreaseBinnedAmount(float amount)
+    {
+        binnedAmount += amount;
+        UIManager.instance.binnedAmountText.text = binnedAmount.ToString("F1");
+    }
+
 
     // Checks for collision with IInteractable object. If the object is litter, checks if the player can carry more
     private void OnInteractCollision()
@@ -231,10 +248,12 @@ public class PlayerScript : MonoBehaviour
             }
 
             GameManager.GetScoreManager().LitterValuCalculator(hit);
-            
+
             target.OnInteract(this);
         }
     }
+
+
 
     public bool hasRequiredTool(ToolType requiredTool)
     {
