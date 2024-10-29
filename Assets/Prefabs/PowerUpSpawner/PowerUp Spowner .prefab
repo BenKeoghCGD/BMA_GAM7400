@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57f69d61b357a414894cd9f4e3ab4ef9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawmTime: 1
+  _spawmTime: 20
   _powerUps:
   - {fileID: 4113773284052228943, guid: 6bc0c784af565d342b9a94c16bda8ea2, type: 3}
   - {fileID: 336830015571229248, guid: d2ba1d908cf2b504f9a3a9211dc4d9ce, type: 3}

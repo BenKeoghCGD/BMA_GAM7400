@@ -5,7 +5,12 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public bool isObstacle = true;
+    private AudioSource hitbytrolley;
 
+    private void Start()
+    {
+        hitbytrolley = GetComponent<AudioSource>();
+    }
     // This will be called when the obstacle collides with something
     private void OnTriggerEnter(Collider other)
     {
@@ -28,9 +33,10 @@ public class Obstacle : MonoBehaviour
                 // Ensure health doesn't go below 0
                 playerlife.Health = Mathf.Max(playerlife.Health, 0);
             }
-            else
+           
+            if (CompareTag("NPC") && hitbytrolley != null)
             {
-                Debug.LogError("PlayerLife component is missing on the Player.");
+                hitbytrolley.Play();
             }
         }
     }

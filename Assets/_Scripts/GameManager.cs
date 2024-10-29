@@ -52,6 +52,8 @@ public class GameManager : MonoBehaviour
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
         }
+
+        Application.targetFrameRate = 60;
     }
 
     private void Update()

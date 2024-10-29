@@ -99,7 +99,7 @@ public class Agent_Customer : Agent_Base
     {
         _customerSensor.Init(this, 1, 1, spawnPoint.transform.position, SetTargetBool);
 
-        GetComponent<MeshRenderer>().enabled = true;
+       // GetComponent<MeshRenderer>().enabled = true;
         GetComponent<NavMeshAgent>().enabled = true;
 
         _hasDroppedLitter = false;

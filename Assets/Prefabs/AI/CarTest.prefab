@@ -443,6 +443,7 @@ GameObject:
   - component: {fileID: 379312150373738978}
   - component: {fileID: 8977664842618053461}
   - component: {fileID: 2578533662963438396}
+  - component: {fileID: -4109102054243021822}
   m_Layer: 0
   m_Name: CarTest
   m_TagString: Car
@@ -548,7 +549,7 @@ MonoBehaviour:
   _trafficTags:
   - Traffic Light
   - Car
-  _trafficSensorStrength: 2
+  _trafficSensorStrength: 2.5
   _waypointSensor: {fileID: 5718941701727491873}
   _waypointSensorStrength: 1
   _parkingSensor: {fileID: 8783969966287236026}
@@ -598,3 +599,16 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.2311673, y: 1.4580728, z: 3.6616194}
   m_Center: {x: 0, y: 0.22076803, z: 0}
+--- !u!114 &-4109102054243021822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7950789396961025098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5db3393f7f27349af6f2c452af6499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isObstacle: 1
