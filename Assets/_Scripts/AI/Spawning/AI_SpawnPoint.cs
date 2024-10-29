@@ -5,12 +5,12 @@ using UnityEngine;
 public class AI_SpawnPoint : MonoBehaviour
 {
     [SerializeField]
-    private SpawnPointType spawnPointType;
+    protected SpawnPointType spawnPointType;
 
     public bool isActive = false;
     public bool isUsed = false;
 
-    void Start()
+    protected void Start()
     {
         GameManager.GetAISpawnManager().AddSpawnPoint(this, spawnPointType);
     }
@@ -29,7 +29,7 @@ public class AI_SpawnPoint : MonoBehaviour
         agent.GetComponent<Agent_Customer>().Init(car);
         agent.GetComponent<Agent_Customer>().SetSpawnPoint(this);
     }
-    public void SpawnAgent(GameObject prefab)
+    public virtual void SpawnAgent(GameObject prefab)
     {
         isUsed = true;
 

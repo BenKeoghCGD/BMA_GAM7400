@@ -22,7 +22,13 @@ public class AI_SwitchWaypoint : AI_Waypoint
 
         if(random <= _chanceToSwitch)
         {
-            List<AI_Waypoint> newPlan = _potentialPlan.GetPath();
+            List<AI_Waypoint> newPlan = new List<AI_Waypoint>(_potentialPlan.GetPath());
+
+            if(_listBuffer >= newPlan.Count)
+            {
+                Debug.LogError(_potentialPlan.ToString() + " list buffer is too big");
+                return null;
+            }
 
             if(_listBuffer > 0)
             {

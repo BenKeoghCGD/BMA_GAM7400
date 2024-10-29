@@ -1,16 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Security.Cryptography;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Agent_Car : Agent_Base
 {
+    [Header("Traffic Sensors")]
+    [SerializeField]
+    private Direction_Sensor _trafficSensor;
+    [SerializeField]
+    private Direction_Sensor _frTrafficSensor;
+    [SerializeField]
+    private Direction_Sensor _flTrafficSensor;
+    [SerializeField]
+    private Direction_Sensor _fraTrafficSensor;
+    [SerializeField]
+    private Direction_Sensor _flaTrafficSensor;
+    [SerializeField]
+    private List<string> _trafficTags;
+    [SerializeField]
+    private float _trafficSensorStrength;
 
+    [Header("Waypoint Sensor")]
     [SerializeField]
     private Direction_Sensor _waypointSensor;
     [SerializeField]
+    private float _waypointSensorStrength;
+
+    [Header("Parking Sensor")]
+    [SerializeField]
     private Direction_Sensor _parkingSensor;
+    [SerializeField]
+    private string _parkingSpaceTag;
+    [SerializeField]
+    private float _parkingSensorStrength;
 
     [SerializeField]
     private AI_SpawnPoint customerSpawnpoint;
@@ -20,10 +46,17 @@ public class Agent_Car : Agent_Base
     private AI_Waypoint _queuedWaypoint;
     private ParkingSpace _parkingSpace;
 
+    private bool _fStop;
+    private bool _frStop;
+    private bool _flStop;
+    private bool _fraStop;
+    private bool _flaStop;
+
     private bool _isAtWaypoint;
     private bool _isParking;
     private bool _isLeaving;
     private bool _isReversing;
+    
 
     private new void Start()
     {
@@ -32,17 +65,23 @@ public class Agent_Car : Agent_Base
         spawnPoint.isActive = false;
         spawnPoint.isUsed = false;
 
-        _path = new AI_WaypointPath(GameObject.Find("Anti-Clockwise Road Path").gameObject.GetComponent<PathPlan>().GetPath()); 
-
         _currentWaypoint = GetNextWaypoint();
-   
-        _waypointSensor.Init(this, 3, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
-        _parkingSensor.Init(this, 1f, 0.1f, transform.forward, "Parking Space", IsParking);
+
+        _trafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FStop);
+        _frTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FRStop);
+        _flTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLStop);
+        _fraTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FRAStop);
+        _flaTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLAStop);
+        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _parkingSensor.Init(this, _parkingSensorStrength, 0.1f, transform.forward, _parkingSpaceTag, IsParking);
 
         seeker.SetSpeed(5f);
         seeker.SetPath(_currentWaypoint.transform.position);
     }
-
+    public void InitPath(PathPlan path)
+    {
+        _path = new AI_WaypointPath(path.GetPath());
+    }
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -56,6 +95,8 @@ public class Agent_Car : Agent_Base
 
             if (_isReversing == true && seeker.HasPath == false)
             {
+                ToggleSensorPause(false);
+
                 _parkingSpace.Reset();
 
                 seeker.SetSpeed(5f);
@@ -80,6 +121,7 @@ public class Agent_Car : Agent_Base
         {
             if(_parkingSpace.OwnerIsParked == true)
             {
+                ToggleSensorPause(true);
                 customerSpawnpoint.isActive = true;
                 return;
             }
@@ -94,6 +136,16 @@ public class Agent_Car : Agent_Base
         }
     }
 
+    private void ToggleSensorPause(bool val)
+    {
+        _parkingSensor.SetPauseSensor(val);
+        _trafficSensor.SetPauseSensor(val);
+        _frTrafficSensor.SetPauseSensor(val);
+        _fraTrafficSensor.SetPauseSensor(val);
+        _flTrafficSensor.SetPauseSensor(val);
+        _flaTrafficSensor.SetPauseSensor(val);
+        _waypointSensor.SetPauseSensor(val);
+    }
     private void UpdateWaypoint()
     {
         _isAtWaypoint = false;
@@ -107,7 +159,7 @@ public class Agent_Car : Agent_Base
         }
 
         _currentWaypoint = next;
-        _waypointSensor.Init(this, 3, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
 
         seeker.SetPath(_currentWaypoint.transform.position);
     }
@@ -128,19 +180,15 @@ public class Agent_Car : Agent_Base
 
         if (next == null)
         {
-            Debug.Log("Path finished");
             return null;
         }
 
         if (next.IsSwitch == true)
         {
-            Debug.Log("Switch");
-
             List<AI_Waypoint> newPath = next.gameObject.GetComponent<AI_SwitchWaypoint>().GetNextPlan();
 
             if (newPath != null)
             {
-                Debug.Log("Newplan");
                 _path.SetNewPath(newPath);
                 _queuedWaypoint = _path.GetNextWaypoint();
             }
@@ -171,6 +219,66 @@ public class Agent_Car : Agent_Base
 
         _isLeaving = true;
         _isReversing = true;
+    }
+    public void FStop(bool val)
+    {
+        if (val == _fStop)
+        {
+            return;
+        }
+
+        _fStop = val;
+        NeedsToStop();
+    }
+    public void FRStop(bool val)
+    {
+        if (val == _frStop)
+        {
+            return;
+        }
+
+        _frStop = val;
+        NeedsToStop();
+    }
+    public void FLStop(bool val)
+    {
+        if(val == _flStop)
+        {
+            return;
+        }
+
+        _flStop = val;
+        NeedsToStop();
+    }
+    public void FRAStop(bool val)
+    {
+        if (val == _fraStop)
+        {
+            return;
+        }
+
+        _fraStop = val;
+        NeedsToStop();
+    }
+    public void FLAStop(bool val)
+    {
+        if (val == _flaStop)
+        {
+            return;
+        }
+
+        _flaStop = val;
+        NeedsToStop();
+    }
+    public void NeedsToStop()
+    {
+        if(_fStop == true || _frStop == true || _flStop == true || _fraStop == true || _flaStop == true)
+        {
+            seeker.ToggleStop(true);
+            return;
+        }
+
+        seeker.ToggleStop(false);
     }
     public void HasReachedWaypoint(bool val)
     {

@@ -10,6 +10,8 @@ TagManager:
   - Store Entrance
   - Store Exit
   - Parking Space
+  - Traffic Light
+  - Car
   layers:
   - Default
   - TransparentFX

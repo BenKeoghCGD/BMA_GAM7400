@@ -17,7 +17,7 @@ public class AI_SpawnManager
     private int _maxPedestrians = 20;
 
     private int _carCount;
-    private int _maxCars = 5;
+    private int _maxCars = 1;
 
     private float _spawnTimer;
     public AI_SpawnManager(GameObject customer, GameObject pedestrian, GameObject car)

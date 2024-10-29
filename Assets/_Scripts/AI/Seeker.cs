@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Seeker : MonoBehaviour
 {
     private NavMeshAgent _agent;
-
+    public NavMeshAgent Agent => _agent;
     public bool HasPath => _agent.hasPath;
     public float DistanceRemaining => _agent.remainingDistance;
 
@@ -42,9 +42,9 @@ public class Seeker : MonoBehaviour
 
         _agent.destination = hit.position;
     }
-    public void Move(Vector3 target)
+    public void ToggleStop(bool toStop)
     {
-        _agent.Move(target);
+        _agent.isStopped = toStop;
     }
     public void SetSpeed(float speed)
     {
