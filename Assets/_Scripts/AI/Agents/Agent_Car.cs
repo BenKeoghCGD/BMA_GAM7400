@@ -154,7 +154,7 @@ public class Agent_Car : Agent_Base
 
         if(next == null)
         {
-            Destroy(gameObject);
+            Destroy(SpawnPointType.CAR);
             return;
         }
 

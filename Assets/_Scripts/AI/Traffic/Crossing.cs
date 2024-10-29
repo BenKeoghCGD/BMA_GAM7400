@@ -5,9 +5,14 @@ using UnityEngine;
 public class Crossing : MonoBehaviour
 {
     [SerializeField]
+    private List<CrossingPoint> _crossingPoints;
+
+    [SerializeField]
     private List<TrafficLight> _trafficLights;
     [SerializeField]
     private float _timeToChange;
+
+    public bool canCross;
 
     private int _lightIndex = 0;
     private float _timer = 0;
@@ -20,7 +25,12 @@ public class Crossing : MonoBehaviour
             return;
         }
 
-        _trafficLights[_lightIndex].ToggleLight();
+        _trafficLights[_lightIndex].ToggleLight(true);
+
+        foreach(CrossingPoint point in _crossingPoints)
+        {
+            point.SetCrossing(this);
+        }
     }
 
     private void Update()
@@ -36,15 +46,27 @@ public class Crossing : MonoBehaviour
 
     private void ToggleLights()
     {
-        _trafficLights[_lightIndex].ToggleLight();
+        if(_lightIndex != -1)
+        {
+            _trafficLights[_lightIndex].ToggleLight(false);
+        }
 
         _lightIndex += 1;
 
-        if(_lightIndex > _trafficLights.Count - 1)
+        if (_lightIndex == _trafficLights.Count)
         {
-            _lightIndex = 0;
+            foreach(TrafficLight light in _trafficLights)
+            {
+                light.ToggleLight(false);
+            }
+
+            _lightIndex = -1;
+            canCross = true;
+            return;
         }
 
-        _trafficLights[_lightIndex].ToggleLight();
+        canCross = false;
+
+        _trafficLights[_lightIndex].ToggleLight(true);
     }
 }

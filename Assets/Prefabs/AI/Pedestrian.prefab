@@ -98,12 +98,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathSearchRadius: 50
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
   lingerTimeMin: 5
   lingerTimeMax: 10
   delayBetweenLinger: 10
   streetCornerSensorDelay: 1
   streetCornerSensorTag: Street Corner
+  _waypointSensorStrength: 50
+  waypointTag: Pedestrian Waypoint
+  _crossingSensorStrength: 1
+  _crossingSensorTag: Crossing Point
   isInStreetCorner: 0
+  isCrossing: 0
 --- !u!195 &8972517643352449686
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -113,7 +121,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3866595110635335355}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.5
+  m_Radius: 0.75
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -125,4 +133,4 @@ NavMeshAgent:
   m_Height: 2
   m_BaseOffset: 1
   m_WalkableMask: 104
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3

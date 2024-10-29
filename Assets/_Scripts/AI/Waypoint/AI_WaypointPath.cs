@@ -18,8 +18,6 @@ public class AI_WaypointPath
             Debug.LogError("Waypoint path is empty");
             return;
         }
-
-        _path.Last().SetIsFinalWaypoint(true);
     }
 
     public void SetNewPath(List<AI_Waypoint> path)

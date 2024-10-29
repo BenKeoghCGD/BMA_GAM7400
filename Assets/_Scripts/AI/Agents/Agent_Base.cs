@@ -6,6 +6,8 @@ public class Agent_Base : MonoBehaviour
 {
     [SerializeField]
     protected int pathSearchRadius;
+    [SerializeField]
+    public LayerMask layerMask;
 
     protected LitterDropper litterDropper;
     protected Seeker seeker;
@@ -35,6 +37,12 @@ public class Agent_Base : MonoBehaviour
         seeker.Init();
     }
 
+    protected void Destroy(SpawnPointType type)
+    {
+        GameManager.GetAISpawnManager().Decrement(type);
+        Destroy(gameObject);
+
+    }
     public void SetSpawnPoint(AI_SpawnPoint sP)
     {
         spawnPoint = sP;

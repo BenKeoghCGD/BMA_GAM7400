@@ -101,6 +101,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathSearchRadius: 20
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 256
   storeEntranceTag: Store Entrance
   _isAtTargetLocation: 0
 --- !u!195 &8972517643352449686
