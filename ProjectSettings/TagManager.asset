@@ -9,7 +9,9 @@ TagManager:
   - Street Corner
   - Store Entrance
   - Store Exit
-  - NPC
+  - Parking Space
+  - Traffic Light
+  - Car
   layers:
   - Default
   - TransparentFX
@@ -20,7 +22,7 @@ TagManager:
   - Interactable
   - Ground
   - AI_Interactable
-  - Player
+  - 
   - 
   - 
   - 

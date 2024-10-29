@@ -102,7 +102,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathSearchRadius: 20
   storeEntranceTag: Store Entrance
-  _isAtTargetLocation: 0
 --- !u!195 &8972517643352449686
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -123,7 +122,7 @@ NavMeshAgent:
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 1
-  m_WalkableMask: 40
+  m_WalkableMask: 104
   m_ObstacleAvoidanceType: 4
 --- !u!136 &3533761025260021520
 CapsuleCollider:
