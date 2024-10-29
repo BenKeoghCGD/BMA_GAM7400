@@ -34,6 +34,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8115725158756879128}
   - {fileID: 7714532818277498608}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -52,7 +53,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3866595110635335355}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -99,8 +100,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b41a7b84f64f7d148bc4be65216a9ebc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 0}
-  pathSearchRadius: 0
 --- !u!195 &8972517643352449686
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -135,10 +134,68 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f995d55a36152a4cb898f3ddd9923d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  litterObjects:
-  - {fileID: 8538486132429862552, guid: f7392fc5be180f5459b48ca3eb52a5d0, type: 3}
-  litterTimerMin: 1
-  litterTimerMax: 10
+--- !u!1001 &3188867758497923037
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6692906897337578693}
+    m_Modifications:
+    - target: {fileID: 3866595110635335355, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_Name
+      value: Customer
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.117
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+--- !u!4 &8115725158756879128 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6692906897337578693, guid: ed1cdf835d752804a8dc5ccf31b02dbe, type: 3}
+  m_PrefabInstance: {fileID: 3188867758497923037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7819726443058338075
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5db3393f7f27349af6f2c452af6499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerLife: {fileID: 0}
   isObstacle: 1
 --- !u!65 &5644731489138008215
 BoxCollider:
