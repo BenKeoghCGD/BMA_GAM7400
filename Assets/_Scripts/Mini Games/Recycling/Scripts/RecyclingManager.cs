@@ -147,7 +147,7 @@ public class RecyclingManager : MonoBehaviour
     {
         if (playerScript != null)
         {
-
+            DeselectGarbage();
 
             GameIsOver = true;
             StartTimer = false;
@@ -170,6 +170,8 @@ public class RecyclingManager : MonoBehaviour
             playerScript.IncreaseCollectedAmount(temp);
             playerScript.ResetCollectedLitter();
             //triggerUICanvas.SetActive(false);
+
+           
         }
     }
 

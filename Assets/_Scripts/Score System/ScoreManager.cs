@@ -94,4 +94,13 @@ public class ScoreManager : MonoBehaviour
             GameManager.instance.PlayerScore = 0;
         }
     }
+
+    public void endgame()
+    {
+        
+        PlayerPrefs.SetInt("FinalScore", totalScore);
+        PlayerPrefs.Save();
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver&LeaderBoard");
+    }
 }
