@@ -13,8 +13,8 @@ public class RecyclingMode : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerScript playerScript = other.GetComponent<PlayerScript>();
-           // if (playerScript.litterCollectedAmount > 0)
-           // {
+            if (playerScript.litterCollectedAmount > 0)
+            {
                 if (recyclingManager != null)
                 {
                     recyclingManager.OnMiniGameStart(playerScript);
@@ -23,7 +23,7 @@ public class RecyclingMode : MonoBehaviour
                 {
                     Debug.LogError("litter selector is not assigned in the inspector");
                 }
-          //  }
+            }
 
         }
 
