@@ -68,6 +68,11 @@ public class PlayerScript : MonoBehaviour
         //movement has to be updated every frame
         Move();
         OnInteractCollision();
+        //Keeps the player on the ground
+        if (!characterController.isGrounded)
+        {
+            characterController.Move(Vector3.down * 9.8f * Time.deltaTime);
+        }
     }
 
     private void Awake()
@@ -277,7 +282,7 @@ public class PlayerScript : MonoBehaviour
         if (_horizontal == 0 && _vertical == 0) //player standing stedy (HS)
         {
             PlayerAnimator.SetBool("isStedy",true); //start idel animation (HS)
-            print("isStedy");
+            //print("isStedy");
         }
 
         if (_horizontal != 0 || _vertical != 0) //player is moving

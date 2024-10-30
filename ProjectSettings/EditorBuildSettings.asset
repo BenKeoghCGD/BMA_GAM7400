@@ -12,8 +12,14 @@ EditorBuildSettings:
     path: Assets/_Scenes/Main Menu.unity
     guid: 82ab7ba8e80c5864aaa3bf9a403cee22
   - enabled: 1
+    path: Assets/_Scenes/Car_Park_Main_Menu.unity
+    guid: 2d99c3d89b43b7141bc6a065f70a21db
+  - enabled: 1
     path: Assets/_Scenes/Car_Park_Scene1_Main.unity
     guid: 238fdd3f7a387e142842b6262e9a9c1f
+  - enabled: 1
+    path: Assets/_Scenes/Leaderboard.unity
+    guid: 44c30ae7537a0344a9271a14fbbd592d
   - enabled: 0
     path: Assets/_Scenes/Mini Games.unity
     guid: 008db23c8d0044444ab78245220c448a

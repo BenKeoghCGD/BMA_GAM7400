@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
@@ -54,6 +55,13 @@ public class PlayerLife : MonoBehaviour
             {
                 hearts[i].enabled = false;
             }
+        }
+
+        //when player dies, switch to the next scene (game over) (Lucian's code :3)
+
+        if (health <= 0)
+        {
+            SceneManager.LoadScene(2);
         }
     }
 }

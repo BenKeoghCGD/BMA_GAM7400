@@ -11,7 +11,7 @@ public class Menu : MonoBehaviour
     public void StartGame()
     {
         //starts the next scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()
@@ -30,7 +30,7 @@ public class Menu : MonoBehaviour
     public void ReturnToMenu()
     {
         //loads the previous scene
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene(0);
     }
 
     // Start is called before the first frame update
