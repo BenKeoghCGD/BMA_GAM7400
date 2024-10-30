@@ -71,12 +71,14 @@ public class Agent_Pedestrian : Agent_Base
 
                 if (_crossingPoint.CanCross == false && _crossingCooldown > 5.0f)
                 {
+                    StartIdle();
                     seeker.ToggleStop(true);
                     return;
                 }
 
                 if (_crossingPoint.CanCross == true)
                 {
+                    EndIdle();
                     _crossingCooldown = 0;
                     seeker.ToggleStop(false);
                 }
@@ -91,6 +93,7 @@ public class Agent_Pedestrian : Agent_Base
 
             if (isInStreetCorner == true && _lingerTimer <= 0)
             {
+                StartIdle();
                 _lingerTimer = Random.Range(lingerTimeMin, lingerTimeMax);
             }
         }
@@ -101,6 +104,7 @@ public class Agent_Pedestrian : Agent_Base
 
             if(_lingerTimer <= 0)
             {
+                EndIdle();
                 EndLinger();
             }
 
@@ -110,6 +114,14 @@ public class Agent_Pedestrian : Agent_Base
         SetRandomWaypoint();
     }
 
+    private void StartIdle()
+    {
+
+    }
+    private void EndIdle()
+    {
+
+    }
     private void EndLinger()
     {
         litterDropper.DropLitter();
