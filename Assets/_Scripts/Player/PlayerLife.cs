@@ -13,6 +13,10 @@ public class PlayerLife : MonoBehaviour
     public Image[] hearts;
     public Sprite FullHeart;
     public Sprite EmptyHeart;
+
+    [SerializeField] private Canvas leaderboard;
+    [SerializeField] private Canvas main;
+    [SerializeField] private ScoreManager scoreManager;
     public void DecreasePlayerHealth()
     {
         health--;
@@ -54,6 +58,12 @@ public class PlayerLife : MonoBehaviour
             {
                 hearts[i].enabled = false;
             }
+        }
+        if (health < 0 && leaderboard != null)
+        {
+            //main.gameObject.SetActive(false);
+           // leaderboard.gameObject.SetActive(true);
+            scoreManager.endgame();
         }
     }
 }
