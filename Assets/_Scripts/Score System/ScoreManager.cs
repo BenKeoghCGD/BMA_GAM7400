@@ -101,6 +101,6 @@ public class ScoreManager : MonoBehaviour
         PlayerPrefs.SetInt("FinalScore", totalScore);
         PlayerPrefs.Save();
 
-        UnityEngine.SceneManagement.SceneManager.LoadScene("GameOver&LeaderBoard");
+        UnityEngine.SceneManagement.SceneManager.LoadScene(2);
     }
 }
