@@ -24,6 +24,7 @@ public class LitterDropper : MonoBehaviour
         GameObject litterObject = new GameObject();
 
         Litter instance = litterObject.AddComponent<Litter>();
+        
         instance.gameObject.layer = LayerMask.NameToLayer("Interactable");
         instance.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
 

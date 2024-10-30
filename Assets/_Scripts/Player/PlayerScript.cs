@@ -21,19 +21,20 @@ public class PlayerScript : MonoBehaviour
     private InputActionMap playerInputMap;
     private InputAction moveAction;
     private CharacterController characterController;
-    [SerializeField] private FixedJoystick Joystick;
+    [SerializeField] private FloatingJoystick Joystick;
   //  [SerializeField] private FloatingJoystick joystick;
 
     //Player movement variables
     [SerializeField]
     private float baseSpeed;
     public float moveSpeed = 5.0f;
-
+    
     //player life variables (HS)
     public int playerLife = 0;
 
     //the amount of litter that player has in inventory (HS)
     public int litterCollectedAmount;
+    public float binnedAmount;
 
     //tool functionality enum (BS)
     public ToolType equippedTool;
@@ -96,7 +97,7 @@ public class PlayerScript : MonoBehaviour
 
     void Move()
     {
-        //if (!CanMove) return;
+        if (!CanMove) return;
         //Debug.Log("Move2");
         //gets the input from the move action and moves the player
         Vector2 moveInput = moveAction.ReadValue<Vector2>();
@@ -105,7 +106,14 @@ public class PlayerScript : MonoBehaviour
         move = transform.TransformDirection(move);
         characterController.Move(move);
         //Alternatively, we could use the joystick input for movement
+
         move = new Vector3(Joystick.Horizontal, 0, Joystick.Vertical);
+
+        if (Joystick.Horizontal != 0 && Joystick.Vertical != 0)
+        {
+            
+        }
+        
         move = move * moveSpeed * Time.deltaTime;
         
         //commented by HS
@@ -226,6 +234,16 @@ public class PlayerScript : MonoBehaviour
         UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
     }
 
+    public void ResetCollectedLitter()
+    {
+        litterCollectedAmount = 0;
+        UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
+    }
+    public void IncreaseCollectedAmount(float amount)
+    {
+        binnedAmount += amount;
+        UIManager.instance.binnedAmountText.text = binnedAmount.ToString("F1");
+    }
     // Checks for collision with IInteractable object. If the object is litter, checks if the player can carry more
     private void OnInteractCollision()
     {
@@ -266,7 +284,7 @@ public class PlayerScript : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, angle, 0f); //rotate player to direction
             PlayerAnimator.SetBool("isStedy",false); //start run animation
-            print(_horizontal + "horizontal");
+           // print(_horizontal + "horizontal");
         }
     }
 

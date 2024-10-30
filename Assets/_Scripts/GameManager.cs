@@ -15,6 +15,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
+    public int finalScore;
     
     // Separated Litter management into separate class (BH)
     private LitterManager _litterManager;
@@ -45,6 +46,7 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
 
             //Creation will be handled outside of awake once menu scenes are added (BH)
             _litterManager = new LitterManager(data);
@@ -52,6 +54,8 @@ public class GameManager : MonoBehaviour
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
         }
+
+        Application.targetFrameRate = 60;
     }
 
     private void Update()

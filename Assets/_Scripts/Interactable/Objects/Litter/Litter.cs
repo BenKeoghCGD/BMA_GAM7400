@@ -16,9 +16,8 @@ public class Litter : MonoBehaviour, IInteractable
     [SerializeField] 
     public LitterType litterType;
 
-   
- 
-
+    public AudioClip litterPickup;
+    private AudioSource audioSource;
     protected GameObject litterObj;
 
     protected int litterSize;
@@ -26,6 +25,8 @@ public class Litter : MonoBehaviour, IInteractable
 
     private Animator pickUp;
 
+    
+   
     public void Init(LitterData data, GameObject obj)
     {
         if (data == null)
@@ -81,6 +82,12 @@ public class Litter : MonoBehaviour, IInteractable
         litterType = data.litterType;
 
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
+
+        AudioSource audiosource = litterObj.AddComponent<AudioSource>();
+        audiosource.clip = litterPickup;
+        audiosource.playOnAwake = false;
+        audiosource.spatialBlend = 0f;
+        audiosource.volume = 1.0f;
     }
 
     public void SetLitterType(LitterType type)
@@ -97,11 +104,19 @@ public class Litter : MonoBehaviour, IInteractable
         //The player receives one point for each litter collected.(HS)
         GameManager.GetPlayerScript().CalculateCollectedLitter(false,1);
 
-      //  pickUp.SetTrigger("isPickingUp");
+       
 
-        // Destroy itself, now removed from LitterManager
+        if (audioSource != null && audioSource.clip != null)
+        {
+            Debug.Log("attempting to play sound");
+            audioSource.Play();
+        } 
+        else
+        {
+            Debug.LogWarning("audiosource or audioClip is missing on litter");
+        }
+        
         GameManager.GetLitterManager().RemoveLitter(this);
-        Destroy(gameObject);
-
+        Destroy(gameObject); // Destroy itself, now removed from LitterManager
     }
 }
