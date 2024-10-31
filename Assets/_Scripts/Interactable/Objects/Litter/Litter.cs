@@ -81,6 +81,7 @@ public class Litter : MonoBehaviour, IInteractable
 
         litterType = data.litterType;
 
+        litterObj.transform.localScale = new Vector3(3, 3, 3);
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
 
         AudioSource audiosource = litterObj.AddComponent<AudioSource>();

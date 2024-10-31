@@ -18,7 +18,7 @@ public class AI_SpawnManager
     private int _maxPedestrians = 30;
 
     private int _carCount;
-    private int _maxCars = 15;
+    private int _maxCars = 100;
 
     private float _spawnTimer;
     public AI_SpawnManager(GameObject customer, GameObject pedestrian, GameObject car)
@@ -84,7 +84,7 @@ public class AI_SpawnManager
 
         if(availableSpawnPoints == null || availableSpawnPoints.Count == 0)
         {
-            Debug.Log("Cannot spawn Agent of type " + type.ToString());
+            //Debug.Log("Cannot spawn Agent of type " + type.ToString());
             return;
         }
 
@@ -97,10 +97,10 @@ public class AI_SpawnManager
                 Agent_Car car = location.gameObject.GetComponentInParent<Agent_Car>();
                 location.SpawnCustomer(_customer, car);
 
-                _carCount += 1;
                 break;
             case SpawnPointType.CAR:
                 location.SpawnAgent(_car);
+                _carCount += 1;
                 break;
             case SpawnPointType.PEDESTRIAN:
                 location.SpawnAgent(_pedestrian);
@@ -129,6 +129,7 @@ public class AI_SpawnManager
 
     public void Decrement(SpawnPointType type)
     {
+        //Debug.Log(_carCount);
         switch (type)
         {
             case SpawnPointType.CUSTOMER:
@@ -140,5 +141,6 @@ public class AI_SpawnManager
                 _pedestrianCount -= 1;
                 break;
         }
+        //Debug.Log(_carCount);
     }
 }

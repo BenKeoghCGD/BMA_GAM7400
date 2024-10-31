@@ -277,7 +277,6 @@ public class PlayerScript : MonoBehaviour
         if (_horizontal == 0 && _vertical == 0) //player standing stedy (HS)
         {
             PlayerAnimator.SetBool("isStedy",true); //start idel animation (HS)
-            print("isStedy");
         }
 
         if (_horizontal != 0 || _vertical != 0) //player is moving
