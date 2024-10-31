@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5791437242337849894}
   - component: {fileID: -7648944433632708730}
-  - component: {fileID: 4080000539882902817}
   - component: {fileID: -5575904854011914274}
   m_Layer: 6
   m_Name: TestLitter
@@ -50,14 +49,6 @@ MonoBehaviour:
   litterPickup: {fileID: 0}
   testData: {fileID: 0}
   randomiseTool: 0
---- !u!33 &4080000539882902817
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8538486132429862552}
-  m_Mesh: {fileID: 3191843991455854740, guid: 1c54d53619b76cf459476a69b17fbac8, type: 3}
 --- !u!114 &-5575904854011914274
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -141,7 +141,6 @@ public class Agent_Pedestrian : Agent_Base
 
         if (currentWaypoint != null && currentWaypoint.IsFinalWaypoint)
         {
-            Debug.Log("Final waypoint");
             Destroy(SpawnPointType.PEDESTRIAN);
             return;
         }

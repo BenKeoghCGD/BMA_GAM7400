@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Direction_Sensor : MonoBehaviour
@@ -31,12 +32,6 @@ public class Direction_Sensor : MonoBehaviour
     private bool _isPaused;
 
     public Action<bool> toggleCallback;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, Vector3 direction, string tag, Action<bool> toggleFunc)
     {
@@ -117,7 +112,7 @@ public class Direction_Sensor : MonoBehaviour
     }
     private void ScanForTagSet()
     {
-        //Debug.DrawRay(transform.position, transform.forward * _sensorStrength, Color.green);
+        Debug.DrawRay(transform.position, transform.forward * _sensorStrength, Color.green);
 
         if (Physics.Raycast(transform.position, transform.forward , out hit, _sensorStrength, _layerMask, QueryTriggerInteraction.Collide))
         {
