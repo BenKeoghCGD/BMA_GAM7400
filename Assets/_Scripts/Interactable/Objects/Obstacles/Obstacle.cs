@@ -18,12 +18,14 @@ public class Obstacle : MonoBehaviour
         {
             // Get the PlayerLife component from the colliding object (an instance)
             PlayerLife playerlife = other.GetComponent<PlayerLife>();
-
+            PlayerScript playerScript = other.GetComponent<PlayerScript>();
+            
             if (playerlife != null)  // Ensure playerlife is found
             {
                 if (isObstacle)
                 {
                     playerlife.DecreasePlayerHealth();  // Decrease health
+                    playerScript.respawn = true;
                 }
                 else
                 {

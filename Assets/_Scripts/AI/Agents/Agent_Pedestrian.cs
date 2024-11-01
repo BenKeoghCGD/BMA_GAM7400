@@ -30,7 +30,9 @@ public class Agent_Pedestrian : Agent_Base
     private int _crossingSensorStrength;
     [SerializeField]
     private string _crossingSensorTag;
-
+    [SerializeField]
+    private Animator _pedestrianAnimator;
+    
     private float _lingerTimer = 0;
     private float _lingerDelayTimer = 0;
 
@@ -116,11 +118,12 @@ public class Agent_Pedestrian : Agent_Base
 
     private void StartIdle()
     {
-
+        _pedestrianAnimator.SetBool("isSteady",true);
+        print("StartIdle Pedesterian");
     }
     private void EndIdle()
     {
-
+        _pedestrianAnimator.SetBool("isSteady",false);
     }
     private void EndLinger()
     {
