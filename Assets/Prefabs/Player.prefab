@@ -227,6 +227,7 @@ GameObject:
   - component: {fileID: 1166230128711281308}
   - component: {fileID: 570749329559977765}
   - component: {fileID: 3184032894930185121}
+  - component: {fileID: 4639365921668012768}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -407,11 +408,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589b5b8eebcf9b543924308a00f0cecb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  joystick: {fileID: 0}
+  Joystick: {fileID: 0}
   baseSpeed: 5
   moveSpeed: 5
   playerLife: 0
   litterCollectedAmount: 0
+  binnedAmount: 0
+  equippedTool: 0
   playerCamera: {fileID: 0}
   heldBlackLitter: 0
   heldRedLitter: 0
@@ -419,6 +422,7 @@ MonoBehaviour:
   interactLayer:
     serializedVersion: 2
     m_Bits: 64
+  PlayerAnimator: {fileID: 0}
 --- !u!114 &3184032894930185121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,13 +435,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7349b754cdcaa5f408fa335843ce54b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 3
   maxHealth: 3
   hearts:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   FullHeart: {fileID: 21300000, guid: 636b8815ed49b64458096eca474775a4, type: 3}
+  EmptyHeart: {fileID: 0}
+  leaderboard: {fileID: 0}
+  main: {fileID: 0}
+  scoreManager: {fileID: 0}
+--- !u!114 &4639365921668012768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3866595110635335355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ecbbb111e2dcb344822257b93fe6ec5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4635536211593023512
 GameObject:
   m_ObjectHideFlags: 0
@@ -490,6 +509,7 @@ MonoBehaviour:
   tool2: {fileID: 0}
   tool3: {fileID: 0}
   tool4: {fileID: 0}
+  playerscript: {fileID: 0}
 --- !u!1 &4856004368038527527
 GameObject:
   m_ObjectHideFlags: 0

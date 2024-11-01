@@ -6,7 +6,17 @@
   <component name="ChangeListManager">
     <list default="true" id="81de06a9-6883-4e42-b826-6496136426ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Customer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Customer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC 2_MixamoRig.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC 2_MixamoRig.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC_Run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC_Run.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/PlayeAnimations/Player_AC.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/PlayeAnimations/Player_AC.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/PlayerTexture/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/PlayerTexture/New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/CarTest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/CarTest.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Pedestrian.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Pedestrian.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Car_Park_Scene1_Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Car_Park_Scene1_Main.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/AI/Agents/Agent_Pedestrian.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/AI/Agents/Agent_Pedestrian.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Obstacles/Obstacle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Obstacles/Obstacle.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Player/PlayerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Player/PlayerScript.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +107,7 @@
       <workItem from="1730061429615" duration="12000" />
       <workItem from="1730061927975" duration="3000" />
       <workItem from="1730066297587" duration="1273000" />
+      <workItem from="1730396095929" duration="7710000" />
     </task>
     <servers />
   </component>

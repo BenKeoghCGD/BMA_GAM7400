@@ -31,7 +31,7 @@ public class PlayerScript : MonoBehaviour
     
     //player life variables (HS)
     public int playerLife = 0;
-
+    public bool respawn = false;
     //the amount of litter that player has in inventory (HS)
     public int litterCollectedAmount;
     public float binnedAmount;
@@ -40,7 +40,7 @@ public class PlayerScript : MonoBehaviour
     public ToolType equippedTool;
 
     //Camera variables
-    [SerializeField] Camera playerCamera;
+    public Camera playerCamera;
 
     //Litter Related variables
     // Litter needs to be managed by size and weight rather than flat value, can probably use ScriptableObject for LitterData (ask Ben Stott if you move on to this) (BH)
@@ -55,9 +55,9 @@ public class PlayerScript : MonoBehaviour
 
     [SerializeField] private LayerMask interactLayer;
 
-    bool CanMove = true;
+    public bool CanMove = true;
 
-    [SerializeField] private Animator PlayerAnimator; //Animation controler of player
+    public Animator PlayerAnimator; //Animation controler of player
 
     private float _smoothTime = 0.05f; //for smooth rotation
     private float _currentVelocity;
