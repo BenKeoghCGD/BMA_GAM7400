@@ -82,8 +82,9 @@ public class Agent_Car : Agent_Base
     {
         _path = new AI_WaypointPath(path.GetPath());
     }
+
     // Update is called once per frame
-    void FixedUpdate()
+    void LateUpdate()
     {
         if (_isLeaving == true)
         {
