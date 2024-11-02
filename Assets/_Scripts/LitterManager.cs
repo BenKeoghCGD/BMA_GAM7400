@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
 // Class to handle litter spawned in the world. Separate manager for extended functionality, mainly for AI implementation. (BH)
 public class LitterManager
 {
-    private HashSet<Litter> _worldLitter;
+    public HashSet<Litter> _worldLitter;
     private readonly List<LitterData> _dataList;
-
+    public List<GameObject> litterHolder = new List<GameObject>();
+    
     public LitterManager(LitterDataList dataList)
     {
         _worldLitter = new HashSet<Litter>();
@@ -63,6 +65,9 @@ public class LitterManager
     }
     public void RemoveLitter(Litter litter)
     {
+
+        //GameManager.GetUIManager().LitterCounterText.text = GameManager.GetLitterManager().litterHolder.Count.ToString();
+
         if(_worldLitter.Contains(litter) == false)
         {
             Debug.LogError("Tried to remove unmanaged litter from LitterManager.");

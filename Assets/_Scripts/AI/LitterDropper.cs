@@ -32,5 +32,8 @@ public class LitterDropper : MonoBehaviour
 
         // Adds the litter item to the LitterManager
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
+        
+        GameManager.GetLitterManager().litterHolder.Add(instance.GetComponent<Litter>().gameObject);
+        print("Litter dropped");
     }
 }
