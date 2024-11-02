@@ -15,6 +15,7 @@ TagManager:
   - Pedestrian Waypoint
   - Crossing Point
   - NPC
+  - LitterHolder
   layers:
   - Default
   - TransparentFX

@@ -33,10 +33,13 @@ public class GameManager : MonoBehaviour
     //instance of playerScript (HS)
     private PlayerScript _playerScript;
     private ScoreManager _scoreManager;
+    private LitterTracker _litterTracker;
+    private UIManager _uiManager;
     
     public int PlayerScore = 0;
     public int StoredScore = 0;
-    
+
+    public int MaxLitterAmount = 200;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -56,16 +59,27 @@ public class GameManager : MonoBehaviour
         }
 
         Application.targetFrameRate = 60;
+
+        var _littersParent = GameObject.FindGameObjectWithTag("LitterHolder");
+        for (int i = 0; i < _littersParent.transform.childCount; i++)
+        {
+            GetLitterManager().litterHolder.Add(_littersParent.transform.GetChild(i).gameObject);
+        }
+        
+        
     }
 
     private void Update()
     {
+
         if(_AISpawnManager == null)
         {
             Debug.LogError("Missing AI_SpawnManager Reference in GameManager");
         }
 
         instance._AISpawnManager.Update(Time.deltaTime);
+        
+        
     }
     public static LitterManager GetLitterManager()
     {
@@ -83,6 +97,18 @@ public class GameManager : MonoBehaviour
     {
         return instance._scoreManager;
     }
+
+    public static UIManager GetUIManager()
+    {
+        return instance._uiManager;
+    }
+
+    public static LitterTracker GetLitterTracker()
+    {
+        return instance._litterTracker;
+    }
+
+
 
 
 

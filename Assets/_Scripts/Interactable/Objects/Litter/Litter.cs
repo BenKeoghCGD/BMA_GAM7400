@@ -117,7 +117,10 @@ public class Litter : MonoBehaviour, IInteractable
             Debug.LogWarning("audiosource or audioClip is missing on litter");
         }
         
+        
         GameManager.GetLitterManager().RemoveLitter(this);
         Destroy(gameObject); // Destroy itself, now removed from LitterManager
     }
+    
+  
 }
