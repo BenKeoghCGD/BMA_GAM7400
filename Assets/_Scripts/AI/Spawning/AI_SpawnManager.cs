@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,26 +16,45 @@ public class AI_SpawnManager
     private List<AI_SpawnPoint> _pedestrianSpawnPoints;
     private List<AI_SpawnPoint> _carSpawnPoints;
 
+    private LayerMask _layerMask;
+
     private int _pedestrianCount;
-    private int _maxPedestrians = 30;
+    private int _maxPedestrians;
 
     private int _carCount;
-    private int _maxCars = 100;
+    private int _maxCars;
 
     private float _spawnTimer;
-    public AI_SpawnManager(GameObject customer, GameObject pedestrian, GameObject car)
+
+    private bool _isReady;
+    public AI_SpawnManager()
     {
         _customerSpawnPoints = new List<AI_SpawnPoint>();
         _pedestrianSpawnPoints = new List<AI_SpawnPoint>();
         _carSpawnPoints = new List<AI_SpawnPoint>();
-
-        _customer = customer;
-        _pedestrian = pedestrian;
-        _car = car;
     }
 
+    public void Init()
+    {
+        ReferenceManager manager = GameManager.GetReferenceManager();
+
+        _layerMask = manager.GetLayerMask(referenceLayers.AI);
+        _maxPedestrians = manager.MaxPedestrianCount;
+        _maxCars = manager.MaxCarCount;
+
+        _customer = manager.CustomerPrefab;
+        _pedestrian = manager.PedestrianPrefab;
+        _car = manager.CarPrefab;
+
+        _isReady = true;    
+    }
     public void Update(float deltaTime)
     {
+        if(_isReady == false)
+        {
+            return;
+        }
+
         _spawnTimer += deltaTime;
 
         if(_spawnTimer > 3)
@@ -99,6 +120,15 @@ public class AI_SpawnManager
 
                 break;
             case SpawnPointType.CAR:
+
+                Collider[] hitData = Physics.OverlapSphere(location.transform.position, 5, _layerMask);
+
+                if (hitData.Length > 0)
+                {
+                    //Debug.Log("No space");
+                    return;
+                }
+
                 location.SpawnAgent(_car);
                 _carCount += 1;
                 break;

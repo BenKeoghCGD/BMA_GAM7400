@@ -53,7 +53,7 @@ public class PlayerScript : MonoBehaviour
     [SerializeField] 
     private int heldBeigeLitter = 0;
 
-    [SerializeField] private LayerMask interactLayer;
+    private LayerMask interactLayer;
 
     public bool CanMove = true;
 
@@ -61,13 +61,20 @@ public class PlayerScript : MonoBehaviour
 
     private float _smoothTime = 0.05f; //for smooth rotation
     private float _currentVelocity;
-    
+
+    private void Start()
+    {
+        interactLayer = GameManager.GetReferenceManager().GetLayerMask(referenceLayers.INTERACTABLE);
+    }
+    private void FixedUpdate()
+    {
+        OnInteractCollision();
+    }
     // Update is called once per frame
     void Update()
     {
         //movement has to be updated every frame
         Move();
-        OnInteractCollision();
     }
 
     private void Awake()
@@ -120,12 +127,12 @@ public class PlayerScript : MonoBehaviour
         //move = transform.TransformDirection(move);
         
         characterController.Move(move);
-
+    }
+    private void LateUpdate()
+    {
         //This function responsible for managing player animation (HS)
         PlayerAnimationController();
-
     }
-
     public void setMovementStatus(bool status)
     {
         CanMove = status;

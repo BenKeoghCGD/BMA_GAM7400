@@ -20,12 +20,18 @@ public class LitterDropper : MonoBehaviour
     // Function to spawn litter
     public void DropLitter()
     {
+        if (GameManager.GetLitterManager()._worldLitter.Count >= GameManager.GetReferenceManager().MaxLitterAmount)
+        {
+            //Debug.Log("Litter cap reached");
+            return;
+        }
+
         //Creates a new Litter object
         GameObject litterObject = new GameObject();
 
         Litter instance = litterObject.AddComponent<Litter>();
-        
-        instance.gameObject.layer = LayerMask.NameToLayer("Interactable");
+
+        instance.gameObject.layer = GameManager.GetReferenceManager().GetLayerFromMask(referenceLayers.INTERACTABLE);
         instance.transform.position = new Vector3(transform.position.x, 1, transform.position.z);
 
         instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
@@ -34,6 +40,5 @@ public class LitterDropper : MonoBehaviour
         GameManager.GetLitterManager().AddLitter(instance.GetComponent<Litter>());
         
         GameManager.GetLitterManager().litterHolder.Add(instance.GetComponent<Litter>().gameObject);
-        print("Litter dropped");
     }
 }

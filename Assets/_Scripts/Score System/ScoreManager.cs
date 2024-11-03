@@ -48,34 +48,34 @@ public class ScoreManager : MonoBehaviour
                 case LitterType.Cardboard:
                     scoreToAdd = _CardboardScore;
                     GameManager.instance.PlayerScore += _CardboardScore;
-                    Debug.Log("Cardboard Litter");
+                    //Debug.Log("Cardboard Litter");
                     break;
                 
                 case LitterType.FoodGarden:
                     scoreToAdd = _FoodScore;
                     GameManager.instance.PlayerScore += _FoodScore;
-                    Debug.Log("Food Garden Litter");
+                    //Debug.Log("Food Garden Litter");
                     break;
                 case LitterType.GeneralWaste:
                     scoreToAdd = _GeneralScore;
                     GameManager.instance.PlayerScore += _GeneralScore;
-                    Debug.Log("General Waste Litter");
+                    //Debug.Log("General Waste Litter");
                     break;
                 case LitterType.CansBottles:
                     scoreToAdd = _CansScore;
                     GameManager.instance.PlayerScore += _CansScore;
-                    Debug.Log("CansBottles Litter");
+                    //Debug.Log("CansBottles Litter");
                     break;
                 case LitterType.Spillage:
                     scoreToAdd = _SpillageScore;
                     GameManager.instance.PlayerScore += _SpillageScore;
-                    Debug.Log("Spillage Litter");
+                    //Debug.Log("Spillage Litter");
                     break;
             }
            
 
             totalScore += scoreToAdd;
-            Debug.Log("total score updated" + totalScore);
+            //Debug.Log("total score updated" + totalScore);
             UpdateScoreText();
         }
     }

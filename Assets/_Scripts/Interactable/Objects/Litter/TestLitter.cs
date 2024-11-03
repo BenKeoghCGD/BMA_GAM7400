@@ -23,7 +23,5 @@ public class TestLitter : Litter
         {
             Init(testData, gameObject);
         }
-
-   
     }
 }

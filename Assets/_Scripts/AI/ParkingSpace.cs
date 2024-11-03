@@ -36,9 +36,13 @@ public class ParkingSpace : MonoBehaviour
 
         if(_ownerIsParked == false)
         {
-            parkingGuide.transform.Translate(Vector3.right * Time.fixedDeltaTime * guideSpeed);
+            if(parkingGuide.transform.localPosition.x < -2)
+            {
+                parkingGuide.transform.Translate(Vector3.right * Time.fixedDeltaTime * guideSpeed);
+                return;
+            }
 
-            if(parkingGuide.transform.localPosition.x >= -2)
+            if (_owner.HasPath == false)
             {
                 _ownerIsParked = true;
                 parkingGuide.transform.localPosition += new Vector3(-6, 0, 0);

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8972517643352449686}
   m_Layer: 0
   m_Name: Pedestrian
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,16 +98,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52cb96d58c9147e48b92b9f744a3ae5a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathSearchRadius: 50
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 256
+  pathSearchRadius: 20
   lingerTimeMin: 5
   lingerTimeMax: 10
   delayBetweenLinger: 10
   streetCornerSensorDelay: 1
   streetCornerSensorTag: Street Corner
-  _waypointSensorStrength: 50
+  _waypointSensorStrength: 75
   waypointTag: Pedestrian Waypoint
   _crossingSensorStrength: 1
   _crossingSensorTag: Crossing Point

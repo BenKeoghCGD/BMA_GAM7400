@@ -12,8 +12,6 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] 
     private float baseSpeed;
-    [SerializeField] 
-    private LayerMask interactLayer;
     private float movementSpeed;
     private int heldBlackLitter = 0;
     private int heldRedLitter = 0;

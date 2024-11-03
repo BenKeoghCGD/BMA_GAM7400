@@ -38,6 +38,12 @@ public class Agent_Car : Agent_Base
     [SerializeField]
     private float _parkingSensorStrength;
 
+    [Header("Reverse Sensor")]
+    [SerializeField]
+    private Direction_Sensor _reverseSensor;
+    [SerializeField]
+    private float _reverseSensorStrength;
+
     [SerializeField]
     private AI_SpawnPoint customerSpawnpoint;
 
@@ -57,6 +63,7 @@ public class Agent_Car : Agent_Base
     private bool _isLeaving;
     private bool _isReversing;
     
+    public bool HasPath => seeker.HasPath;
 
     private new void Start()
     {
@@ -74,6 +81,8 @@ public class Agent_Car : Agent_Base
         _flaTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLAStop);
         _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
         _parkingSensor.Init(this, _parkingSensorStrength, 0.1f, transform.forward, _parkingSpaceTag, IsParking);
+        //_reverseSensor.Init(this, _reverseSensorStrength, 0.1f, transform.forward, _trafficTags, FStop);
+        //_reverseSensor.SetPauseSensor(true);
 
         seeker.SetSpeed(5f);
         seeker.SetPath(_currentWaypoint.transform.position);
@@ -96,7 +105,7 @@ public class Agent_Car : Agent_Base
 
             if (_isReversing == true && seeker.HasPath == false)
             {
-                ToggleSensorPause(false);
+                ToggleParkingSensors(false);
 
                 _parkingSpace.Reset();
 
@@ -122,7 +131,7 @@ public class Agent_Car : Agent_Base
         {
             if(_parkingSpace.OwnerIsParked == true)
             {
-                ToggleSensorPause(true);
+                ToggleParkingSensors(true);
                 customerSpawnpoint.isActive = true;
                 return;
             }
@@ -137,8 +146,9 @@ public class Agent_Car : Agent_Base
         }
     }
 
-    private void ToggleSensorPause(bool val)
+    private void ToggleParkingSensors(bool val)
     {
+        //_reverseSensor.SetPauseSensor(!val);
         _parkingSensor.SetPauseSensor(val);
         _trafficSensor.SetPauseSensor(val);
         _frTrafficSensor.SetPauseSensor(val);

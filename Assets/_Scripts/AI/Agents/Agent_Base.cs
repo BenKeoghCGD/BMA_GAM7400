@@ -6,9 +6,8 @@ public class Agent_Base : MonoBehaviour
 {
     [SerializeField]
     protected int pathSearchRadius;
-    [SerializeField]
-    public LayerMask layerMask;
-
+    protected LayerMask layerMask;
+    public LayerMask LayerMask => layerMask;
     protected LitterDropper litterDropper;
     protected Seeker seeker;
 
@@ -16,6 +15,8 @@ public class Agent_Base : MonoBehaviour
 
     protected void Start()
     {
+        layerMask = GameManager.GetReferenceManager().GetLayerMask(referenceLayers.AI);
+
         if (gameObject.GetComponent<LitterDropper>() != null)
         {
             litterDropper = gameObject.GetComponent<LitterDropper>();

@@ -14,32 +14,26 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //I've moved any references I could (without redoing too much stuff) to a ReferenceManager. Score and the level-only references should not be handled in the GameManager as it persists across
+    //all scenes (It's a manager for the entire game). (BH)
+
     public static GameManager instance;
     public int finalScore;
     
     // Separated Litter management into separate class (BH)
     private LitterManager _litterManager;
     private AI_SpawnManager _AISpawnManager;
-    //Below will be handled better in the future (BH)
-    [SerializeField]
-    private LitterDataList data;
-    [SerializeField]
-    private GameObject customerPrefab;
-    [SerializeField]
-    private GameObject pedestrianPrefab;
-    [SerializeField]
-    private GameObject carPrefab;
 
-    //instance of playerScript (HS)
     private PlayerScript _playerScript;
     private ScoreManager _scoreManager;
+    private ReferenceManager _referenceManager;
     private LitterTracker _litterTracker;
     private UIManager _uiManager;
+    private AudioManager _audioManager;
     
     public int PlayerScore = 0;
     public int StoredScore = 0;
 
-    public int MaxLitterAmount = 200;
     void Awake()
     {
         if (instance != null && instance != this)
@@ -51,35 +45,51 @@ public class GameManager : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
 
-            //Creation will be handled outside of awake once menu scenes are added (BH)
-            _litterManager = new LitterManager(data);
-            _AISpawnManager = new AI_SpawnManager(customerPrefab, pedestrianPrefab, carPrefab);
+            //Creation will be handled outside of awake once menu scenes are added, likely won't happen for submission (too much reorganising because references weren't being maintained properly.(BH)
+            //Keep reference manager at the top.
+            _referenceManager = FindObjectOfType<ReferenceManager>();
+            _litterManager = new LitterManager();
+            _AISpawnManager = new AI_SpawnManager();
+            _audioManager = new AudioManager();
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
+
+            _referenceManager.Init();
+            _AISpawnManager.Init();
         }
 
         Application.targetFrameRate = 60;
 
         var _littersParent = GameObject.FindGameObjectWithTag("LitterHolder");
+
+        if(_littersParent == null)
+        { 
+            return; 
+        }
+
         for (int i = 0; i < _littersParent.transform.childCount; i++)
         {
             GetLitterManager().litterHolder.Add(_littersParent.transform.GetChild(i).gameObject);
         }
-        
-        
     }
 
     private void Update()
     {
-
         if(_AISpawnManager == null)
         {
             Debug.LogError("Missing AI_SpawnManager Reference in GameManager");
+            return;
         }
 
         instance._AISpawnManager.Update(Time.deltaTime);
-        
-        
+    }
+    public static AudioManager GetAudioManager()
+    {
+        return instance._audioManager;
+    }
+    public static ReferenceManager GetReferenceManager()
+    {
+        return instance._referenceManager;
     }
     public static LitterManager GetLitterManager()
     {
