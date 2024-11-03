@@ -59,6 +59,7 @@ public class Agent_Pedestrian : Agent_Base
         _crossingSensor.Init(this, _crossingSensorStrength, 0.1f, _crossingSensorTag, 0, SetIsCrossing);
 
         _lingerDelayTimer = delayBetweenLinger;
+        _crossingCooldown = 5;
     }
 
     private void Update()
@@ -119,7 +120,6 @@ public class Agent_Pedestrian : Agent_Base
     private void StartIdle()
     {
         _pedestrianAnimator.SetBool("isSteady",true);
-        print("StartIdle Pedesterian");
     }
     private void EndIdle()
     {

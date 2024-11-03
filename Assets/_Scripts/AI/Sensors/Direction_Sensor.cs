@@ -12,6 +12,7 @@ public class Direction_Sensor : MonoBehaviour
         TAGSET,
         TARGET
     }
+
     private Agent_Car _agent;
     private Vector3 _direction;
 
@@ -21,7 +22,6 @@ public class Direction_Sensor : MonoBehaviour
     private float _sensorDelay;
     private float _sensorTimer = 0;
 
-    [SerializeField]
     private LayerMask _layerMask;
 
     private List<string> _tagSet;
@@ -29,7 +29,7 @@ public class Direction_Sensor : MonoBehaviour
 
     private RaycastHit hit;
     private SensorType _sensorType;
-    private bool _isPaused;
+    private bool _isPaused = true;
 
     public Action<bool> toggleCallback;
 
@@ -42,6 +42,9 @@ public class Direction_Sensor : MonoBehaviour
         _direction = direction;
         _sensorType = SensorType.TAG;
 
+        _layerMask = agent.LayerMask;
+
+        _isPaused = false;
         toggleCallback = toggleFunc;
     }
     public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, Vector3 direction, List<string> tags, Action<bool> toggleFunc)
@@ -53,6 +56,9 @@ public class Direction_Sensor : MonoBehaviour
         _direction = direction;
         _sensorType = SensorType.TAGSET;
 
+        _layerMask = agent.LayerMask;
+
+        _isPaused = false;
         toggleCallback = toggleFunc;
     }
     public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, Vector3 direction, GameObject target, Action<bool> toggleFunc)
@@ -65,6 +71,10 @@ public class Direction_Sensor : MonoBehaviour
         _target = target;
         _sensorType = SensorType.TARGET;
 
+
+        _layerMask = agent.LayerMask;
+
+        _isPaused = false;
         toggleCallback = toggleFunc;
     }
     void FixedUpdate()

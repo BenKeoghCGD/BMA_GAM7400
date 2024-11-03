@@ -10,4 +10,5 @@ public class LitterData : ScriptableObject
     public Material litterMaterial;
     public int litterSize;
     public LitterType litterType;
+    public AudioClip litterSound;
 }

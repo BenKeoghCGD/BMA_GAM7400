@@ -42,7 +42,7 @@ public class Location_Sensor : MonoBehaviour
         _sensorRadius = sensorRadius;
         _sensorDelay = sensorDelay;
 
-        _layerMask = agent.layerMask;
+        _layerMask = agent.LayerMask;
         _tag = tag;
 
         toggleCallback = toggleFunc;

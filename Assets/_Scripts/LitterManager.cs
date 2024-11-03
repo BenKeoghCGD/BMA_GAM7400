@@ -10,10 +10,10 @@ public class LitterManager
     private readonly List<LitterData> _dataList;
     public List<GameObject> litterHolder = new List<GameObject>();
     
-    public LitterManager(LitterDataList dataList)
+    public LitterManager()
     {
         _worldLitter = new HashSet<Litter>();
-        _dataList = dataList.litterData;
+        _dataList = GameManager.GetReferenceManager().LitterData.litterData;
     }
 
     public LitterData GetRandomLitterData()

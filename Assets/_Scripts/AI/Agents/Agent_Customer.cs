@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 public class Agent_Customer : Agent_Base
 {
     [SerializeField]
+    private Animator _pedestrianAnimator;
+
+    [SerializeField]
     private string storeEntranceTag;
 
     private Location_Sensor _customerSensor;
@@ -31,6 +34,8 @@ public class Agent_Customer : Agent_Base
         seeker.SetPath(FindStoreEntrance().transform.position);
       
         litterDropper.DropLitter();
+
+        _pedestrianAnimator.SetBool("isSteady", false);
     }
 
     private void FixedUpdate()
