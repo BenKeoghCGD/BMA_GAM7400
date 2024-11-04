@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5791437242337849894}
   - component: {fileID: -7648944433632708730}
-  - component: {fileID: -5575904854011914274}
   m_Layer: 6
   m_Name: TestLitter
   m_TagString: Untagged
@@ -46,20 +45,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 1
-  litterPickup: {fileID: 0}
   testData: {fileID: 0}
   randomiseTool: 0
---- !u!114 &-5575904854011914274
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8538486132429862552}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c466ca3194be24cbb94c9b4fdb643f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  litterType: 0
-  litterPickup: {fileID: 8300000, guid: d8b61fd8bf2015d4baa66e10faaced2b, type: 3}

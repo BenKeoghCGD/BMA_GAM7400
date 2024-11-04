@@ -49,43 +49,28 @@ public class Agent_Pedestrian : Agent_Base
     {
         base.Start();
 
+        type = AIType.PEDESTRIAN;
+
         _streetCornerSensor = gameObject.AddComponent<Location_Sensor>();
-        _streetCornerSensor.Init(this, 10, 1, streetCornerSensorTag, 0, SetStreetCornerBool);
+        _streetCornerSensor.InitTagSensor(10, 1, streetCornerSensorTag, SetStreetCornerBool);
 
         _waypointSensor = gameObject.AddComponent<Location_Sensor>();
-        _waypointSensor.Init(this, _waypointSensorStrength, 1f, waypointTag, 2, UpdateWaypoints);
+        _waypointSensor.InitTagSensor(_waypointSensorStrength, 1f, waypointTag, UpdateWaypoints);
 
         _crossingSensor = gameObject.AddComponent<Location_Sensor>();
-        _crossingSensor.Init(this, _crossingSensorStrength, 0.1f, _crossingSensorTag, 0, SetIsCrossing);
+        _crossingSensor.InitTagSensor(_crossingSensorStrength, 0.1f, _crossingSensorTag, SetIsCrossing);
 
         _lingerDelayTimer = delayBetweenLinger;
         _crossingCooldown = 5;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         _crossingCooldown += Time.deltaTime;
 
-        if(seeker.HasPath == true && seeker.DistanceRemaining > 1f)
+        if (seeker.HasPath == true && seeker.DistanceRemaining > 1f)
         {
-            if (isCrossing == true && _crossingPoint != null)
-            {
-                transform.LookAt(_crossingPoint.GetCrossingPosition());
-
-                if (_crossingPoint.CanCross == false && _crossingCooldown > 5.0f)
-                {
-                    StartIdle();
-                    seeker.ToggleStop(true);
-                    return;
-                }
-
-                if (_crossingPoint.CanCross == true)
-                {
-                    EndIdle();
-                    _crossingCooldown = 0;
-                    seeker.ToggleStop(false);
-                }
-            }
+            Moving();
 
             return;
         }
@@ -116,7 +101,27 @@ public class Agent_Pedestrian : Agent_Base
 
         SetRandomWaypoint();
     }
+    private void Moving()
+    {
+        if (isCrossing == true && _crossingPoint != null)
+        {
+            if (_crossingPoint.CanCross == false && _crossingCooldown > 5.0f)
+            {
+                transform.LookAt(_crossingPoint.GetDirectionToFace());
 
+                StartIdle();
+                seeker.ToggleStop(true);
+                return;
+            }
+
+            if (_crossingPoint.CanCross == true)
+            {
+                EndIdle();
+                _crossingCooldown = 0;
+                seeker.ToggleStop(false);
+            }
+        }
+    }
     private void StartIdle()
     {
         _pedestrianAnimator.SetBool("isSteady",true);
@@ -128,8 +133,6 @@ public class Agent_Pedestrian : Agent_Base
     private void EndLinger()
     {
         litterDropper.DropLitter();
-        seeker.SetRandomPath(pathSearchRadius);
-
         _lingerDelayTimer = delayBetweenLinger;
     }
 
@@ -144,7 +147,7 @@ public class Agent_Pedestrian : Agent_Base
 
         if (currentWaypoint != null && currentWaypoint.IsFinalWaypoint)
         {
-            Destroy(SpawnPointType.PEDESTRIAN);
+            base.Destroy();
             return;
         }
 

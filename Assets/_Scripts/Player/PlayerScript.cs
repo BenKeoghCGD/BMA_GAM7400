@@ -10,6 +10,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using PrimeTween;
+using System.Collections;
 
 
 public class PlayerScript : MonoBehaviour
@@ -240,7 +241,25 @@ public class PlayerScript : MonoBehaviour
         //This part has been implemented temporarily to display the player’s current litter collected on the screen.(HS)
         UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
     }
+    public void DropAllLitter()
+    {
+        if(litterCollectedAmount == 0)
+        {
+            return;
+        }
 
+        for(int i = 0; i < litterCollectedAmount; i++)
+        {
+            PlaceableLitter droppedLitter = Instantiate(GameManager.GetReferenceManager().PlaceableLitterPrefab);
+            droppedLitter.gameObject.transform.position = transform.position;
+            droppedLitter.gameObject.layer = GameManager.GetReferenceManager().GetLayerFromMask(referenceLayers.PROJECTILE);;
+
+            //Add physics stuff here (BH)
+            droppedLitter.InitDroppedLitter();
+        }
+
+        ResetCollectedLitter();
+    }
     public void ResetCollectedLitter()
     {
         litterCollectedAmount = 0;

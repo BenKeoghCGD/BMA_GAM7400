@@ -9,7 +9,9 @@ public enum referenceLayers
 {
     INTERACTABLE,
     AI,
-    CAR
+    CAR,
+    PLAYER,
+    PROJECTILE
 }
 public class ReferenceManager : MonoBehaviour
 {
@@ -17,6 +19,19 @@ public class ReferenceManager : MonoBehaviour
     private LitterDataList _data;
     public LitterDataList LitterData => _data;
 
+    [Header("Object References")]
+    [SerializeField]
+    private GameObject _storeEntrance;
+    public GameObject StoreEntrance => _storeEntrance;
+    [SerializeField]
+    private PlaceableLitter _placeableLitterPrefab;
+    public PlaceableLitter PlaceableLitterPrefab => _placeableLitterPrefab;
+
+    [SerializeField]
+    private GameObject _storeExit;
+    public GameObject StoreExit => _storeExit;
+
+    [Header("AI Prefabs")]
     [SerializeField]
     private GameObject _customerPrefab;
     public GameObject CustomerPrefab => _customerPrefab;
@@ -29,12 +44,18 @@ public class ReferenceManager : MonoBehaviour
     private GameObject _carPrefab;
     public GameObject CarPrefab => _carPrefab;
 
+    [Header("Layer References")]
     [SerializeField]
     private LayerMask _aiLayer;
     [SerializeField]
     private LayerMask _interactableLayer;
+    [SerializeField]
+    private LayerMask _playerLayer;
+    [SerializeField]
+    private LayerMask _projectileLayer;
     private Dictionary<referenceLayers, LayerMask> _layerMasks;
 
+    [Header("Count Limits")]
     [SerializeField]
     private int _maxCarCount;
     public int MaxCarCount => _maxCarCount;
@@ -46,11 +67,14 @@ public class ReferenceManager : MonoBehaviour
     [SerializeField]
     private int _maxLitterAmount;
     public int MaxLitterAmount => _maxLitterAmount;
+
     public void Init()
     {
         _layerMasks = new Dictionary<referenceLayers, LayerMask>();
         _layerMasks.Add(referenceLayers.AI, _aiLayer);
         _layerMasks.Add(referenceLayers.INTERACTABLE, _interactableLayer);
+        _layerMasks.Add(referenceLayers.PLAYER, _playerLayer);
+        _layerMasks.Add(referenceLayers.PROJECTILE, _projectileLayer);
     }
     public LayerMask GetLayerMask(referenceLayers tag)
     {

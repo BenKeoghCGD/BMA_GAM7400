@@ -15,7 +15,7 @@ public class PlayerSpawner : MonoBehaviour
     {
         if (GameManager.GetPlayerScript().respawn)
         {
-            print("Respawn");
+           // print("Respawn");
             GameManager.GetPlayerScript().CanMove = false;
             GameManager.GetPlayerScript().gameObject.transform.position = spawnPoints[0].position;
             GameManager.GetPlayerScript().PlayerAnimator.SetBool("isDied", true);

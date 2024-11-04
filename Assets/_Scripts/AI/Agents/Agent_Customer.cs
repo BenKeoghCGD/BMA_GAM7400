@@ -9,9 +9,6 @@ public class Agent_Customer : Agent_Base
     [SerializeField]
     private Animator _pedestrianAnimator;
 
-    [SerializeField]
-    private string storeEntranceTag;
-
     private Location_Sensor _customerSensor;
 
     private Agent_Car _car;
@@ -26,10 +23,12 @@ public class Agent_Customer : Agent_Base
     {
         base.Start();
 
+        type = AIType.CUSTOMER;
+
         _car = car;
 
         _customerSensor = gameObject.AddComponent<Location_Sensor>();
-        _customerSensor.Init(this, 1, 1, storeEntranceTag, 0,  SetTargetBool);
+        _customerSensor.InitTagSensor(1, 1, FindStoreEntrance().tag,  SetTargetBool);
 
         seeker.SetPath(FindStoreEntrance().transform.position);
       
@@ -38,7 +37,7 @@ public class Agent_Customer : Agent_Base
         _pedestrianAnimator.SetBool("isSteady", false);
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         if(_isInShop == false)
         {
@@ -64,7 +63,7 @@ public class Agent_Customer : Agent_Base
     //Temp functions for testing, will probably have some form of TagManager (or whatever) in future to minimise Find function calls. (BH) 
     private GameObject FindStoreEntrance()
     {
-        GameObject entrance = GameObject.FindGameObjectWithTag(storeEntranceTag);
+        GameObject entrance = GameManager.GetReferenceManager().StoreEntrance;
 
         if(entrance == null)
         {
@@ -78,7 +77,7 @@ public class Agent_Customer : Agent_Base
     // See previous comment. (BH)
     private GameObject FindStoreExit()
     {
-        GameObject exit = GameObject.FindGameObjectWithTag("Store Exit");
+        GameObject exit = GameManager.GetReferenceManager().StoreExit;
 
         if (exit == null)
         {
@@ -102,7 +101,7 @@ public class Agent_Customer : Agent_Base
     }
     private void ExitStore()
     {
-        _customerSensor.Init(this, 1, 1, spawnPoint.transform.position, SetTargetBool);
+        _customerSensor.InitTargetSensor(1, 1, spawnPoint.gameObject, SetTargetBool);
 
        // GetComponent<MeshRenderer>().enabled = true;
         GetComponent<NavMeshAgent>().enabled = true;
@@ -152,7 +151,7 @@ public class Agent_Customer : Agent_Base
         if (_isAtTargetLocation == true)
         {
             _car.LeaveCarPark();
-            Destroy(SpawnPointType.CUSTOMER);
+            base.Destroy();
         }
     }
 }

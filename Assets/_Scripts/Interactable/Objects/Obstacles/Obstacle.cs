@@ -25,6 +25,7 @@ public class Obstacle : MonoBehaviour
                 if (isObstacle)
                 {
                     playerlife.DecreasePlayerHealth();  // Decrease health
+                    playerScript.DropAllLitter();
                     playerScript.respawn = true;
                 }
                 else

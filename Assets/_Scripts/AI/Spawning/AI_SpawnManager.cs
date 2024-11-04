@@ -59,17 +59,17 @@ public class AI_SpawnManager
 
         if(_spawnTimer > 3)
         {
-            SpawnAgent((SpawnPointType)UnityEngine.Random.Range(0, 3));
+            SpawnAgent((AIType)UnityEngine.Random.Range(0, 3));
             _spawnTimer = 0;
         }
     }
-    public void SpawnAgent(SpawnPointType type)
+    public void SpawnAgent(AIType type)
     {
         List<AI_SpawnPoint> availableSpawnPoints = null;
 
         switch (type)
         {
-            case SpawnPointType.CUSTOMER:
+            case AIType.CUSTOMER:
                 availableSpawnPoints = _customerSpawnPoints.Where(s => s.isActive == true).Where(s => s.isUsed == false).ToList();
 
                 if (availableSpawnPoints == null || availableSpawnPoints.Count == 0)
@@ -79,13 +79,13 @@ public class AI_SpawnManager
                         break;
                     }
 
-                    type = SpawnPointType.CAR;
+                    type = AIType.CAR;
                     availableSpawnPoints = _carSpawnPoints;
                 }
 
                 break;
 
-            case SpawnPointType.CAR:
+            case AIType.CAR:
                 if (_carCount >= _maxCars)
                 {
                     break;
@@ -93,7 +93,7 @@ public class AI_SpawnManager
 
                 availableSpawnPoints = _carSpawnPoints;
                 break;
-            case SpawnPointType.PEDESTRIAN:
+            case AIType.PEDESTRIAN:
                 if (_pedestrianCount >= _maxPedestrians)
                 {
                     break;
@@ -113,13 +113,13 @@ public class AI_SpawnManager
 
         switch (type)
         {
-            case SpawnPointType.CUSTOMER:
+            case AIType.CUSTOMER:
 
                 Agent_Car car = location.gameObject.GetComponentInParent<Agent_Car>();
                 location.SpawnCustomer(_customer, car);
 
                 break;
-            case SpawnPointType.CAR:
+            case AIType.CAR:
 
                 Collider[] hitData = Physics.OverlapSphere(location.transform.position, 5, _layerMask);
 
@@ -132,7 +132,7 @@ public class AI_SpawnManager
                 location.SpawnAgent(_car);
                 _carCount += 1;
                 break;
-            case SpawnPointType.PEDESTRIAN:
+            case AIType.PEDESTRIAN:
                 location.SpawnAgent(_pedestrian);
 
                 _pedestrianCount += 1;
@@ -141,33 +141,33 @@ public class AI_SpawnManager
         }
     }
 
-    public void AddSpawnPoint(AI_SpawnPoint spawnPoint, SpawnPointType type)
+    public void AddSpawnPoint(AI_SpawnPoint spawnPoint, AIType type)
     {
         switch(type)
         {
-            case SpawnPointType.CUSTOMER:
+            case AIType.CUSTOMER:
                 _customerSpawnPoints.Add(spawnPoint);
                 break;
-            case SpawnPointType.CAR:
+            case AIType.CAR:
                 _carSpawnPoints.Add(spawnPoint);
                 break;
-            case SpawnPointType.PEDESTRIAN:
+            case AIType.PEDESTRIAN:
                 _pedestrianSpawnPoints.Add(spawnPoint);
                 break;
         }
     }
 
-    public void Decrement(SpawnPointType type)
+    public void Decrement(AIType type)
     {
         //Debug.Log(_carCount);
         switch (type)
         {
-            case SpawnPointType.CUSTOMER:
+            case AIType.CUSTOMER:
                 break;
-            case SpawnPointType.CAR:
+            case AIType.CAR:
                 _carCount -= 1;
                 break;
-            case SpawnPointType.PEDESTRIAN:
+            case AIType.PEDESTRIAN:
                 _pedestrianCount -= 1;
                 break;
         }

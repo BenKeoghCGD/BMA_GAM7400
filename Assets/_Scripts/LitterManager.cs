@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
@@ -8,8 +9,8 @@ public class LitterManager
 {
     public HashSet<Litter> _worldLitter;
     private readonly List<LitterData> _dataList;
-    public List<GameObject> litterHolder = new List<GameObject>();
-    
+
+    private Action updateUICallback;
     public LitterManager()
     {
         _worldLitter = new HashSet<Litter>();
@@ -24,7 +25,7 @@ public class LitterManager
             return null;
         }
 
-        return _dataList[Random.Range(0, _dataList.Count)];
+        return _dataList[UnityEngine.Random.Range(0, _dataList.Count)];
     }
     public HashSet<Litter> GetWorldLitter()
     {
@@ -48,10 +49,15 @@ public class LitterManager
 
         foreach(Litter litter in _worldLitter)
         {
-            Object.Destroy(litter.gameObject);
+            UnityEngine.Object.Destroy(litter.gameObject);
         }
 
         _worldLitter.Clear();
+
+        if (updateUICallback != null)
+        {
+            updateUICallback();
+        }
     }
     public void AddLitter(Litter litter)
     {
@@ -62,6 +68,11 @@ public class LitterManager
         }
 
         _worldLitter.Add(litter);
+
+        if (updateUICallback != null)
+        {
+            updateUICallback();
+        }
     }
     public void RemoveLitter(Litter litter)
     {
@@ -75,5 +86,19 @@ public class LitterManager
         }
 
         _worldLitter.Remove(litter);
+
+        if(updateUICallback != null)
+        {
+            updateUICallback();
+        }
+    }
+
+    public void AddUpdateUICallback(Action action)
+    {
+        updateUICallback += action;
+    }
+    public void RemoveUpdateUICallback(Action action)
+    {
+        updateUICallback -= action;
     }
 }

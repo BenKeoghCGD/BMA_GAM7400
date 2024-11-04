@@ -42,6 +42,8 @@ public class Agent_Car : Agent_Base
     [SerializeField]
     private Direction_Sensor _reverseSensor;
     [SerializeField]
+    private Direction_Sensor _reverseSensor2;
+    [SerializeField]
     private float _reverseSensorStrength;
 
     [SerializeField]
@@ -62,27 +64,35 @@ public class Agent_Car : Agent_Base
     private bool _isParking;
     private bool _isLeaving;
     private bool _isReversing;
-    
+
+    private Collider _obstacleCollider;
     public bool HasPath => seeker.HasPath;
 
     private new void Start()
     {
         base.Start();
 
-        spawnPoint.isActive = false;
-        spawnPoint.isUsed = false;
+        type = AIType.CAR;
+
+        _obstacleCollider = gameObject.GetComponent<BoxCollider>();
+
+        customerSpawnpoint.isActive = false;
+        customerSpawnpoint.isUsed = false;
 
         _currentWaypoint = GetNextWaypoint();
 
-        _trafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FStop);
-        _frTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FRStop);
-        _flTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLStop);
-        _fraTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FRAStop);
-        _flaTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLAStop);
-        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
-        _parkingSensor.Init(this, _parkingSensorStrength, 0.1f, transform.forward, _parkingSpaceTag, IsParking);
-        //_reverseSensor.Init(this, _reverseSensorStrength, 0.1f, transform.forward, _trafficTags, FStop);
-        //_reverseSensor.SetPauseSensor(true);
+        _trafficSensor.InitTagSetSensor(_trafficSensorStrength, 0.1f, _trafficTags, FStop);
+        _frTrafficSensor.InitTagSetSensor(_trafficSensorStrength, 0.1f, _trafficTags, FRStop);
+        _flTrafficSensor.InitTagSetSensor(_trafficSensorStrength, 0.1f, _trafficTags, FLStop);
+        _fraTrafficSensor.InitTagSetSensor(_trafficSensorStrength, 0.1f, _trafficTags, FRAStop);
+        _flaTrafficSensor.InitTagSetSensor(_trafficSensorStrength, 0.1f, _trafficTags, FLAStop);
+        _waypointSensor.InitTargetSensor(_waypointSensorStrength, 0.1f, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _parkingSensor.InitTagSensor(_parkingSensorStrength, 0.1f, _parkingSpaceTag, IsParking);
+
+        _reverseSensor.InitTagSetSensor(_reverseSensorStrength, 0.1f, _trafficTags, FStop);
+        _reverseSensor.enabled = false;
+        _reverseSensor2.InitTagSetSensor(_reverseSensorStrength, 0.1f, _trafficTags, FStop);
+        _reverseSensor2.enabled = false;
 
         seeker.SetSpeed(5f);
         seeker.SetPath(_currentWaypoint.transform.position);
@@ -148,14 +158,16 @@ public class Agent_Car : Agent_Base
 
     private void ToggleParkingSensors(bool val)
     {
-        //_reverseSensor.SetPauseSensor(!val);
-        _parkingSensor.SetPauseSensor(val);
-        _trafficSensor.SetPauseSensor(val);
-        _frTrafficSensor.SetPauseSensor(val);
-        _fraTrafficSensor.SetPauseSensor(val);
-        _flTrafficSensor.SetPauseSensor(val);
-        _flaTrafficSensor.SetPauseSensor(val);
-        _waypointSensor.SetPauseSensor(val);
+        _reverseSensor.enabled = val;
+        _reverseSensor2.enabled = val;
+
+        _parkingSensor.enabled = !val;
+        _trafficSensor.enabled = !val;
+        _frTrafficSensor.enabled = !val;
+        _fraTrafficSensor.enabled = !val;
+        _flTrafficSensor.enabled = !val;
+        _flaTrafficSensor.enabled = !val;
+        _waypointSensor.enabled = !val;
     }
     private void UpdateWaypoint()
     {
@@ -165,12 +177,12 @@ public class Agent_Car : Agent_Base
 
         if(next == null)
         {
-            Destroy(SpawnPointType.CAR);
+            base.Destroy();
             return;
         }
 
         _currentWaypoint = next;
-        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _waypointSensor.InitTargetSensor(_waypointSensorStrength, 0.1f, _currentWaypoint.gameObject, HasReachedWaypoint);
 
         seeker.SetPath(_currentWaypoint.transform.position);
     }
@@ -225,11 +237,17 @@ public class Agent_Car : Agent_Base
     }
     public void LeaveCarPark()
     {
+        SetIsObstacle(true);
+
         seeker.SetSpeed(2f);
         seeker.Reverse(_parkingSpace.GetGuidePosition());
 
         _isLeaving = true;
         _isReversing = true;
+    }
+    public void SetIsObstacle(bool val)
+    {
+        _obstacleCollider.isTrigger = val;
     }
     public void FStop(bool val)
     {
@@ -285,10 +303,12 @@ public class Agent_Car : Agent_Base
     {
         if(_fStop == true || _frStop == true || _flStop == true || _fraStop == true || _flaStop == true)
         {
+            SetIsObstacle(false);
             seeker.ToggleStop(true);
             return;
         }
 
+        SetIsObstacle(true);
         seeker.ToggleStop(false);
     }
     public void HasReachedWaypoint(bool val)

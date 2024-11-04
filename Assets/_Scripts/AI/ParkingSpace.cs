@@ -45,6 +45,7 @@ public class ParkingSpace : MonoBehaviour
             if (_owner.HasPath == false)
             {
                 _ownerIsParked = true;
+                _owner.SetIsObstacle(false);
                 parkingGuide.transform.localPosition += new Vector3(-6, 0, 0);
             }
 

@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
 
     public Slider LitterAmountSlider;
 
+    private LitterManager _litterManager;
+    private ReferenceManager _referenceManager;
     private void Awake()
     {
         if (instance != null && instance != this)
@@ -33,16 +35,18 @@ public class UIManager : MonoBehaviour
         {
             instance = this;
         }
-
-        return;
-        LitterCounterText.text = GameManager.GetLitterManager().litterHolder.Count.ToString();
     }
-
-    private void Update()
+    void Start()
     {
-        return;
-        LitterCounterText.text = GameManager.GetLitterManager()._worldLitter.Count.ToString();
-        
-        LitterAmountSlider.value = Mathf.InverseLerp(0,GameManager.GetReferenceManager().MaxLitterAmount, GameManager.GetLitterManager()._worldLitter.Count);
+        _litterManager = GameManager.GetLitterManager();
+        _referenceManager = GameManager.GetReferenceManager();
+
+        _litterManager.AddUpdateUICallback(UpdateUI);
+        UpdateUI();
+    }
+    private void UpdateUI()
+    {
+        LitterCounterText.text = _litterManager._worldLitter.Count.ToString();
+        LitterAmountSlider.value = Mathf.InverseLerp(0, _referenceManager.MaxLitterAmount, _litterManager._worldLitter.Count);
     }
 }

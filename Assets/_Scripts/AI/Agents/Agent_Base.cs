@@ -11,6 +11,7 @@ public class Agent_Base : MonoBehaviour
     protected LitterDropper litterDropper;
     protected Seeker seeker;
 
+    protected AIType type;
     protected AI_SpawnPoint spawnPoint;
 
     protected void Start()
@@ -37,12 +38,13 @@ public class Agent_Base : MonoBehaviour
 
         seeker.Init();
     }
-
-    protected void Destroy(SpawnPointType type)
+    protected void Destroy()
+    {
+        Destroy(gameObject);
+    }
+    private void OnDestroy()
     {
         GameManager.GetAISpawnManager().Decrement(type);
-        Destroy(gameObject);
-
     }
     public void SetSpawnPoint(AI_SpawnPoint sP)
     {
