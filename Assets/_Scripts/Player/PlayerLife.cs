@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerLife : MonoBehaviour
 {
@@ -59,7 +60,7 @@ public class PlayerLife : MonoBehaviour
                 hearts[i].enabled = false;
             }
         }
-        if (health < 0 && leaderboard != null)
+        if (health <= 0)
         {
             //main.gameObject.SetActive(false);
            // leaderboard.gameObject.SetActive(true);
