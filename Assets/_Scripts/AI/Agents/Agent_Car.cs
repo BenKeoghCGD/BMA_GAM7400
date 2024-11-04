@@ -62,25 +62,31 @@ public class Agent_Car : Agent_Base
     private bool _isParking;
     private bool _isLeaving;
     private bool _isReversing;
-    
+
+    private Collider _obstacleCollider;
     public bool HasPath => seeker.HasPath;
 
     private new void Start()
     {
         base.Start();
 
+        _obstacleCollider = gameObject.GetComponent<BoxCollider>();
+        if(_obstacleCollider == null)
+        {
+            Debug.LogError("No Obstacle collider");
+        }
         spawnPoint.isActive = false;
         spawnPoint.isUsed = false;
 
         _currentWaypoint = GetNextWaypoint();
 
-        _trafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FStop);
-        _frTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FRStop);
-        _flTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLStop);
-        _fraTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FRAStop);
-        _flaTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, transform.forward, _trafficTags, FLAStop);
-        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
-        _parkingSensor.Init(this, _parkingSensorStrength, 0.1f, transform.forward, _parkingSpaceTag, IsParking);
+        _trafficSensor.Init(this, _trafficSensorStrength, 0.1f, _trafficTags, FStop);
+        _frTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, _trafficTags, FRStop);
+        _flTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, _trafficTags, FLStop);
+        _fraTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, _trafficTags, FRAStop);
+        _flaTrafficSensor.Init(this, _trafficSensorStrength, 0.1f, _trafficTags, FLAStop);
+        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _parkingSensor.Init(this, _parkingSensorStrength, 0.1f, _parkingSpaceTag, IsParking);
         //_reverseSensor.Init(this, _reverseSensorStrength, 0.1f, transform.forward, _trafficTags, FStop);
         //_reverseSensor.SetPauseSensor(true);
 
@@ -149,13 +155,13 @@ public class Agent_Car : Agent_Base
     private void ToggleParkingSensors(bool val)
     {
         //_reverseSensor.SetPauseSensor(!val);
-        _parkingSensor.SetPauseSensor(val);
-        _trafficSensor.SetPauseSensor(val);
-        _frTrafficSensor.SetPauseSensor(val);
-        _fraTrafficSensor.SetPauseSensor(val);
-        _flTrafficSensor.SetPauseSensor(val);
-        _flaTrafficSensor.SetPauseSensor(val);
-        _waypointSensor.SetPauseSensor(val);
+        _parkingSensor.enabled = !val;
+        _trafficSensor.enabled = !val;
+        _frTrafficSensor.enabled = !val;
+        _fraTrafficSensor.enabled = !val;
+        _flTrafficSensor.enabled = !val;
+        _flaTrafficSensor.enabled = !val;
+        _waypointSensor.enabled = !val;
     }
     private void UpdateWaypoint()
     {
@@ -170,7 +176,7 @@ public class Agent_Car : Agent_Base
         }
 
         _currentWaypoint = next;
-        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, transform.forward, _currentWaypoint.gameObject, HasReachedWaypoint);
+        _waypointSensor.Init(this, _waypointSensorStrength, 0.1f, _currentWaypoint.gameObject, HasReachedWaypoint);
 
         seeker.SetPath(_currentWaypoint.transform.position);
     }
@@ -225,11 +231,17 @@ public class Agent_Car : Agent_Base
     }
     public void LeaveCarPark()
     {
+        SetIsObstacle(true);
+
         seeker.SetSpeed(2f);
         seeker.Reverse(_parkingSpace.GetGuidePosition());
 
         _isLeaving = true;
         _isReversing = true;
+    }
+    public void SetIsObstacle(bool val)
+    {
+        _obstacleCollider.isTrigger = val;
     }
     public void FStop(bool val)
     {

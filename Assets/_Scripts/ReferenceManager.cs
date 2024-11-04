@@ -17,6 +17,16 @@ public class ReferenceManager : MonoBehaviour
     private LitterDataList _data;
     public LitterDataList LitterData => _data;
 
+    [Header("Object References")]
+    [SerializeField]
+    private GameObject _storeEntrance;
+    public GameObject StoreEntrance => _storeEntrance;
+
+    [SerializeField]
+    private GameObject _storeExit;
+    public GameObject StoreExit => _storeExit;
+
+    [Header("AI Prefabs")]
     [SerializeField]
     private GameObject _customerPrefab;
     public GameObject CustomerPrefab => _customerPrefab;
@@ -29,12 +39,14 @@ public class ReferenceManager : MonoBehaviour
     private GameObject _carPrefab;
     public GameObject CarPrefab => _carPrefab;
 
+    [Header("Layer References")]
     [SerializeField]
     private LayerMask _aiLayer;
     [SerializeField]
     private LayerMask _interactableLayer;
     private Dictionary<referenceLayers, LayerMask> _layerMasks;
 
+    [Header("Count Limits")]
     [SerializeField]
     private int _maxCarCount;
     public int MaxCarCount => _maxCarCount;
@@ -46,6 +58,7 @@ public class ReferenceManager : MonoBehaviour
     [SerializeField]
     private int _maxLitterAmount;
     public int MaxLitterAmount => _maxLitterAmount;
+
     public void Init()
     {
         _layerMasks = new Dictionary<referenceLayers, LayerMask>();

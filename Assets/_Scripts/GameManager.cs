@@ -56,21 +56,10 @@ public class GameManager : MonoBehaviour
 
             _referenceManager.Init();
             _AISpawnManager.Init();
+            //_uiManager.Init();
         }
 
         Application.targetFrameRate = 60;
-
-        var _littersParent = GameObject.FindGameObjectWithTag("LitterHolder");
-
-        if(_littersParent == null)
-        { 
-            return; 
-        }
-
-        for (int i = 0; i < _littersParent.transform.childCount; i++)
-        {
-            GetLitterManager().litterHolder.Add(_littersParent.transform.GetChild(i).gameObject);
-        }
     }
 
     private void Update()

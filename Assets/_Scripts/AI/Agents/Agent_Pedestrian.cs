@@ -62,7 +62,7 @@ public class Agent_Pedestrian : Agent_Base
         _crossingCooldown = 5;
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         _crossingCooldown += Time.deltaTime;
 

@@ -13,9 +13,6 @@ public class Direction_Sensor : MonoBehaviour
         TARGET
     }
 
-    private Agent_Car _agent;
-    private Vector3 _direction;
-
     private GameObject _target;
 
     private float _sensorStrength;
@@ -29,57 +26,46 @@ public class Direction_Sensor : MonoBehaviour
 
     private RaycastHit hit;
     private SensorType _sensorType;
-    private bool _isPaused = true;
 
     public Action<bool> toggleCallback;
 
-    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, Vector3 direction, string tag, Action<bool> toggleFunc)
+    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, string tag, Action<bool> toggleFunc)
     {
-        _agent = agent;
         _sensorStrength = sensorStrength;
         _sensorDelay = sensorDelay;
          _tag = tag;
-        _direction = direction;
         _sensorType = SensorType.TAG;
 
         _layerMask = agent.LayerMask;
 
-        _isPaused = false;
         toggleCallback = toggleFunc;
     }
-    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, Vector3 direction, List<string> tags, Action<bool> toggleFunc)
+    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, List<string> tags, Action<bool> toggleFunc)
     {
-        _agent = agent;
         _sensorStrength = sensorStrength;
         _sensorDelay = sensorDelay;
         _tagSet = tags;
-        _direction = direction;
         _sensorType = SensorType.TAGSET;
 
         _layerMask = agent.LayerMask;
 
-        _isPaused = false;
         toggleCallback = toggleFunc;
     }
-    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, Vector3 direction, GameObject target, Action<bool> toggleFunc)
+    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, GameObject target, Action<bool> toggleFunc)
     {
-        _agent = agent;
         _sensorStrength = sensorStrength;
         _sensorDelay = sensorDelay;
-        _direction = direction;
 
         _target = target;
         _sensorType = SensorType.TARGET;
 
-
         _layerMask = agent.LayerMask;
 
-        _isPaused = false;
         toggleCallback = toggleFunc;
     }
     void FixedUpdate()
     {
-        if(_isPaused == true)
+        if(toggleCallback == null)
         {
             return;
         }
@@ -153,7 +139,7 @@ public class Direction_Sensor : MonoBehaviour
         }
         //Debug.DrawRay(transform.position, transform.forward * _sensorStrength, Color.white);
 
-        if (Physics.Raycast(transform.position,  transform.forward, out hit, _sensorStrength, _layerMask, QueryTriggerInteraction.Collide))
+        if (Physics.Raycast(transform.position, transform.forward, out hit, _sensorStrength, _layerMask, QueryTriggerInteraction.Collide))
         {
             if(hit.collider.gameObject == _target)
             {
@@ -168,10 +154,5 @@ public class Direction_Sensor : MonoBehaviour
     public RaycastHit GetHitData()
     {
         return hit;
-    }
-
-    public void SetPauseSensor(bool val)
-    {
-        _isPaused = val;
     }
 }
