@@ -4,62 +4,17 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class Direction_Sensor : MonoBehaviour
+public class Direction_Sensor : Base_Sensor
 {
-    enum SensorType
-    {
-        TAG,
-        TAGSET,
-        TARGET
-    }
-
-    private GameObject _target;
-
-    private float _sensorStrength;
-    private float _sensorDelay;
-    private float _sensorTimer = 0;
-
-    private LayerMask _layerMask;
-
     private List<string> _tagSet;
-    private string _tag;
-
     private RaycastHit hit;
-    private SensorType _sensorType;
 
-    public Action<bool> toggleCallback;
-
-    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, string tag, Action<bool> toggleFunc)
-    {
-        _sensorStrength = sensorStrength;
-        _sensorDelay = sensorDelay;
-         _tag = tag;
-        _sensorType = SensorType.TAG;
-
-        _layerMask = agent.LayerMask;
-
-        toggleCallback = toggleFunc;
-    }
-    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, List<string> tags, Action<bool> toggleFunc)
+    public void InitTagSetSensor(float sensorStrength, float sensorDelay, List<string> tags, Action<bool> toggleFunc)
     {
         _sensorStrength = sensorStrength;
         _sensorDelay = sensorDelay;
         _tagSet = tags;
         _sensorType = SensorType.TAGSET;
-
-        _layerMask = agent.LayerMask;
-
-        toggleCallback = toggleFunc;
-    }
-    public void Init(Agent_Car agent, float sensorStrength, float sensorDelay, GameObject target, Action<bool> toggleFunc)
-    {
-        _sensorStrength = sensorStrength;
-        _sensorDelay = sensorDelay;
-
-        _target = target;
-        _sensorType = SensorType.TARGET;
-
-        _layerMask = agent.LayerMask;
 
         toggleCallback = toggleFunc;
     }

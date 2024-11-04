@@ -5,7 +5,7 @@ using UnityEngine;
 public class AI_SpawnPoint : MonoBehaviour
 {
     [SerializeField]
-    protected SpawnPointType spawnPointType;
+    protected AIType spawnPointType;
 
     public bool isActive = false;
     public bool isUsed = false;
@@ -17,7 +17,7 @@ public class AI_SpawnPoint : MonoBehaviour
 
     public void SpawnCustomer(GameObject prefab, Agent_Car car)
     {
-        if (spawnPointType == SpawnPointType.CUSTOMER && isUsed == true)
+        if (spawnPointType == AIType.CUSTOMER && isUsed == true)
         {
             Debug.LogError("SpawnPoint in use, check logic.");
             return;

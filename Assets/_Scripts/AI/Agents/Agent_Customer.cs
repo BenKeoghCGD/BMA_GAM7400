@@ -9,9 +9,6 @@ public class Agent_Customer : Agent_Base
     [SerializeField]
     private Animator _pedestrianAnimator;
 
-    [SerializeField]
-    private string storeEntranceTag;
-
     private Location_Sensor _customerSensor;
 
     private Agent_Car _car;
@@ -26,10 +23,12 @@ public class Agent_Customer : Agent_Base
     {
         base.Start();
 
+        type = AIType.CUSTOMER;
+
         _car = car;
 
         _customerSensor = gameObject.AddComponent<Location_Sensor>();
-        _customerSensor.Init(this, 1, 1, storeEntranceTag, 0,  SetTargetBool);
+        _customerSensor.InitTagSensor(1, 1, FindStoreEntrance().tag,  SetTargetBool);
 
         seeker.SetPath(FindStoreEntrance().transform.position);
       
@@ -102,7 +101,7 @@ public class Agent_Customer : Agent_Base
     }
     private void ExitStore()
     {
-        _customerSensor.Init(this, 1, 1, spawnPoint.transform.position, SetTargetBool);
+        _customerSensor.InitTargetSensor(1, 1, spawnPoint.gameObject, SetTargetBool);
 
        // GetComponent<MeshRenderer>().enabled = true;
         GetComponent<NavMeshAgent>().enabled = true;
@@ -152,7 +151,7 @@ public class Agent_Customer : Agent_Base
         if (_isAtTargetLocation == true)
         {
             _car.LeaveCarPark();
-            Destroy(SpawnPointType.CUSTOMER);
+            base.Destroy();
         }
     }
 }

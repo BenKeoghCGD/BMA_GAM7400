@@ -45,4 +45,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 0
-  litterPickup: {fileID: 0}

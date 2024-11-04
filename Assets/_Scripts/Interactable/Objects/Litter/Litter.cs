@@ -61,7 +61,6 @@ public class Litter : MonoBehaviour, IInteractable
 
     public virtual void OnInteract(PlayerScript player)
     {
-        
         // Adjust player litter count
         player.AdjustLitter(litterType);
 

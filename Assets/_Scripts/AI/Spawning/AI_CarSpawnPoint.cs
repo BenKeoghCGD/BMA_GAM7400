@@ -9,7 +9,7 @@ public class AI_CarSpawnPoint : AI_SpawnPoint
 
     protected new void Start()
     {
-        GameManager.GetAISpawnManager().AddSpawnPoint(this, SpawnPointType.CAR);
+        GameManager.GetAISpawnManager().AddSpawnPoint(this, AIType.CAR);
     }
     public override void SpawnAgent(GameObject prefab)
     {

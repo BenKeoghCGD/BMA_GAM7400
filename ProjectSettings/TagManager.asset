@@ -26,8 +26,8 @@ TagManager:
   - Interactable
   - Ground
   - AI_Interactable
-  - 
-  - 
+  - Projectile
+  - Player
   - 
   - 
   - 

@@ -9,7 +9,9 @@ public enum referenceLayers
 {
     INTERACTABLE,
     AI,
-    CAR
+    CAR,
+    PLAYER,
+    PROJECTILE
 }
 public class ReferenceManager : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class ReferenceManager : MonoBehaviour
     [SerializeField]
     private GameObject _storeEntrance;
     public GameObject StoreEntrance => _storeEntrance;
+    [SerializeField]
+    private PlaceableLitter _placeableLitterPrefab;
+    public PlaceableLitter PlaceableLitterPrefab => _placeableLitterPrefab;
 
     [SerializeField]
     private GameObject _storeExit;
@@ -44,6 +49,10 @@ public class ReferenceManager : MonoBehaviour
     private LayerMask _aiLayer;
     [SerializeField]
     private LayerMask _interactableLayer;
+    [SerializeField]
+    private LayerMask _playerLayer;
+    [SerializeField]
+    private LayerMask _projectileLayer;
     private Dictionary<referenceLayers, LayerMask> _layerMasks;
 
     [Header("Count Limits")]
@@ -64,6 +73,8 @@ public class ReferenceManager : MonoBehaviour
         _layerMasks = new Dictionary<referenceLayers, LayerMask>();
         _layerMasks.Add(referenceLayers.AI, _aiLayer);
         _layerMasks.Add(referenceLayers.INTERACTABLE, _interactableLayer);
+        _layerMasks.Add(referenceLayers.PLAYER, _playerLayer);
+        _layerMasks.Add(referenceLayers.PROJECTILE, _projectileLayer);
     }
     public LayerMask GetLayerMask(referenceLayers tag)
     {

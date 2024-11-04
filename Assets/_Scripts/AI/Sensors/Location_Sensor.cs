@@ -5,65 +5,13 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Location_Sensor : MonoBehaviour
+public class Location_Sensor : Base_Sensor
 {
-    enum SensorType
-    {
-        TAG,
-        TARGET,
-        TAGINFRONT
-    }
-
-    private Agent_Base _agent;
-    private int _sensorRadius;
-
-    private float _sensorDelay;
-    private float _sensorTimer = 0;
-
-    private LayerMask _layerMask;
-    private string _tag;
-
-    private Vector3 _target;
-    private bool lookForTag;
-
-    private SensorType _sensorType;
     public List<GameObject> _hitData;
-
-    private bool _isPaused;
-    public Action<bool> toggleCallback;
-
-    // Start is called before the first frame update
-    public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, string tag, int typeIndex, Action<bool> toggleFunc)
-    {
-        lookForTag = true;
-        _sensorType = (SensorType)typeIndex;
-
-        _agent = agent;
-        _sensorRadius = sensorRadius;
-        _sensorDelay = sensorDelay;
-
-        _layerMask = agent.LayerMask;
-        _tag = tag;
-
-        toggleCallback = toggleFunc;
-    }
-    public void Init(Agent_Base agent, int sensorRadius, float sensorDelay, Vector3 target, Action<bool> toggleFunc)
-    {
-        lookForTag = false;
-        _sensorType = SensorType.TARGET;
-
-        _agent = agent;
-        _sensorRadius = sensorRadius;
-        _sensorDelay = sensorDelay;
-
-        _target = target;
-
-        toggleCallback = toggleFunc;
-    }
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(_isPaused == true)
+        if (toggleCallback == null)
         {
             return;
         }
@@ -91,7 +39,7 @@ public class Location_Sensor : MonoBehaviour
 
     void ScanForTag()
     {
-        Collider[] hitData = Physics.OverlapSphere(transform.position, _sensorRadius, _layerMask);
+        Collider[] hitData = Physics.OverlapSphere(transform.position, _sensorStrength, _layerMask);
         _hitData = new List<GameObject>();
 
         if(hitData.Length == 0)
@@ -122,9 +70,9 @@ public class Location_Sensor : MonoBehaviour
 
     void ScanForLocation()
     {
-        Vector3 distance = transform.position - _target;
+        Vector3 distance = transform.position - _target.transform.position;
 
-        if (distance.magnitude <= _sensorRadius)
+        if (distance.magnitude <= _sensorStrength)
         {
             toggleCallback(true);
             return;
@@ -134,7 +82,7 @@ public class Location_Sensor : MonoBehaviour
     }
     void ScanForTagInFront()
     {
-        Collider[] hitData = Physics.OverlapSphere(transform.position, _sensorRadius, _layerMask);
+        Collider[] hitData = Physics.OverlapSphere(transform.position, _sensorStrength, _layerMask);
 
         Debug.DrawRay(gameObject.transform.position, transform.forward * 10, Color.blue);
 
@@ -178,9 +126,5 @@ public class Location_Sensor : MonoBehaviour
         {
             toggleCallback(false);
         }
-    }
-    public void SetPauseSensor(bool val)
-    {
-        _isPaused = val;
     }
 }
