@@ -6,17 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="81de06a9-6883-4e42-b826-6496136426ac" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BMA_GAM7400/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC 2_MixamoRig.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC 2_MixamoRig.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC_Run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/NPC_Run.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/PlayeAnimations/Player_AC.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/PlayeAnimations/Player_AC.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/PlayerTexture/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/PlayerTexture/New Material.mat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/CarTest.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/CarTest.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/AI/Pedestrian.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/AI/Pedestrian.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Player.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/Car_Park_Scene1_Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/Car_Park_Scene1_Main.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/_Scripts/AI/Agents/Agent_Pedestrian.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/AI/Agents/Agent_Pedestrian.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Beige Bin.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Beige Bin.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Black Bin.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Black Bin.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Glass.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Glass.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Litter.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Litter.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Player.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Player.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Materials/Red Bin.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Materials/Red Bin.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/Npc_Mat1.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Models/Charecters/NPC Models/Npc_Mat1.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pt_Materials/BrickRed_Colour.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Pt_Materials/BrickRed_Colour.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bin_Beige/Materials/PublicBin_Beige_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Bin_Beige/Materials/PublicBin_Beige_BaseMap.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bin_Burgundy/Materials/PublicBin_Burgundy_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Bin_Burgundy/Materials/PublicBin_Burgundy_BaseMap.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bin_General&amp;Green/Materials/PublicBin_General_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Bin_General&amp;Green/Materials/PublicBin_General_BaseMap.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Textures/Bin_General&amp;Green/Materials/PublicBin_Green_BaseMap.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Textures/Bin_General&amp;Green/Materials/PublicBin_Green_BaseMap.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tools/Joystick Pack/Examples/Ground.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tools/Joystick Pack/Examples/Ground.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/_Scenes/BenH/CarParkNew.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scenes/BenH/CarParkNew.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Obstacles/Obstacle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Obstacles/Obstacle.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/_Scripts/Player/PlayerScript.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/_Scripts/Player/PlayerScript.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ShaderGraphSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +35,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Assets/_Scripts/Interactable/Objects/Litter/TestLitter.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/parkSoundPlayer.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,

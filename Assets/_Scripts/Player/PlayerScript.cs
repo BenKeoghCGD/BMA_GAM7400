@@ -63,6 +63,7 @@ public class PlayerScript : MonoBehaviour
     private float _smoothTime = 0.05f; //for smooth rotation
     private float _currentVelocity;
 
+    
     private void Start()
     {
         interactLayer = GameManager.GetReferenceManager().GetLayerMask(referenceLayers.INTERACTABLE);
@@ -312,6 +313,8 @@ public class PlayerScript : MonoBehaviour
            // print(_horizontal + "horizontal");
         }
     }
+
+
 
     public bool hasRequiredTool(ToolType requiredTool)
     {
