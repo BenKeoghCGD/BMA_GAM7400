@@ -4,17 +4,19 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
-    [SerializeField] int _CardboardScore = 0;
+    /*[SerializeField] int _CardboardScore = 0;
     [SerializeField] int _FoodScore = 0;
     [SerializeField] int _GeneralScore = 0;
     [SerializeField] int _CansScore = 0;
-    [SerializeField] int _SpillageScore = 0;
+    [SerializeField] int _SpillageScore = 0;*/
 
     public bool ReadyForStore;
     public int totalScore { get; private set; } = 0;
+    [SerializeField] private int scorePerLitter = 10;
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private PlayerScript player;
+    private RecyclingManager rManager;
 
     // updated 21/10/24 Ben S: interaction with the player
 
@@ -33,7 +35,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreText == null) return;
         UpdateScoreText();
     }
-    public void LitterValuCalculator(Collider target)
+   /* public void LitterValuCalculator(Collider target)
     {
 
         if (target.GetComponent<Litter>())
@@ -41,7 +43,7 @@ public class ScoreManager : MonoBehaviour
             var currenctLitter = target.GetComponent<Litter>();
             int scoreToAdd = 0;
 
-
+            
 
             switch (currenctLitter.litterType)
             {
@@ -78,6 +80,12 @@ public class ScoreManager : MonoBehaviour
             //Debug.Log("total score updated" + totalScore);
             UpdateScoreText();
         }
+    }*/
+
+    public void AddScoreOnBinned()
+    {
+        totalScore += scorePerLitter;
+        UpdateScoreText();
     }
 
     private void UpdateScoreText()

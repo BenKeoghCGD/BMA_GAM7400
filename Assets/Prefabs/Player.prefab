@@ -227,7 +227,6 @@ GameObject:
   - component: {fileID: 1166230128711281308}
   - component: {fileID: 570749329559977765}
   - component: {fileID: 3184032894930185121}
-  - component: {fileID: 8227293998931722628}
   - component: {fileID: 4639365921668012768}
   m_Layer: 0
   m_Name: Player
@@ -412,7 +411,6 @@ MonoBehaviour:
   playerLife: 0
   respawn: 0
   litterCollectedAmount: 0
-  binnedAmount: 0
   equippedTool: 0
   playerCamera: {fileID: 0}
   heldBlackLitter: 0
@@ -442,20 +440,6 @@ MonoBehaviour:
   leaderboard: {fileID: 0}
   main: {fileID: 0}
   scoreManager: {fileID: 0}
---- !u!114 &8227293998931722628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3866595110635335355}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ecbbb111e2dcb344822257b93fe6ec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 0}
 --- !u!114 &4639365921668012768
 MonoBehaviour:
   m_ObjectHideFlags: 0

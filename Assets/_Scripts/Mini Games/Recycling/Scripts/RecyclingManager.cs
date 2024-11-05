@@ -25,6 +25,7 @@ public class RecyclingManager : MonoBehaviour
     [SerializeField] Camera recyclingCam;
     [SerializeField] Image timerFiller;
     public TextMeshProUGUI multiplierText;
+    [SerializeField] GameObject character;
 
 
     [Header("Audio")]
@@ -130,6 +131,7 @@ public class RecyclingManager : MonoBehaviour
         playerScript.setMovementStatus(false);
         mainCam.gameObject.SetActive(false);
         recyclingCam.gameObject.SetActive(true);
+        character.gameObject.SetActive(false);
 
         UIManager uIManager = UIManager.instance;
 
@@ -138,6 +140,7 @@ public class RecyclingManager : MonoBehaviour
         uIManager.LitterAmountText.gameObject.SetActive(false);
         uIManager.triggerUICanvas.SetActive(false);
         uIManager.totalScore.SetActive(false);
+        uIManager.mainGameCanvas.SetActive(false);
         Tween.Alpha(uIManager.recyclingFadeInPanel, 1, 0, 0.5f, Ease.Linear).OnComplete(target: this, target => target.SpawnNewLitter());
 
         timer = gameDuration;
@@ -153,7 +156,11 @@ public class RecyclingManager : MonoBehaviour
         {
             DeselectGarbage();
 
-            GameIsOver = true;
+            if (playerLife.Health <= 0)
+            {
+                GameIsOver = true;
+            }
+           
             StartTimer = false;
             UIManager uIManager = UIManager.instance;
             playerScript.setMovementStatus(true);
@@ -166,6 +173,7 @@ public class RecyclingManager : MonoBehaviour
             uIManager.triggerUICanvas.SetActive(true);
             uIManager.LitterAmountText.gameObject.SetActive(true);
             uIManager.totalScore.SetActive(true);
+            uIManager.mainGameCanvas.SetActive(true);
             Destroy(currentLitter);
             currentLitter = null;
             playerLife.ResetHealth();
@@ -175,7 +183,7 @@ public class RecyclingManager : MonoBehaviour
             GameManager.GetScoreManager().AddToScore(temp);
             playerScript.ResetCollectedLitter();
             //triggerUICanvas.SetActive(false);
-
+            character.SetActive(true);
 
         }
     }
@@ -268,13 +276,26 @@ public class RecyclingManager : MonoBehaviour
         {
             if (nearestBin.litterType == selectedLitter.litterType)
             {
-                Tween.PunchScale(multiplierText.transform, multiplierScaleAnimationSettings);
-                Debug.Log("Correct bin!");
-                correctBinSound.Play();
-                nearestBin.AnimateRecycling(selectedLitter.transform);
-                SpawnNewLitter();
-                multiplier += 0.1f;
-                UpdateMultiplierUI();
+                playerScript.litterCollectedAmount -= 1;
+
+                scoreManager.AddScoreOnBinned();
+
+                if (playerScript.litterCollectedAmount > 0)
+                {
+                    
+                    Tween.PunchScale(multiplierText.transform, multiplierScaleAnimationSettings);
+                    Debug.Log("Correct bin!");
+                    correctBinSound.Play();
+                    nearestBin.AnimateRecycling(selectedLitter.transform);
+                    SpawnNewLitter();
+                    multiplier += 0.1f;
+                    UpdateMultiplierUI();
+                }
+                else
+                {
+                    OnMiniGameEnd();
+                }
+                
             }
             else
             {

@@ -5,7 +5,7 @@ using UnityEngine;
 public class RecyclingMode : MonoBehaviour
 {
     [SerializeField] private RecyclingManager recyclingManager;
-    public bool debugMode;
+    [SerializeField] public bool debugMode;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,6 +13,8 @@ public class RecyclingMode : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerScript playerScript = other.GetComponent<PlayerScript>();
+
+            
 
             if (debugMode)
             {

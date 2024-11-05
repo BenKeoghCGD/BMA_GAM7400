@@ -25,6 +25,8 @@ public class UIManager : MonoBehaviour
 
     private LitterManager _litterManager;
     private ReferenceManager _referenceManager;
+
+    public GameObject totalScore;
     private void Awake()
     {
         if (instance != null && instance != this)

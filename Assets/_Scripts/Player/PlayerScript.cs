@@ -280,7 +280,7 @@ public class PlayerScript : MonoBehaviour
                 continue;
             }
 
-            GameManager.GetScoreManager().LitterValuCalculator(hit);
+           // GameManager.GetScoreManager().LitterValuCalculator(hit);
             
             target.OnInteract(this);
         }

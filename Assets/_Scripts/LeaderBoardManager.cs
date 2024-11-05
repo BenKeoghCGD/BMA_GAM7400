@@ -53,7 +53,7 @@ public class LeaderBoardManager : MonoBehaviour
 
     private void UpdateScoreDisplay()
     {
-        // Display top scores in the UI; use "-" if fewer than 3 scores
+        // Display top scores in the UI
         for (int i = 0; i < topScoreTexts.Count; i++)
         {
             topScoreTexts[i].text = i < topScores.Count ? "Top " + (i + 1) + ": " + topScores[i].ToString() : "-";
