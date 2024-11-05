@@ -11,7 +11,6 @@ public class UIManager : MonoBehaviour
     public static UIManager instance;
     public TMP_Text lifeAmountText;
     public TMP_Text LitterAmountText;
-    public TMP_Text binnedAmountText;
 
     public GameObject recyclingCanvas;
     public GameObject joystickCanvas;
@@ -20,6 +19,7 @@ public class UIManager : MonoBehaviour
     public GameObject triggerUICanvas;
     public Image recyclingFadeInPanel;
 
+    public GameObject totalScore;
 
     private void Awake()
     {

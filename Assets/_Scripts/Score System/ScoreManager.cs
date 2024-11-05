@@ -11,13 +11,13 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] int _SpillageScore = 0;
 
     public bool ReadyForStore;
-    public int totalScore {  get; private set; } = 0;
+    public int totalScore { get; private set; } = 0;
 
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private PlayerScript player;
 
-  // updated 21/10/24 Ben S: interaction with the player
-   
+    // updated 21/10/24 Ben S: interaction with the player
+
     public void Start()
     {
         //finds the player script on start
@@ -35,13 +35,13 @@ public class ScoreManager : MonoBehaviour
     }
     public void LitterValuCalculator(Collider target)
     {
-        
+
         if (target.GetComponent<Litter>())
         {
             var currenctLitter = target.GetComponent<Litter>();
             int scoreToAdd = 0;
 
-           
+
 
             switch (currenctLitter.litterType)
             {
@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
                     GameManager.instance.PlayerScore += _CardboardScore;
                     Debug.Log("Cardboard Litter");
                     break;
-                
+
                 case LitterType.FoodGarden:
                     scoreToAdd = _FoodScore;
                     GameManager.instance.PlayerScore += _FoodScore;
@@ -72,7 +72,7 @@ public class ScoreManager : MonoBehaviour
                     Debug.Log("Spillage Litter");
                     break;
             }
-           
+
 
             totalScore += scoreToAdd;
             Debug.Log("total score updated" + totalScore);
@@ -83,7 +83,13 @@ public class ScoreManager : MonoBehaviour
     private void UpdateScoreText()
     {
         if (scoreText == null) return;
-       scoreText.text = totalScore.ToString();
+        scoreText.text = totalScore.ToString();
+    }
+
+    public void AddToScore(float amount)
+    {
+        totalScore += (int)amount;
+        UpdateScoreText();
     }
 
     public void StoreScore()
@@ -95,9 +101,10 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+
     public void endgame()
     {
-        
+
         PlayerPrefs.SetInt("FinalScore", totalScore);
         PlayerPrefs.Save();
 

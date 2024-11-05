@@ -5,7 +5,7 @@ using UnityEngine;
 public class RecyclingMode : MonoBehaviour
 {
     [SerializeField] private RecyclingManager recyclingManager;
-
+    public bool debugMode;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -13,15 +13,17 @@ public class RecyclingMode : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerScript playerScript = other.GetComponent<PlayerScript>();
-            if (playerScript.litterCollectedAmount > 0)
+
+            if (debugMode)
             {
-                if (recyclingManager != null)
+                StartMiniGame(playerScript);
+            }
+            else
+            {
+
+                if (playerScript.litterCollectedAmount > 0)
                 {
-                    recyclingManager.OnMiniGameStart(playerScript);
-                }
-                else
-                {
-                    Debug.LogError("litter selector is not assigned in the inspector");
+                    StartMiniGame(playerScript);
                 }
             }
 
@@ -29,4 +31,15 @@ public class RecyclingMode : MonoBehaviour
 
     }
 
+    private void StartMiniGame(PlayerScript playerScript)
+    {
+        if (recyclingManager != null)
+        {
+            recyclingManager.OnMiniGameStart(playerScript);
+        }
+        else
+        {
+            Debug.LogError("RecyclingManager is not assigned in the inspector");
+        }
+    }
 }

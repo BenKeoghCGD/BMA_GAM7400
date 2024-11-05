@@ -34,7 +34,6 @@ public class PlayerScript : MonoBehaviour
     public bool respawn = false;
     //the amount of litter that player has in inventory (HS)
     public int litterCollectedAmount;
-    public float binnedAmount;
 
     //tool functionality enum (BS)
     public ToolType equippedTool;
@@ -239,11 +238,7 @@ public class PlayerScript : MonoBehaviour
         litterCollectedAmount = 0;
         UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
     }
-    public void IncreaseCollectedAmount(float amount)
-    {
-        binnedAmount += amount;
-        UIManager.instance.binnedAmountText.text = binnedAmount.ToString("F1");
-    }
+    
     // Checks for collision with IInteractable object. If the object is litter, checks if the player can carry more
     private void OnInteractCollision()
     {
