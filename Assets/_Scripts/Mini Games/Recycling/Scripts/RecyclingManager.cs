@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RecyclingManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class RecyclingManager : MonoBehaviour
     public float gameDuration = 20f;
     public float selectionThreshold = 0.95f;
     public float dragSmooth = 10f;
+    public ShakeSettings multiplierScaleAnimationSettings;
+    public ShakeSettings multiplierShakeRotationSettings;
 
     [Header("References")]
     [Space]
@@ -20,8 +23,9 @@ public class RecyclingManager : MonoBehaviour
     [SerializeField] ScoreManager scoreManager;
     [SerializeField] Camera mainCam;
     [SerializeField] Camera recyclingCam;
-    public TextMeshProUGUI timerText;
+    [SerializeField] Image timerFiller;
     public TextMeshProUGUI multiplierText;
+
 
     [Header("Audio")]
     [Space]
@@ -40,7 +44,6 @@ public class RecyclingManager : MonoBehaviour
     private PlayerScript playerScript;
     private bool CanDragLitter;
     private bool StartTimer;
-    public GameObject character;
 
 
 
@@ -53,9 +56,9 @@ public class RecyclingManager : MonoBehaviour
 
         if (!StartTimer) return;
 
-        timerText.text = "Time: " + Mathf.Ceil(timer).ToString();
         timer -= Time.deltaTime;
-        print("TIMER:" + timer);
+
+        timerFiller.fillAmount = timer / gameDuration;
 
         if (timer <= 0)
         {
@@ -127,13 +130,14 @@ public class RecyclingManager : MonoBehaviour
         playerScript.setMovementStatus(false);
         mainCam.gameObject.SetActive(false);
         recyclingCam.gameObject.SetActive(true);
-        character.SetActive(false);
 
         UIManager uIManager = UIManager.instance;
 
-        //uIManager.joystickCanvas.SetActive(false);
+
         uIManager.recyclingCanvas.SetActive(true);
+        uIManager.LitterAmountText.gameObject.SetActive(false);
         uIManager.triggerUICanvas.SetActive(false);
+        uIManager.totalScore.SetActive(false);
         Tween.Alpha(uIManager.recyclingFadeInPanel, 1, 0, 0.5f, Ease.Linear).OnComplete(target: this, target => target.SpawnNewLitter());
 
         timer = gameDuration;
@@ -153,7 +157,6 @@ public class RecyclingManager : MonoBehaviour
             StartTimer = false;
             UIManager uIManager = UIManager.instance;
             playerScript.setMovementStatus(true);
-            character.SetActive(true);
 
             Tween.Alpha(uIManager.recyclingFadeInPanel, 1, 0, 0.5f, Ease.Linear);
             recyclingCam.gameObject.SetActive(false);
@@ -161,17 +164,19 @@ public class RecyclingManager : MonoBehaviour
             // uIManager.joystickCanvas.SetActive(true);
             uIManager.recyclingCanvas.SetActive(false);
             uIManager.triggerUICanvas.SetActive(true);
+            uIManager.LitterAmountText.gameObject.SetActive(true);
+            uIManager.totalScore.SetActive(true);
             Destroy(currentLitter);
             currentLitter = null;
             playerLife.ResetHealth();
             GameIsOver = false;
             float temp = (float)playerScript.litterCollectedAmount;
             temp *= multiplier;
-            playerScript.IncreaseCollectedAmount(temp);
+            GameManager.GetScoreManager().AddToScore(temp);
             playerScript.ResetCollectedLitter();
             //triggerUICanvas.SetActive(false);
 
-           
+
         }
     }
 
@@ -263,16 +268,17 @@ public class RecyclingManager : MonoBehaviour
         {
             if (nearestBin.litterType == selectedLitter.litterType)
             {
+                Tween.PunchScale(multiplierText.transform, multiplierScaleAnimationSettings);
                 Debug.Log("Correct bin!");
                 correctBinSound.Play();
                 nearestBin.AnimateRecycling(selectedLitter.transform);
                 SpawnNewLitter();
                 multiplier += 0.1f;
-                playerScript.IncreaseCollectedAmount(1f);
                 UpdateMultiplierUI();
             }
             else
             {
+                Tween.ShakeLocalRotation(multiplierText.transform, multiplierShakeRotationSettings);
                 Debug.Log("Wrong bin! Try again.");
                 wrongBinSound.Play();
 
@@ -301,7 +307,8 @@ public class RecyclingManager : MonoBehaviour
 
     void UpdateMultiplierUI()
     {
-        multiplierText.text = "Multiplier: " + multiplier.ToString("F1");
+
+        multiplierText.text = multiplier.ToString("F1") + "X";
     }
 
     void DeselectGarbage()
