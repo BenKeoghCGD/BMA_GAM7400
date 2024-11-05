@@ -16,6 +16,7 @@ TagManager:
   - Crossing Point
   - NPC
   - LitterHolder
+  - Park
   layers:
   - Default
   - TransparentFX

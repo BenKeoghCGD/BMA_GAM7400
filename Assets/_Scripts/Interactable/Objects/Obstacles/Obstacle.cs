@@ -5,8 +5,8 @@ using UnityEngine;
 public class Obstacle : MonoBehaviour
 {
     public bool isObstacle = true;
-    private AudioSource hitbytrolley;
-
+    [SerializeField] private AudioSource hitbytrolley;
+    
     private void Start()
     {
         hitbytrolley = GetComponent<AudioSource>();
@@ -37,10 +37,12 @@ public class Obstacle : MonoBehaviour
                 playerlife.Health = Mathf.Max(playerlife.Health, 0);
             }
            
-            if (CompareTag("NPC") && hitbytrolley != null)
+            if ((CompareTag("NPC") || CompareTag("Car")) && hitbytrolley != null)
             {
                 hitbytrolley.Play();
             }
+          
+        
         }
     }
 }
