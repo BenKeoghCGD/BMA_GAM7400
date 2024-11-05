@@ -17,13 +17,13 @@ public class LeaderBoardManager : MonoBehaviour
         // Load previously saved top scores
         LoadTopScores();
 
-        // If the final score qualifies as a top score, add it
+        // If the final score qualifies as a top score
         AddScore(finalScore);
 
-        // Update the display to show the latest scores
+        // Updates the display 
         UpdateScoreDisplay();
 
-        // Clear the temporary final score
+        // Clear the temp final score
         PlayerPrefs.DeleteKey("FinalScore");
     }
 
@@ -40,13 +40,12 @@ public class LeaderBoardManager : MonoBehaviour
             topScores.Add(newScore);
             topScores.Sort((a, b) => b.CompareTo(a)); // Sort in descending order
 
-            // Ensure only the top 3 scores are kept
+            // Ensures only the top 3 scores are kept
             if (topScores.Count > 3)
             {
                 topScores.RemoveAt(3);
             }
 
-            // Save updated top scores
             SaveTopScores();
         }
     }
@@ -71,7 +70,7 @@ public class LeaderBoardManager : MonoBehaviour
 
     private void LoadTopScores()
     {
-        // Clear the list to ensure no duplicate entries
+        // Clears the list to ensure no duplicate entries
         topScores.Clear();
 
         // Load the top scores from PlayerPrefs
