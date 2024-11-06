@@ -33,4 +33,20 @@ public class BinAuraEnabler : MonoBehaviour
             binAuraVFX4.SetActive(false);
         }
     }
+
+    public void Activate()
+    {
+        binAuraVFX1.SetActive(true);
+        binAuraVFX2.SetActive(true);
+        binAuraVFX3.SetActive(true);
+        binAuraVFX4.SetActive(true);
+    }
+
+    public void Deactivate()
+    {
+        binAuraVFX1.SetActive(false);
+        binAuraVFX2.SetActive(false);
+        binAuraVFX3.SetActive(false);
+        binAuraVFX4.SetActive(false);
+    }
 }

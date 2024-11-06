@@ -69,7 +69,6 @@ public class LitterManager
         //if world litter reaches 200, ends the game
         if (_worldLitter.Count >= 200)
         {
-            GameManager.GetScoreManager().StoreScore();
             GameManager.GetScoreManager().endgame();
         }
         _worldLitter.Add(litter);
