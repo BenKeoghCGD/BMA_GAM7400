@@ -78,6 +78,8 @@ public class RecyclingManager : MonoBehaviour
         CanDragLitter = false;
         int randomLitterIndex = UnityEngine.Random.Range(0, litter.Length);
         currentLitter = Instantiate(litter[randomLitterIndex], new Vector3(-5.38000011f, -0.109999999f, 48.1800003f), litter[randomLitterIndex].transform.rotation);
+        currentLitter.GetComponent<Litter>().canMove = false;
+        currentLitter.transform.localScale = new Vector3(3, 3, 3);
         Tween.Position(currentLitter.transform, new Vector3(-5.23999977f, 2.21600008f, 50.32f), 0.5f).OnComplete(target: this, target =>
         {
             litterOriginalPos = currentLitter.transform.position;

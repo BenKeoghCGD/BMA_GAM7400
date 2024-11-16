@@ -24,6 +24,8 @@ public class Litter : MonoBehaviour, IInteractable
     private Animator pickUp;
     protected AudioClip pickUpSound;
 
+    public bool canMove = true;
+
     public void Init(LitterData data, GameObject obj)
     {
         if (data == null)
@@ -76,6 +78,19 @@ public class Litter : MonoBehaviour, IInteractable
 
         GameManager.GetAudioManager().PlaySound(transform.position, pickUpSound);
         Destroy(gameObject);
+    }
+
+
+    public void Update()
+    {
+        if (!canMove)
+        {
+            return;
+        }
+        // Makes the litter rotate on the spot
+        transform.Rotate(0, 1, 0);
+        // Makes the litter bob up and down smoothly
+        transform.position = new Vector3(transform.position.x, Mathf.Sin(Time.time) * 0.5f + 1, transform.position.z);
     }
 
 }

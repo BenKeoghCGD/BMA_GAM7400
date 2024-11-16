@@ -76,6 +76,9 @@ public class PlayerScript : MonoBehaviour
     {
         //movement has to be updated every frame
         Move();
+
+        //adds gravity to the player
+        characterController.Move(Physics.gravity * Time.deltaTime); 
     }
 
     private void Awake()
