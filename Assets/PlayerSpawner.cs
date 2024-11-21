@@ -9,29 +9,31 @@ public class PlayerSpawner : MonoBehaviour
 {
     
     public List<Transform> spawnPoints = new List<Transform>();
+    private PlayerScript _player;
 
+    private void Start()
+    {
+        _player = GameManager.GetPlayerScript();
+    }
 
     private void Update()
     {
-        if (GameManager.GetPlayerScript().respawn)
+        if (_player.respawn)
         {
            // print("Respawn");
-            GameManager.GetPlayerScript().CanMove = false;
-            GameManager.GetPlayerScript().gameObject.transform.position = spawnPoints[0].position;
-            GameManager.GetPlayerScript().PlayerAnimator.SetBool("isDied", true);
-            var playerInput = GameManager.GetPlayerScript().GetComponent<PlayerInput>();
+            _player.CanMove = false;
+            //_player.gameObject.transform.position = spawnPoints[0].position;
+            _player.PlayerAnimator.SetBool("isDied", true);
+            var playerInput = _player.GetComponent<PlayerInput>();
             StartCoroutine(moveAgain());
-            GameManager.GetPlayerScript().respawn = false;
-
-
+            _player.respawn = false;
         }
-        
     }
 
     IEnumerator moveAgain()
     {
         yield return new WaitForSeconds(8f);
-        GameManager.GetPlayerScript().CanMove = true;
-        GameManager.GetPlayerScript().PlayerAnimator.SetBool("isDied", false);
+        _player.CanMove = true;
+        _player.PlayerAnimator.SetBool("isDied", false);
     }
 }

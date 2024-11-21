@@ -24,6 +24,23 @@ public class Agent_Car : Agent_Base
     [SerializeField]
     private float _trafficSensorStrength;
 
+    [Header("Player/Character Sensor")]//Just Player Currently
+    [SerializeField]
+    private Direction_Sensor _fPlayerSensor;
+    [SerializeField]
+    private Direction_Sensor _frPlayerSensor;
+    [SerializeField]
+    private Direction_Sensor _flPlayerSensor;
+
+    [SerializeField]
+    private Direction_Sensor _reversePlayerSensor;
+    [SerializeField]
+    private Direction_Sensor _reversePlayerSensor2;
+    [SerializeField]
+    private string _playerTag;
+    [SerializeField]
+    private float _playerSensorStrength;
+
     [Header("Waypoint Sensor")]
     [SerializeField]
     private Direction_Sensor _waypointSensor;
@@ -60,6 +77,10 @@ public class Agent_Car : Agent_Base
     private bool _fraStop;
     private bool _flaStop;
 
+    private bool _fPlayerStop;
+    private bool _flPlayerStop;
+    private bool _frPlayerStop;
+
     private bool _isAtWaypoint;
     private bool _isParking;
     private bool _isLeaving;
@@ -88,6 +109,14 @@ public class Agent_Car : Agent_Base
         _flaTrafficSensor.InitTagSetSensor(_trafficSensorStrength, 0.1f, _trafficTags, FLAStop);
         _waypointSensor.InitTargetSensor(_waypointSensorStrength, 0.1f, _currentWaypoint.gameObject, HasReachedWaypoint);
         _parkingSensor.InitTagSensor(_parkingSensorStrength, 0.1f, _parkingSpaceTag, IsParking);
+        _fPlayerSensor.InitTagSensor(_playerSensorStrength, 0.1f, _playerTag, FPlayerStop);
+        _flPlayerSensor.InitTagSensor(_playerSensorStrength, 0.1f, _playerTag, FLPlayerStop);
+        _frPlayerSensor.InitTagSensor(_playerSensorStrength, 0.1f, _playerTag, FRPlayerStop);
+
+        _reversePlayerSensor.InitTagSensor(_playerSensorStrength, 0.1f, _playerTag, FPlayerStop);
+        _reversePlayerSensor.enabled = false;
+        _reversePlayerSensor2.InitTagSensor(_playerSensorStrength, 0.1f, _playerTag, FPlayerStop);
+        _reversePlayerSensor2.enabled = false;
 
         _reverseSensor.InitTagSetSensor(_reverseSensorStrength, 0.1f, _trafficTags, FStop);
         _reverseSensor.enabled = false;
@@ -101,7 +130,10 @@ public class Agent_Car : Agent_Base
     {
         _path = new AI_WaypointPath(path.GetPath());
     }
-
+    private void FixedUpdate()
+    {
+        ToggleObstacle();
+    }
     // Update is called once per frame
     void LateUpdate()
     {
@@ -160,6 +192,8 @@ public class Agent_Car : Agent_Base
     {
         _reverseSensor.enabled = val;
         _reverseSensor2.enabled = val;
+        _reversePlayerSensor.enabled = val;
+        _reversePlayerSensor2.enabled = val;
 
         _parkingSensor.enabled = !val;
         _trafficSensor.enabled = !val;
@@ -167,6 +201,9 @@ public class Agent_Car : Agent_Base
         _fraTrafficSensor.enabled = !val;
         _flTrafficSensor.enabled = !val;
         _flaTrafficSensor.enabled = !val;
+        _fPlayerSensor.enabled = !val;
+        _flPlayerSensor.enabled = !val;
+        _frPlayerSensor.enabled = !val;
         _waypointSensor.enabled = !val;
     }
     private void UpdateWaypoint()
@@ -237,8 +274,6 @@ public class Agent_Car : Agent_Base
     }
     public void LeaveCarPark()
     {
-        SetIsObstacle(true);
-
         seeker.SetSpeed(2f);
         seeker.Reverse(_parkingSpace.GetGuidePosition());
 
@@ -247,6 +282,11 @@ public class Agent_Car : Agent_Base
     }
     public void SetIsObstacle(bool val)
     {
+        if (_obstacleCollider.isTrigger == val)
+        {
+            return;
+        }
+
         _obstacleCollider.isTrigger = val;
     }
     public void FStop(bool val)
@@ -299,16 +339,44 @@ public class Agent_Car : Agent_Base
         _flaStop = val;
         NeedsToStop();
     }
+    public void FPlayerStop(bool val)
+    {
+        if (val == _fPlayerStop)
+        {
+            return;
+        }
+
+        _fPlayerStop = val;
+        NeedsToStop();
+    }
+    public void FLPlayerStop(bool val)
+    {
+        if (val == _flPlayerStop)
+        {
+            return;
+        }
+
+        _flPlayerStop = val;
+        NeedsToStop();
+    }
+    public void FRPlayerStop(bool val)
+    {
+        if (val == _frPlayerStop)
+        {
+            return;
+        }
+
+        _frPlayerStop = val;
+        NeedsToStop();
+    }
     public void NeedsToStop()
     {
-        if(_fStop == true || _frStop == true || _flStop == true || _fraStop == true || _flaStop == true)
+        if(_fStop == true || _frStop == true || _flStop == true || _fraStop == true || _flaStop == true || _fPlayerStop == true || _flPlayerStop == true || _frPlayerStop == true)
         {
-            SetIsObstacle(false);
             seeker.ToggleStop(true);
             return;
         }
 
-        SetIsObstacle(true);
         seeker.ToggleStop(false);
     }
     public void HasReachedWaypoint(bool val)
@@ -318,5 +386,15 @@ public class Agent_Car : Agent_Base
     public void IsParking(bool val)
     {
         _isParking = val;
+    }
+    void ToggleObstacle()
+    {
+        if(seeker.Agent.velocity.magnitude <= 0.15f)
+        {
+            SetIsObstacle(false);
+            return;
+        }
+
+        SetIsObstacle(true);
     }
 }

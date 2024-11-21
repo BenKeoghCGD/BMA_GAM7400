@@ -76,9 +76,6 @@ public class LitterManager
     }
     public void RemoveLitter(Litter litter)
     {
-
-        //GameManager.GetUIManager().LitterCounterText.text = GameManager.GetLitterManager().litterHolder.Count.ToString();
-
         if(_worldLitter.Contains(litter) == false)
         {
             Debug.LogError("Tried to remove unmanaged litter from LitterManager.");
@@ -92,7 +89,6 @@ public class LitterManager
             updateUICallback();
         }
     }
-
     public void AddUpdateUICallback(Action action)
     {
         updateUICallback += action;

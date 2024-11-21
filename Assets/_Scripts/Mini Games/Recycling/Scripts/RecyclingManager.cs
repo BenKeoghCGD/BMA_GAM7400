@@ -293,6 +293,7 @@ public class RecyclingManager : MonoBehaviour
                 }
                 else
                 {
+                    playerScript.collectedLitterLocations.Clear();
                     OnMiniGameEnd();
                 }
                 

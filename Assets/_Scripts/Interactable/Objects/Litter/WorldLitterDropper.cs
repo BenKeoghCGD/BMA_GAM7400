@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestLitterDropper : LitterDropper
+public class WorldLitterDropper : LitterDropper
 {
     [SerializeField]
     private int delayMin;

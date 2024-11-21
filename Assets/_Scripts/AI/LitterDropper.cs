@@ -16,7 +16,6 @@ using UnityEngine;
 
 public class LitterDropper : MonoBehaviour
 {
-    
     // Function to spawn litter
     public void DropLitter()
     {

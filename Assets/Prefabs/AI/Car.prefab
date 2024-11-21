@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &195549803789473289
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9095562253911580184}
+  - component: {fileID: 5729704807509848909}
+  m_Layer: 0
+  m_Name: FLPlayerSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9095562253911580184
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195549803789473289}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.1, y: 0, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027573579347342270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5729704807509848909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 195549803789473289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2000765218719904756
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,6 +308,50 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4776338330468768218
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 771517801575213681}
+  - component: {fileID: 5888972460655846436}
+  m_Layer: 0
+  m_Name: RPlayerSensor2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &771517801575213681
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776338330468768218}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: -1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027573579347342270}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &5888972460655846436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776338330468768218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4861066686481480429
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +440,94 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &5353465326217123329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4434996823022587672}
+  - component: {fileID: 8702687147196734493}
+  m_Layer: 0
+  m_Name: FPlayerSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4434996823022587672
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353465326217123329}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027573579347342270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8702687147196734493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353465326217123329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &6350773925995989062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3991980385061905327}
+  - component: {fileID: 5386678124056620496}
+  m_Layer: 0
+  m_Name: RPlayerSensor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3991980385061905327
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350773925995989062}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: -1.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027573579347342270}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &5386678124056620496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6350773925995989062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6570739020406668952
 GameObject:
   m_ObjectHideFlags: 0
@@ -427,6 +603,50 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.25, y: 1, z: 2.5268545}
   m_Center: {x: -3.0660916e-15, y: 0, z: 1.7842425}
+--- !u!1 &6874681780208801244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 289078473862009854}
+  - component: {fileID: 4860083285695597240}
+  m_Layer: 0
+  m_Name: 'FRPlayerSensor '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &289078473862009854
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874681780208801244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.1, y: 0, z: 1.05}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1027573579347342270}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4860083285695597240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874681780208801244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed8007c2a743ad449881ab882e8f8b31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7286841100948951526
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,10 +732,15 @@ Transform:
   m_Children:
   - {fileID: 6448913275010521423}
   - {fileID: 1919917412606615418}
+  - {fileID: 3991980385061905327}
+  - {fileID: 771517801575213681}
   - {fileID: 3610132061182592870}
   - {fileID: 520152368600227343}
   - {fileID: 5043650585448245702}
   - {fileID: 1445019637135933417}
+  - {fileID: 4434996823022587672}
+  - {fileID: 289078473862009854}
+  - {fileID: 9095562253911580184}
   - {fileID: 2201773691252287466}
   - {fileID: 7170586380971142684}
   - {fileID: 4142254435527431310}
@@ -595,6 +820,13 @@ MonoBehaviour:
   - Traffic Light
   - Car
   _trafficSensorStrength: 3.5
+  _fPlayerSensor: {fileID: 8702687147196734493}
+  _frPlayerSensor: {fileID: 4860083285695597240}
+  _flPlayerSensor: {fileID: 5729704807509848909}
+  _reversePlayerSensor: {fileID: 5386678124056620496}
+  _reversePlayerSensor2: {fileID: 5888972460655846436}
+  _playerTag: Player
+  _playerSensorStrength: 5
   _waypointSensor: {fileID: 5718941701727491873}
   _waypointSensorStrength: 1
   _parkingSensor: {fileID: 8783969966287236026}
