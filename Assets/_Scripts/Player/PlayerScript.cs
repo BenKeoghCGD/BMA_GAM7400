@@ -11,6 +11,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using PrimeTween;
 using System.Collections;
+using System.Collections.Generic;
 
 
 public class PlayerScript : MonoBehaviour
@@ -28,12 +29,13 @@ public class PlayerScript : MonoBehaviour
     //Player movement variables
     [SerializeField]
     private float baseSpeed;
-    public float moveSpeed = 5.0f;
+    private float moveSpeed;
     
     //player life variables (HS)
     public int playerLife = 0;
     public bool respawn = false;
     //the amount of litter that player has in inventory (HS)
+    public HashSet<Vector3> collectedLitterLocations;
     public int litterCollectedAmount;
 
     //tool functionality enum (BS)
@@ -65,7 +67,9 @@ public class PlayerScript : MonoBehaviour
     
     private void Start()
     {
+        moveSpeed = baseSpeed;
         interactLayer = GameManager.GetReferenceManager().GetLayerMask(referenceLayers.INTERACTABLE);
+        collectedLitterLocations = new HashSet<Vector3>();
     }
     private void FixedUpdate()
     {
@@ -225,10 +229,17 @@ public class PlayerScript : MonoBehaviour
         UIManager.instance.lifeAmountText.text = playerLife.ToString();
     }
 
+    public void AddLitter(Litter litter)
+    {
+        collectedLitterLocations.Add(litter.transform.position);
+
+        litterCollectedAmount += 1;
+        UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
+    }
     //This function is responsible for calculating the amount of collected litter under different conditions.(HS)
     //It takes two inputs: a boolean indicating whether the item encountered is a power-up,
     //and a second input that specifies the amount we want to award to the player upon interaction.(HS)
-    public void CalculateCollectedLitter(bool isPowerUp , int amount)
+    /*public void CalculateCollectedLitter(bool isPowerUp , int amount)
     {
         if (!isPowerUp)
         {
@@ -240,28 +251,41 @@ public class PlayerScript : MonoBehaviour
         }
         //This part has been implemented temporarily to display the player’s current litter collected on the screen.(HS)
         UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
-    }
+    }*/
     public void DropAllLitter()
     {
+        if(litterCollectedAmount != collectedLitterLocations.Count)
+        {
+            Debug.LogError("Failure to manage Collected Litter Locations");
+        }
+
         if(litterCollectedAmount == 0)
         {
             return;
         }
 
-        for(int i = 0; i < litterCollectedAmount; i++)
-        {
-            PlaceableLitter droppedLitter = Instantiate(GameManager.GetReferenceManager().PlaceableLitterPrefab);
-            droppedLitter.gameObject.transform.position = transform.position;
-            droppedLitter.gameObject.layer = GameManager.GetReferenceManager().GetLayerFromMask(referenceLayers.PROJECTILE);;
+        LitterManager manager = GameManager.GetLitterManager();
 
-            //Add physics stuff here (BH)
-            droppedLitter.InitDroppedLitter();
+        foreach(Vector3 position in collectedLitterLocations)
+        {
+            GameObject litterObject = new GameObject();
+
+            Litter instance = litterObject.AddComponent<Litter>();
+
+            instance.gameObject.layer = GameManager.GetReferenceManager().GetLayerFromMask(referenceLayers.INTERACTABLE);
+            instance.transform.position = position;
+
+            instance.Init(GameManager.GetLitterManager().GetRandomLitterData(), litterObject);
+
+            // Adds the litter item to the LitterManager
+            GameManager.GetLitterManager().AddLitter(instance);
         }
 
         ResetCollectedLitter();
     }
     public void ResetCollectedLitter()
     {
+        collectedLitterLocations.Clear();
         litterCollectedAmount = 0;
         UIManager.instance.LitterAmountText.text = litterCollectedAmount.ToString();
     }
@@ -290,8 +314,6 @@ public class PlayerScript : MonoBehaviour
     {
         float _horizontal = Joystick.Horizontal;
         float _vertical = Joystick.Vertical;
-        
-     
         
         var targetAngle = Mathf.Atan2(_horizontal, _vertical) * Mathf.Rad2Deg; // Calculation of the future position along the x and y axes.(HS)
         var angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _currentVelocity, _smoothTime); // rotate smoothly (HS)

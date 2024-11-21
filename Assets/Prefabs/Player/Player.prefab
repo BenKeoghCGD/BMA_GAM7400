@@ -1659,6 +1659,7 @@ Transform:
   m_Children:
   - {fileID: 4724977953846533827}
   - {fileID: 8802373319549900548}
+  - {fileID: 4178379047227450325}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &663922940055170282
@@ -1821,7 +1822,6 @@ MonoBehaviour:
   playerLife: 0
   respawn: 0
   litterCollectedAmount: 0
-  binnedAmount: 0
   equippedTool: 0
   playerCamera: {fileID: 0}
   heldBlackLitter: 0
@@ -2467,6 +2467,61 @@ Transform:
   - {fileID: 3334541376958095022}
   m_Father: {fileID: 951898525621753721}
   m_LocalEulerAnglesHint: {x: -2.0832767, y: 0.9642462, z: -19.233027}
+--- !u!1 &8461411779776637151
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4178379047227450325}
+  - component: {fileID: 7255112972324356163}
+  m_Layer: 0
+  m_Name: TriggerCollider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4178379047227450325
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461411779776637151}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4235010893938334277}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &7255112972324356163
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8461411779776637151}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 1787
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.0306304
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5153152, z: 0}
 --- !u!1 &8559423518241266548
 GameObject:
   m_ObjectHideFlags: 0

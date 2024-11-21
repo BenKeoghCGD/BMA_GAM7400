@@ -37,12 +37,21 @@ public class BombPowerUp : PowerUpBase
         }
         else
         {
-            collectedTrash = GameManager.GetLitterManager().Count();
+            PlayerScript player = GameManager.GetPlayerScript();
+
+            foreach (Litter litter in GameManager.GetLitterManager()._worldLitter)
+            {
+                player.AddLitter(litter);
+            }
+
+            GameManager.GetLitterManager().ClearLitter();
+
+            /*collectedTrash = GameManager.GetLitterManager().Count();
             GameManager.GetLitterManager().ClearLitter();
 
             //We pass the amount of collected litter to the function so it can calculate and update the player’s current litter count.(HS)
-            GameManager.GetPlayerScript().CalculateCollectedLitter(true, collectedTrash);
-            
+            GameManager.GetPlayerScript().CalculateCollectedLitter(true, collectedTrash);*/
+
             Debug.Log("Trash Collected by bomb:" + collectedTrash);
         }
 

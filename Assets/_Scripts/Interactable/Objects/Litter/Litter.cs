@@ -16,6 +16,8 @@ public class Litter : MonoBehaviour, IInteractable
     [SerializeField] 
     public LitterType litterType;
 
+    private Vector3 _initialSpawnpoint;
+
     protected GameObject litterObj;
 
     protected int litterSize;
@@ -52,6 +54,8 @@ public class Litter : MonoBehaviour, IInteractable
 
         litterObj.transform.localScale = new Vector3(3, 3, 3);
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
+
+        _initialSpawnpoint = gameObject.transform.position;
     }
 
     public void SetLitterType(LitterType type)
@@ -65,8 +69,7 @@ public class Litter : MonoBehaviour, IInteractable
         player.AdjustLitter(litterType);
 
         //The player receives one point for each litter collected.(HS)
-        GameManager.GetPlayerScript().CalculateCollectedLitter(false,1);
-
+        GameManager.GetPlayerScript().AddLitter(this);
         GameManager.GetLitterManager().RemoveLitter(this);
 
         if(pickUpSound == null)

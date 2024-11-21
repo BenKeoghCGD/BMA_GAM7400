@@ -63,7 +63,7 @@ public class Direction_Sensor : Base_Sensor
     }
     private void ScanForTagSet()
     {
-        Debug.DrawRay(transform.position, transform.forward * _sensorStrength, Color.green);
+       //Debug.DrawRay(transform.position, transform.forward * _sensorStrength, Color.green);
 
         if (Physics.Raycast(transform.position, transform.forward , out hit, _sensorStrength, _layerMask, QueryTriggerInteraction.Collide))
         {
