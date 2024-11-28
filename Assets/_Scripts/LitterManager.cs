@@ -66,7 +66,11 @@ public class LitterManager
             Debug.LogError("Tried to add null litter object to LitterManager.");
             return;
         }
-
+        //if world litter reaches 200, ends the game
+        if (_worldLitter.Count >= 200)
+        {
+            GameManager.GetScoreManager().endgame();
+        }
         _worldLitter.Add(litter);
 
         if (updateUICallback != null)

@@ -31,6 +31,8 @@ public class Menu : MonoBehaviour
     {
         //loads the previous scene
         SceneManager.LoadScene(0);
+        //if game is paused it will unpause
+        Time.timeScale = 1;
     }
 
     // Start is called before the first frame update
