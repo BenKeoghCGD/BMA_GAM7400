@@ -35,6 +35,12 @@ public class Menu : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void CheckCredits()
+    {
+        //loads the credits scene
+        SceneManager.LoadScene(3);
+    }
+
     // Start is called before the first frame update
     void Start()
     {

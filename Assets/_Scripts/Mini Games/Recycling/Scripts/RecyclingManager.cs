@@ -318,15 +318,16 @@ public class RecyclingManager : MonoBehaviour
 
     void OnWrongBinSelection()
     {
-        playerLife.DecreasePlayerHealth();
-        if (playerLife.Health <= 0)
-        {
-            OnMiniGameEnd();
-        }
-        else
-        {
-            MoveLitterToOriginalPos();
-        }
+        //playerLife.DecreasePlayerHealth();
+        //if (playerLife.Health <= 0)
+        //{
+        //    OnMiniGameEnd();
+        //}
+        //else
+        //{
+        //    MoveLitterToOriginalPos();
+        //}
+        MoveLitterToOriginalPos();
     }
 
     void UpdateMultiplierUI()
