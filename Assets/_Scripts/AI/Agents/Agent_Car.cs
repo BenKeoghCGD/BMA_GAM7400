@@ -125,6 +125,29 @@ public class Agent_Car : Agent_Base
 
         seeker.SetSpeed(5f);
         seeker.SetPath(_currentWaypoint.transform.position);
+
+        KeyValuePair<Mesh, Material> pair = GameManager.GetReferenceManager().GetRandomCarModel();
+
+        if(pair.Key == null || pair.Value == null)
+        {
+            return;
+        }
+
+        MeshFilter filter = GetComponent<MeshFilter>();
+
+        if(filter == null)
+        {
+            return;
+        }
+
+        filter.mesh = pair.Key;
+
+        MeshRenderer renderer = GetComponent<MeshRenderer>();
+
+        if(renderer != null)
+        {
+            renderer.material = pair.Value;
+        }
     }
     public void InitPath(PathPlan path)
     {

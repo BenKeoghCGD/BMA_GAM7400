@@ -67,6 +67,17 @@ public class ReferenceManager : MonoBehaviour
     private int _maxLitterAmount;
     public int MaxLitterAmount => _maxLitterAmount;
 
+    //This needs to be handled properly, fast implementation just for a build and because the assets are unorganised.
+    [SerializeField]
+    private List<Mesh> _carModels;
+    [SerializeField]
+    private List<Material> _car1Materials;
+    [SerializeField]
+    private List<Material> _car2Materials;
+    [SerializeField]
+    private List<Material> _car3Materials;
+    [SerializeField]
+    private List<Material> _car4Materials;
     public void Init()
     {
         _layerMasks = new Dictionary<referenceLayers, LayerMask>();
@@ -94,5 +105,33 @@ public class ReferenceManager : MonoBehaviour
         }
 
         return Mathf.RoundToInt(Mathf.Log(_layerMasks[tag].value, 2));
+    }
+    public KeyValuePair<Mesh, Material> GetRandomCarModel()
+    {
+        int index = UnityEngine.Random.Range(0, _carModels.Count);
+        Mesh mesh = _carModels[index];
+
+        Material material;
+
+        switch (index)
+        {
+            case 0:
+                material = _car1Materials[UnityEngine.Random.Range(0, _car1Materials.Count)];
+                return new KeyValuePair<Mesh, Material>(mesh, material);
+
+            case 1:
+                material = _car2Materials[UnityEngine.Random.Range(0, _car2Materials.Count)];
+                return new KeyValuePair<Mesh, Material>(mesh, material);
+
+            case 2:
+                material = _car3Materials[UnityEngine.Random.Range(0, _car3Materials.Count)];
+                return new KeyValuePair<Mesh, Material>(mesh, material);
+
+            case 3:
+                material = _car4Materials[UnityEngine.Random.Range(0, _car4Materials.Count)];
+                return new KeyValuePair<Mesh, Material>(mesh, material);
+        }
+
+        return new KeyValuePair<Mesh, Material>(null, null);
     }
 }
