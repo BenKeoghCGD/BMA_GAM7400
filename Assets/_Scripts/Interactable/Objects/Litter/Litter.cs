@@ -25,7 +25,7 @@ public class Litter : MonoBehaviour, IInteractable
     protected int litterSize;
     public int LitterSize => litterSize;
 
-    public VisualEffectAsset visualEffect;
+    public VisualEffect visualEffect;
 
     private Animator pickUp;
     protected AudioClip pickUpSound;
@@ -58,8 +58,10 @@ public class Litter : MonoBehaviour, IInteractable
 
         pickUpSound = data.litterSound;
 
-        visualEffect = data.litterEffect;
-        visualEffect.GameObject().SetActive(false);
+        visualEffect = gameObject.AddComponent<VisualEffect>();
+        visualEffect.visualEffectAsset = data.litterEffect;
+
+        visualEffect.Stop();
 
         litterObj.transform.localScale = new Vector3(3, 3, 3);
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
