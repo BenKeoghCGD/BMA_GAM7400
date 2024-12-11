@@ -9,7 +9,9 @@
 
 // Updated 14/10/24 (Higham, Ben), changes commented
 
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Litter : MonoBehaviour, IInteractable
 {
@@ -22,6 +24,8 @@ public class Litter : MonoBehaviour, IInteractable
 
     protected int litterSize;
     public int LitterSize => litterSize;
+
+    public VisualEffectAsset visualEffect;
 
     private Animator pickUp;
     protected AudioClip pickUpSound;
@@ -54,6 +58,9 @@ public class Litter : MonoBehaviour, IInteractable
 
         pickUpSound = data.litterSound;
 
+        visualEffect = data.litterEffect;
+        visualEffect.GameObject().SetActive(false);
+
         litterObj.transform.localScale = new Vector3(3, 3, 3);
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
 
@@ -78,7 +85,7 @@ public class Litter : MonoBehaviour, IInteractable
         {
             Debug.LogError(litterObj.name + " is missing audio clip");
         }
-
+        visualEffect.GameObject().SetActive(true);
         GameManager.GetAudioManager().PlaySound(transform.position, pickUpSound);
         Destroy(gameObject);
     }

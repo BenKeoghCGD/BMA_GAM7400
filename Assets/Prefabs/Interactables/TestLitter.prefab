@@ -45,5 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   litterType: 1
+  visualEffect: {fileID: 8926484042661614526, guid: 47207cb39daaa814e9479f4f700b8144, type: 3}
+  canMove: 1
   testData: {fileID: 0}
   randomiseTool: 0
