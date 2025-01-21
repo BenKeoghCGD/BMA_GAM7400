@@ -22,6 +22,10 @@ public class PowerUpSpowner : MonoBehaviour
     private int[] _RandomNumber;
     private void Start()
     {
+        _spawmTime = 20;
+        rarityPickUp1 = 50;
+        rarityPickUp2 = 49;
+        rarityPickUp3 = 1;
         StartCoroutine(Spawner());
     }
 

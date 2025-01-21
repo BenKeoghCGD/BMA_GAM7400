@@ -51,3 +51,6 @@ MonoBehaviour:
   - {fileID: 2109070518888310633, guid: 39ac3ae1db1a57d4dbbf7429d00c58f5, type: 3}
   - {fileID: 1351265067485372492, guid: d454474022d574e41841ff8ee4157bfa, type: 3}
   _Raysource: {x: 0, y: 2, z: 0}
+  rarityPickUp1: 32
+  rarityPickUp2: 1
+  rarityPickUp3: 32
