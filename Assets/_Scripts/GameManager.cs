@@ -14,7 +14,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    //I've moved any references I could (without redoing too much stuff) to a ReferenceManager. Score and the level-only references should not be handled in the GameManager as it persists across
+    //I've moved any references I could (without redoing too much stuff) to a ReferenceManager. Level-only references should not be handled in the GameManager as it persists across
     //all scenes (It's a manager for the entire game). (BH)
 
     public static GameManager instance;
@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
         else
         {
             instance = this;
-            DontDestroyOnLoad(gameObject);
 
             //Creation will be handled outside of awake once menu scenes are added, likely won't happen for submission (too much reorganising because references weren't being maintained properly.(BH)
             //Keep reference manager at the top.
@@ -76,7 +75,7 @@ public class GameManager : MonoBehaviour
     }
     public static VisualEffectManager GetVisualEffectManager()
     {
-        return instance._visualEffectManager;
+        return instance._visualEffectManager;   
     }
     public static AudioManager GetAudioManager()
     {
