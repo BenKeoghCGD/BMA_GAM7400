@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     private LitterTracker _litterTracker;
     private UIManager _uiManager;
     private AudioManager _audioManager;
+    private VisualEffectManager _visualEffectManager;
     
     public int PlayerScore = 0;
     public int StoredScore = 0;
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
             _litterManager = new LitterManager();
             _AISpawnManager = new AI_SpawnManager();
             _audioManager = new AudioManager();
+            _visualEffectManager = new VisualEffectManager();
             _playerScript = FindObjectOfType<PlayerScript>();
             _scoreManager = FindObjectOfType<ScoreManager>();
 
@@ -71,6 +73,10 @@ public class GameManager : MonoBehaviour
         }
 
         instance._AISpawnManager.Update(Time.deltaTime);
+    }
+    public static VisualEffectManager GetVisualEffectManager()
+    {
+        return instance._visualEffectManager;
     }
     public static AudioManager GetAudioManager()
     {

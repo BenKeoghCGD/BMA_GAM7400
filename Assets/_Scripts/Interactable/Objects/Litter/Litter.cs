@@ -9,7 +9,9 @@
 
 // Updated 14/10/24 (Higham, Ben), changes commented
 
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class Litter : MonoBehaviour, IInteractable
 {
@@ -22,6 +24,8 @@ public class Litter : MonoBehaviour, IInteractable
 
     protected int litterSize;
     public int LitterSize => litterSize;
+
+    public VisualEffectAsset visualEffect;
 
     private Animator pickUp;
     protected AudioClip pickUpSound;
@@ -53,6 +57,7 @@ public class Litter : MonoBehaviour, IInteractable
         litterType = data.litterType;
 
         pickUpSound = data.litterSound;
+        visualEffect = data.litterEffect;
 
         litterObj.transform.localScale = new Vector3(3, 3, 3);
         litterObj.AddComponent<BoxCollider>().isTrigger = true;
@@ -80,6 +85,8 @@ public class Litter : MonoBehaviour, IInteractable
         }
 
         GameManager.GetAudioManager().PlaySound(transform.position, pickUpSound);
+        GameManager.GetVisualEffectManager().PlayVisualEffectAtLocation(visualEffect, transform.position, 2);
+
         Destroy(gameObject);
     }
 

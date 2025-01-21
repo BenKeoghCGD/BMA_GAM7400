@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 [CreateAssetMenu(menuName = "ScriptableObjects/Litter")]
 public class LitterData : ScriptableObject
@@ -11,4 +12,5 @@ public class LitterData : ScriptableObject
     public int litterSize;
     public LitterType litterType;
     public AudioClip litterSound;
+    public VisualEffectAsset litterEffect;
 }
